@@ -1,9 +1,10 @@
-import { Wifi, MapPin, ChevronLeft, Copy, Info } from "lucide-react";
+import { Wifi, MapPin, ChevronLeft, Copy, KeyRound } from "lucide-react";
 import { ContactWidget } from "@/components/ContactWidget";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import heroImg from "@/assets/hero-living-room.png";
-import joroLogo from "@/assets/joro-living-logo.png";
+import heroImg from "@/assets/hero-office.png";
+import joroLogo from "@/assets/logo-joro-office.png";
+import planetLogo from "@/assets/one-for-planet.webp";
 import { useProperty } from "@/property/useProperty";
 import { SettingsPopover } from "@/components/SettingsPopover";
 
@@ -88,7 +89,7 @@ export default function Checkin() {
           {/* Title */}
           <div className="text-center px-4 mt-1 mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
-              Infos pratique
+              Infos pratiques
             </h1>
             <p className="text-base text-white/80 mt-1">Wifi, Accès logement</p>
           </div>
@@ -118,13 +119,13 @@ export default function Checkin() {
               <div className="flex items-center gap-3 mb-4">
                 <MapPin className="h-5 w-5 text-foreground" strokeWidth={2} />
                 <div>
-                  <p className="font-semibold text-foreground">43 boulevard Haussmann</p>
+                  <p className="font-semibold text-foreground">6 Rue Lamartine</p>
                   <p className="text-xs text-[#1c2626]/70 dark:text-white/70">75009 Paris, France</p>
                 </div>
               </div>
               <div className="rounded-xl overflow-hidden border border-[#1c2626]/20 dark:border-white/10">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2!2d2.3326!3d48.8726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3e4e5b5c5d%3A0x0!2s43+Boulevard+Haussmann%2C+75009+Paris!5e0!3m2!1sfr!2sfr!4v1"
+                  src="https://www.google.com/maps?q=6+Rue+Lamartine,+75009+Paris&output=embed"
                   width="100%"
                   height="180"
                   style={{ border: 0 }}
@@ -135,49 +136,39 @@ export default function Checkin() {
               </div>
             </Widget>
 
-            {/* Access steps */}
-            <Widget>
-              <div className="space-y-4">
-                <Step step={1} title="Entrée de l'immeuble">
-                  Code de la porte : <strong className="font-mono">{property?.entryCodes.buildingDoor ?? "—"}</strong>
-                </Step>
-                <div className="border-t border-[#1c2626]/15 dark:border-white/15" />
-                <Step step={2} title="Accès au hall">
-                  code <strong className="font-mono">{property?.entryCodes.hallCode ?? "—"}</strong>, puis « OK » sur l'interphone
-                </Step>
-                <div className="border-t border-[#1c2626]/15 dark:border-white/15" />
-                <Step step={3} title="3e étage, porte grise">
-                  Clés sur la table : badge immeuble (entrée principale) et clé du local poubelles (RDC, face à l'ascenseur).
-                </Step>
-              </div>
-            </Widget>
-
-            {/* Informations complémentaires */}
+            {/* Contrôle d'accès */}
             <Widget>
               <div className="flex flex-col items-center text-center pt-2 pb-4">
-                <Info className="h-10 w-10 text-foreground" strokeWidth={2} />
+                <KeyRound className="h-10 w-10 text-foreground" strokeWidth={2} />
                 <h2 className="text-xl font-semibold text-[#1c2626] dark:text-white leading-tight mt-3">
-                  Infos complémentaires
+                  Contrôle d'accès
                 </h2>
                 <p className="text-[13px] text-[#1c2626]/70 dark:text-white/80 mt-1 max-w-[280px]">
-                  Retrouver quelques indications utiles pour profiter pleinement de votre séjour
+                  Process contrôle d'accès Bluetooth
                 </p>
               </div>
               <div className="border-t border-[#1c2626]/15 dark:border-white/15" />
               <div className="divide-y divide-[#1c2626]/15 dark:divide-white/15">
                 <div className="py-4">
-                  <Step step={1} title="Gestion des lumières">
-                    L'interrupteur principal se trouve juste à côté de la porte d'entrée.
+                  <Step step={1} title="Télécharger STid Mobile ID">
+                    Sur l'App Store ou Google Play
                   </Step>
                 </div>
                 <div className="py-4">
-                  <Step step={2} title="Commande climatisation">
-                    La commande de climatisation se trouve dans le placard à côté de la porte d'entrée
+                  <Step step={2} title="Communiquer le numéro">
+                    à votre interlocuteur Asgard : property@asgard-reim.fr<br />
+                    (Ex : 3883888764)
+                  </Step>
+                </div>
+                <div className="py-4">
+                  <Step step={3} title="Mise en place">
+                    Iphone : RAS<br />
+                    Android : désactivée la fonction NFC
                   </Step>
                 </div>
                 <div className="pt-4">
-                  <Step step={3} title="Ouverture porte principale">
-                    Pour ouvrir la porte depuis l'intérieur, veuillez pousser la barre blanche à deux reprises en utilisant vos mains : une sur le bord gauche et l'autre sur le bord droit.
+                  <Step step={4} title="Activer le Bluetooth">
+                    Ouvrir l'application puis approchez votre téléphone devant le lecteur
                   </Step>
                 </div>
               </div>
@@ -188,11 +179,16 @@ export default function Checkin() {
           </div>
 
           {/* Footer logo */}
-          <div className="flex justify-center pt-8 pb-2">
+          <div className="flex items-center justify-center gap-5 pt-8 pb-2">
             <img
               src={joroLogo}
-              alt="Jöro Living"
-              className="w-[160px] h-auto object-contain brightness-0 invert"
+              alt="Jöro Office"
+              className="h-[26px] w-auto object-contain brightness-0 invert"
+            />
+            <img
+              src={planetLogo}
+              alt="1% for the Planet"
+              className="h-[42px] w-auto object-contain"
             />
           </div>
         </div>

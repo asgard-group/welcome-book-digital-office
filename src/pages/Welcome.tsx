@@ -4,13 +4,14 @@ import {
   Home as HomeIcon,
   Info as InfoIcon,
   Compass,
-  PenSquare,
+  Recycle,
   Heart,
   ConciergeBell,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import heroImg from "@/assets/hero-living-room.png";
-import joroLogo from "@/assets/joro-living-logo.png";
+import heroImg from "@/assets/hero-office.png";
+import joroLogo from "@/assets/logo-joro-office.png";
+import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { useProperty } from "@/property/useProperty";
 
@@ -25,12 +26,12 @@ export default function Welcome() {
   const { data: property } = useProperty();
 
   const menu: MenuItem[] = [
-    { label: "Infos pratiques", desc: "Wifi, Accès logement", icon: KeyRound, to: "/checkin" },
-    { label: "Guide logement", icon: HomeIcon, to: "/facilities" },
+    { label: "Infos pratiques", desc: "Wifi, procédure d’accès", icon: KeyRound, to: "/checkin" },
+    { label: "Guide espace", icon: HomeIcon, to: "/facilities" },
     { label: "Services", icon: ConciergeBell, to: "/services" },
     { label: "Urgences", desc: "Contacts importants", icon: InfoIcon, to: "/info" },
-    { label: "Explorer", desc: "Lieux touristique, activités", icon: Compass, to: "/explore" },
-    { label: "Check-in/out", icon: PenSquare, to: "/checkout" },
+    { label: "Adresses utiles", icon: Compass, to: "/explore" },
+    { label: "Éco gestes", desc: "Gestion déchets, tri sélectif", icon: Recycle, to: "/checkout" },
     { label: "Merci beaucoup", icon: Heart, to: "/thanks" },
   ];
 
@@ -59,7 +60,7 @@ export default function Welcome() {
               Bienvenue
             </h1>
             <p className="mt-2 text-white/95 text-[17px] font-medium">
-              à {property?.name ?? " "}
+              chez {property?.name ?? " "}
             </p>
           </div>
 
@@ -99,11 +100,16 @@ export default function Welcome() {
 
 
           {/* Footer logo */}
-          <div className="flex justify-center pt-2 shrink-0">
+          <div className="flex items-center justify-center gap-5 pt-2 shrink-0">
             <img
               src={joroLogo}
-              alt="Jöro Living"
-              className="w-[160px] h-auto object-contain brightness-0 invert"
+              alt="Jöro Office"
+              className="h-[26px] w-auto object-contain brightness-0 invert"
+            />
+            <img
+              src={planetLogo}
+              alt="1% for the Planet"
+              className="h-[42px] w-auto object-contain"
             />
           </div>
         </div>

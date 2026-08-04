@@ -7,8 +7,9 @@ import {
   Flame,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import heroImg from "@/assets/hero-living-room.png";
-import joroLogo from "@/assets/joro-living-logo.png";
+import heroImg from "@/assets/hero-office.png";
+import joroLogo from "@/assets/logo-joro-office.png";
+import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { ContactWidget } from "@/components/ContactWidget";
 
@@ -104,11 +105,16 @@ export default function InfoPage() {
           </div>
 
           {/* Footer logo */}
-          <div className="flex justify-center pt-8 pb-2">
+          <div className="flex items-center justify-center gap-5 pt-8 pb-2">
             <img
               src={joroLogo}
-              alt="Jöro Living"
-              className="w-[160px] h-auto object-contain brightness-0 invert"
+              alt="Jöro Office"
+              className="h-[26px] w-auto object-contain brightness-0 invert"
+            />
+            <img
+              src={planetLogo}
+              alt="1% for the Planet"
+              className="h-[42px] w-auto object-contain"
             />
           </div>
         </div>
