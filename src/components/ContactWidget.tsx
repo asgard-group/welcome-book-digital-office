@@ -1,24 +1,17 @@
-import { Phone } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 type TeamMember = {
   name: string;
   role: string;
-  phoneDisplay: string;
-  phoneHref: string;
-  note?: string;
+  email?: string;
+  phoneHref?: string;
 };
 
 const TEAM: TeamMember[] = [
-  { name: "Chris", role: "Housekeeper Manager", phoneDisplay: "06 59 19 63 66", phoneHref: "+33659196366" },
-  {
-    name: "Mathilde",
-    role: "Reservation Manager",
-    phoneDisplay: "06 30 00 10 14",
-    phoneHref: "+33630001014",
-    note: "congé maternité",
-  },
-  { name: "Bérénice", role: "Brand Manager", phoneDisplay: "06 37 75 45 70", phoneHref: "+33637754570" },
+  { name: "Manuel", role: "Lorem ipsum", email: "manuel.colores@joro-space.fr" },
+  { name: "Alexandra", role: "Lorem ipsum", email: "alexandra.delbart@joro-space.fr" },
+  { name: "Lorem Ipsum", role: "Welcome Manager" },
 ];
 
 export function ContactWidget() {
@@ -31,7 +24,7 @@ export function ContactWidget() {
           Contact Jöro
         </h2>
         <p className="text-[13px] text-[#1c2626]/70 dark:text-white/80 mt-1 max-w-[280px]">
-          Voici quelques numéros utiles pour votre séjour
+          Voici quelques numéros utiles
         </p>
       </div>
 
@@ -44,25 +37,27 @@ export function ContactWidget() {
             <div className="flex-1 min-w-0 space-y-0.5">
               <p className="font-semibold text-[#1c2626] dark:text-white text-sm">{member.name}</p>
               <p className="text-xs uppercase text-[#1c2626]/70 dark:text-white/80">{member.role}</p>
-              {member.note && (
-                <p className="text-xs italic text-[#1c2626]/70 dark:text-white/80">{member.note}</p>
-              )}
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <a
-                href={`tel:${member.phoneHref}`}
-                className="text-sm font-medium text-[#1c2626] dark:text-white underline underline-offset-2 whitespace-nowrap"
-              >
-                {member.phoneDisplay}
-              </a>
-              <a
-                href={`https://wa.me/${member.phoneHref.replace("+", "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0"
-              >
-                <WhatsAppIcon className="h-[27px] w-[27px] text-[#128C7E]" />
-              </a>
+              {member.email ? (
+                <a href={`mailto:${member.email}`} className="shrink-0">
+                  <Mail className="h-[27px] w-[27px] text-[#2C92FF]" strokeWidth={2} />
+                </a>
+              ) : (
+                <Mail className="h-[27px] w-[27px] text-[#2C92FF] opacity-40" strokeWidth={2} />
+              )}
+              {member.phoneHref ? (
+                <a
+                  href={`https://wa.me/${member.phoneHref.replace("+", "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0"
+                >
+                  <WhatsAppIcon className="h-[27px] w-[27px] text-[#128C7E]" />
+                </a>
+              ) : (
+                <WhatsAppIcon className="h-[27px] w-[27px] text-[#128C7E] opacity-40" />
+              )}
             </div>
           </div>
         ))}
@@ -71,10 +66,10 @@ export function ContactWidget() {
         <div className="flex items-center justify-center gap-[5px] pt-4">
           <span className="text-sm font-medium text-[#5C6363] dark:text-white/60">Email</span>
           <a
-            href="mailto:reservation@joro-space.fr"
+            href="mailto:hello@joro-space.fr"
             className="text-sm font-medium text-[#1c2626] dark:text-white underline underline-offset-2"
           >
-            reservation@joro-space.fr
+            hello@joro-space.fr
           </a>
         </div>
       </div>

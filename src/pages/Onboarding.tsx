@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import heroImg from "@/assets/hero-living-room.png";
-import logo from "@/assets/joro-living-logo.png";
+import heroImg from "@/assets/hero-office.png";
+import logo from "@/assets/logo-joro-office.png";
 
 export default function Onboarding() {
   const navigate = useNavigate();

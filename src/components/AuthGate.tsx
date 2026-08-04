@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import { useProperty } from "@/property/useProperty";
-import joroLogo from "@/assets/joro-living-logo.png";
+import joroLogo from "@/assets/logo-joro-office.png";
 
 function Screen({ children }: { children: ReactNode }) {
   return (
