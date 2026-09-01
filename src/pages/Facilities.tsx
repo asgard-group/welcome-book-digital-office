@@ -11,23 +11,14 @@ import {
   Building2,
   DoorOpen,
   Sun,
-  AlertCircle,
   ChevronLeft,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import heroImg from "@/assets/hero-office.png";
+import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { ContactWidget } from "@/components/ContactWidget";
-
-function Widget({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#1c2626]/80 text-[#1c2626] dark:text-white">
-      {children}
-    </div>
-  );
-}
 
 export default function Facilities() {
   const { t } = useLanguage();
@@ -43,7 +34,6 @@ export default function Facilities() {
         { name: "Click & Play" },
         { name: "Climatisation" },
         { name: "Chauffage" },
-        { name: "Cadenas" },
       ],
     },
     {
@@ -54,7 +44,6 @@ export default function Facilities() {
       items: [
         { name: "Machine à café" },
         { name: "Micro ondes" },
-        { name: "Lave vaisselle" },
       ],
     },
     {
@@ -122,7 +111,7 @@ export default function Facilities() {
               alt="Haussmann Mogador"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
           </div>
         </div>
 
@@ -154,15 +143,15 @@ export default function Facilities() {
                 <AccordionItem
                   key={section.id}
                   value={section.id}
-                  className="rounded-xl px-4 backdrop-blur-md bg-white/90 dark:bg-[#1c2626]/80 border border-[#1c2626]/20 dark:border-transparent"
+                  className="rounded-xl px-4 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 border border-[#312B37]/20 dark:border-transparent"
                 >
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <section.icon
-                        className="h-5 w-5 text-[#1c2626] dark:text-white"
+                        className="h-5 w-5 text-[#312B37] dark:text-white"
                         strokeWidth={2}
                       />
-                      <span className="font-semibold text-[#1c2626] dark:text-white">
+                      <span className="font-semibold text-[#312B37] dark:text-white">
                         {section.title}
                       </span>
                     </div>
@@ -172,16 +161,16 @@ export default function Facilities() {
                       <div className="pt-1 space-y-3">
                         {section.items.map((item) => (
                           <div key={item.name} className="pl-8">
-                            <p className="text-sm font-medium text-[#1c2626] dark:text-white">
+                            <p className="text-sm font-medium text-[#312B37] dark:text-white">
                               {item.name}
                             </p>
                             <div className="flex items-start justify-between gap-3">
-                              <p className="text-sm text-[#1c2626]/70 dark:text-white/70">
+                              <p className="text-sm text-[#312B37]/70 dark:text-white/70">
                                 Notice d'utilisation :
                               </p>
                               <span
                                 aria-disabled="true"
-                                className="text-sm text-[#1c2626] dark:text-white underline underline-offset-2 shrink-0 cursor-default"
+                                className="text-sm text-[#312B37] dark:text-white underline underline-offset-2 shrink-0 cursor-default"
                               >
                                 Lien vidéo
                               </span>
@@ -193,10 +182,10 @@ export default function Facilities() {
                       <div className="space-y-3 pt-1">
                         {section.items.map((item) => (
                           <div key={item.name} className="pl-8">
-                            <p className="text-sm font-medium text-[#1c2626] dark:text-white">
+                            <p className="text-sm font-medium text-[#312B37] dark:text-white">
                               {item.name}
                             </p>
-                            <p className="text-sm text-[#1c2626]/70 dark:text-white/80">
+                            <p className="text-sm text-[#312B37]/70 dark:text-white/80">
                               {item.detail}
                             </p>
                           </div>
@@ -207,17 +196,6 @@ export default function Facilities() {
                 </AccordionItem>
               ))}
             </Accordion>
-
-            {/* Information */}
-            <Widget>
-              <div className="flex items-center gap-3 mb-3">
-                <AlertCircle className="h-5 w-5 text-[#1c2626] dark:text-white" strokeWidth={2} />
-                <h2 className="font-semibold text-[#1c2626] dark:text-white">Information</h2>
-              </div>
-              <p className="text-sm text-[#1c2626]/70 dark:text-white/80 leading-relaxed">
-                L'entretien des équipements est réalisé par les agents de ménage sous le contrôle de la Welcome Manager.
-              </p>
-            </Widget>
 
             {/* Contact Jöro */}
             <ContactWidget />

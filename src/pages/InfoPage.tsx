@@ -7,7 +7,7 @@ import {
   Flame,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import heroImg from "@/assets/hero-office.png";
+import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
@@ -33,7 +33,7 @@ export default function InfoPage() {
               alt="Haussmann Mogador"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
           </div>
         </div>
 
@@ -84,16 +84,16 @@ export default function InfoPage() {
                 <a
                   key={item.number}
                   href={`tel:${item.number}`}
-                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 backdrop-blur-md bg-white/90 dark:bg-[#1c2626]/80 border border-[#1c2626]/20 dark:border-transparent transition-colors hover:bg-white/95 dark:hover:bg-[#1c2626]/85"
+                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 border border-[#312B37]/20 dark:border-transparent transition-colors hover:bg-white/95 dark:hover:bg-[#312B37]/85"
                 >
                   <item.icon
-                    className="h-5 w-5 text-[#1c2626] dark:text-white shrink-0"
+                    className="h-5 w-5 text-[#312B37] dark:text-white shrink-0"
                     strokeWidth={2}
                   />
-                  <span className="flex-1 text-[15px] font-medium text-[#1c2626] dark:text-white">
+                  <span className="flex-1 text-[15px] font-medium text-[#312B37] dark:text-white">
                     {item.label}
                   </span>
-                  <span className="text-[17px] font-semibold text-[#1c2626] dark:text-white">
+                  <span className="text-[17px] font-semibold text-[#312B37] dark:text-white">
                     {item.number}
                   </span>
                 </a>
