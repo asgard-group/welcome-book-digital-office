@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, Star, Heart } from "lucide-react";
 import { toast } from "sonner";
-import heroImg from "@/assets/hero-office.png";
+import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { Textarea } from "@/components/ui/textarea";
@@ -35,7 +35,7 @@ export default function Thanks() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Subtle dark overlay */}
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40" />
+        <div className="absolute inset-0 bg-[#312B37]/20 dark:bg-[#312B37]/40" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col min-h-screen pb-6">
@@ -63,18 +63,18 @@ export default function Thanks() {
 
           {/* Review card */}
           <div className="flex-1 flex flex-col justify-center px-[30px]">
-            <div className="rounded-3xl p-6 backdrop-blur-md bg-white/75 dark:bg-[#1c2626]/80">
+            <div className="rounded-3xl p-6 backdrop-blur-md bg-white/75 dark:bg-[#312B37]/80">
               <div className="flex flex-col items-center text-center mb-6">
-                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#1c2626]/40 dark:bg-[#323E3E] dark:border-transparent mb-4">
+                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#312B37]/40 dark:bg-[#47414D] dark:border-transparent mb-4">
                   <Heart
-                    className="h-[30px] w-[30px] text-[#1c2626] dark:text-white"
+                    className="h-[30px] w-[30px] text-[#312B37] dark:text-white"
                     strokeWidth={1.5}
                   />
                 </span>
-                <h2 className="text-[18px] font-semibold uppercase tracking-wide text-[#1c2626] dark:text-white">
+                <h2 className="text-[18px] font-semibold uppercase tracking-wide text-[#312B37] dark:text-white">
                   Partagez votre expérience
                 </h2>
-                <p className="text-[13px] text-[#1c2626]/70 dark:text-white/80 mt-1 max-w-[260px]">
+                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[260px]">
                   Votre avis nous aide à améliorer chaque séjour chez Jöro Living.
                 </p>
               </div>
@@ -82,7 +82,7 @@ export default function Thanks() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Star rating */}
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-[13px] font-medium text-[#1c2626]/80 dark:text-white/80">
+                  <span className="text-[13px] font-medium text-[#312B37]/80 dark:text-white/80">
                     Notez votre séjour
                   </span>
                   <div className="flex items-center gap-1">
@@ -99,8 +99,8 @@ export default function Thanks() {
                         <Star
                           className={`h-7 w-7 ${
                             star <= (hoverRating || rating)
-                              ? "fill-[#1c2626] text-[#1c2626] dark:fill-white dark:text-white"
-                              : "text-[#1c2626]/30 dark:text-white/30"
+                              ? "fill-[#312B37] text-[#312B37] dark:fill-white dark:text-white"
+                              : "text-[#312B37]/30 dark:text-white/30"
                           }`}
                           strokeWidth={1.5}
                         />
@@ -113,7 +113,7 @@ export default function Thanks() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="text-[13px] font-medium text-[#1c2626]/80 dark:text-white/80"
+                    className="text-[13px] font-medium text-[#312B37]/80 dark:text-white/80"
                   >
                     Votre message
                   </label>
@@ -122,14 +122,14 @@ export default function Thanks() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Racontez-nous votre séjour..."
-                    className="min-h-[120px] rounded-xl border-[#1c2626]/20 bg-white/60 text-[#1c2626] placeholder:text-[#1c2626]/40 dark:bg-[#323E3E]/60 dark:text-white dark:placeholder:text-white/50 dark:border-transparent resize-none"
+                    className="min-h-[120px] rounded-xl border-[#312B37]/20 bg-white/60 text-[#312B37] placeholder:text-[#312B37]/40 dark:bg-[#47414D]/60 dark:text-white dark:placeholder:text-white/50 dark:border-transparent resize-none"
                   />
                 </div>
 
                 {/* Submit */}
                 <Button
                   type="submit"
-                  className="w-full h-12 rounded-full bg-[#1c2626] text-white hover:bg-[#1c2626]/90 text-[15px] font-semibold uppercase tracking-wide"
+                  className="w-full h-12 rounded-full bg-[#312B37] text-white hover:bg-[#312B37]/90 text-[15px] font-semibold uppercase tracking-wide"
                 >
                   Envoyer mon avis
                 </Button>
@@ -137,7 +137,7 @@ export default function Thanks() {
                 {/* Contact link */}
                 <a
                   href="mailto:reservation@joro-space.fr"
-                  className="block text-center text-[13px] font-medium text-[#1c2626]/70 dark:text-white/70 hover:text-[#1c2626] dark:hover:text-white transition-colors"
+                  className="block text-center text-[13px] font-medium text-[#312B37]/70 dark:text-white/70 hover:text-[#312B37] dark:hover:text-white transition-colors"
                 >
                   Me contacter directement
                 </a>

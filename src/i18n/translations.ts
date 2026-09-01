@@ -93,7 +93,7 @@ export const translations = {
       emergencyDesc: "For any incident or urgent issue:",
     },
     facilities: {
-      title: "Housing Guide",
+      title: "Office Guide",
       subtitle: "Everything you need to know",
       internalRules: "Internal Rules",
       internalRulesIntro: "Non-compliance with the Terms may lead to the following sanctions:",
@@ -149,7 +149,7 @@ export const translations = {
     },
     explore: {
       title: "Useful addresses",
-      subtitle: "Tourist spots & Activities",
+      subtitle: "Transport & Restaurants",
       map: "Map →",
     },
     info: {
@@ -264,7 +264,7 @@ export const translations = {
       emergencyDesc: "Pour tout incident ou urgence :",
     },
     facilities: {
-      title: "Guide logement",
+      title: "Guide espace",
       subtitle: "Tout ce qu'il faut savoir",
       internalRules: "Règlement intérieur",
       internalRulesIntro: "Le non-respect des Conditions générales peut entraîner les sanctions suivantes :",
@@ -320,7 +320,7 @@ export const translations = {
     },
     explore: {
       title: "Adresses utiles",
-      subtitle: "Lieux touristique & Activités",
+      subtitle: "Transports & Restaurants",
       map: "Carte →",
     },
     info: {

@@ -5,7 +5,7 @@ import joroLogo from "@/assets/logo-joro-office.png";
 
 function Screen({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#1c2626] px-8 text-center text-white">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#312B37] px-8 text-center text-white">
       <img
         src={joroLogo}
         alt="Jöro Living"

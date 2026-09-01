@@ -17,14 +17,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import heroImg from "@/assets/hero-office.png";
+import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 
 function Widget({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#1c2626]/80 text-[#1c2626] dark:text-white">
+    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
       {children}
     </div>
   );
@@ -130,7 +130,7 @@ export default function Checkout() {
               alt="Haussmann Mogador"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
           </div>
         </div>
 
@@ -158,23 +158,23 @@ export default function Checkout() {
             <Widget>
               <div className="flex flex-col items-center text-center pt-2 pb-4">
                 <Trash2 className="h-10 w-10 text-foreground" strokeWidth={2} />
-                <h2 className="text-xl font-semibold text-[#1c2626] dark:text-white leading-tight mt-3">
+                <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
                   Gestion des déchets
                 </h2>
-                <p className="text-[13px] text-[#1c2626]/70 dark:text-white/80 mt-1 max-w-[280px]">
+                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
                   Lorem ipsum
                 </p>
               </div>
-              <div className="border-t border-[#1c2626]/15 dark:border-white/15" />
-              <div className="divide-y divide-[#1c2626]/15 dark:divide-white/15">
+              <div className="border-t border-[#312B37]/15 dark:border-white/15" />
+              <div className="divide-y divide-[#312B37]/15 dark:divide-white/15">
                 {WASTE_ITEMS.map((item) => (
                   <div key={item.title} className="flex items-start gap-3 py-4">
                     <item.icon className={`h-5 w-5 shrink-0 ${item.color}`} strokeWidth={2} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#1c2626] dark:text-white">
+                      <p className="text-sm font-semibold text-[#312B37] dark:text-white">
                         {item.title}
                       </p>
-                      <p className="text-sm text-[#1c2626]/70 dark:text-white/80">{item.desc}</p>
+                      <p className="text-sm text-[#312B37]/70 dark:text-white/80">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -184,10 +184,10 @@ export default function Checkout() {
             {/* Information */}
             <Widget>
               <div className="flex items-center gap-3 mb-3">
-                <AlertCircle className="h-5 w-5 text-[#1c2626] dark:text-white" strokeWidth={2} />
-                <h2 className="font-semibold text-[#1c2626] dark:text-white">Information</h2>
+                <AlertCircle className="h-5 w-5 text-[#312B37] dark:text-white" strokeWidth={2} />
+                <h2 className="font-semibold text-[#312B37] dark:text-white">Information</h2>
               </div>
-              <p className="text-sm text-[#1c2626]/70 dark:text-white/80 leading-relaxed">
+              <p className="text-sm text-[#312B37]/70 dark:text-white/80 leading-relaxed">
                 Pensez au tri sélectif dans votre entreprise, cela permet aux déchets de faire l'objet d'un traitement spécifique et être ainsi valorisés.
               </p>
             </Widget>
@@ -196,10 +196,10 @@ export default function Checkout() {
             <Widget>
               <div className="flex flex-col items-center text-center pt-2 pb-2">
                 <Leaf className="h-10 w-10 text-foreground" strokeWidth={2} />
-                <h2 className="text-xl font-semibold text-[#1c2626] dark:text-white leading-tight mt-3">
+                <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
                   Éco Geste à adopter
                 </h2>
-                <p className="text-[13px] text-[#1c2626]/70 dark:text-white/80 mt-1 max-w-[280px]">
+                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
                   Quels sont les bons gestes éco responsables à adopter au bureau ?
                 </p>
               </div>
@@ -211,15 +211,15 @@ export default function Checkout() {
                 <AccordionItem
                   key={section.id}
                   value={section.id}
-                  className="rounded-xl px-4 backdrop-blur-md bg-white/90 dark:bg-[#1c2626]/80 border border-[#1c2626]/20 dark:border-transparent"
+                  className="rounded-xl px-4 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 border border-[#312B37]/20 dark:border-transparent"
                 >
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <section.icon
-                        className="h-5 w-5 text-[#1c2626] dark:text-white"
+                        className="h-5 w-5 text-[#312B37] dark:text-white"
                         strokeWidth={2}
                       />
-                      <span className="font-semibold text-[#1c2626] dark:text-white">
+                      <span className="font-semibold text-[#312B37] dark:text-white">
                         {section.title}
                       </span>
                     </div>
@@ -228,10 +228,10 @@ export default function Checkout() {
                     <div className="space-y-3 pt-1">
                       {section.items.map((item) => (
                         <div key={item.name} className="pl-8">
-                          <p className="text-sm font-medium text-[#1c2626] dark:text-white">
+                          <p className="text-sm font-medium text-[#312B37] dark:text-white">
                             {item.name}
                           </p>
-                          <p className="text-sm text-[#1c2626]/70 dark:text-white/80">
+                          <p className="text-sm text-[#312B37]/70 dark:text-white/80">
                             {item.detail}
                           </p>
                         </div>

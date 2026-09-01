@@ -9,7 +9,7 @@ import {
   ConciergeBell,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import heroImg from "@/assets/hero-office.png";
+import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
@@ -45,7 +45,7 @@ export default function Welcome() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Subtle dark overlay for readability (stronger in dark mode) */}
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40" />
+        <div className="absolute inset-0 bg-[#312B37]/20 dark:bg-[#312B37]/40" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full pb-6">
@@ -74,22 +74,22 @@ export default function Welcome() {
                   to={item.to}
                   className="group relative flex items-center rounded-full p-[3px] backdrop-blur-md transition-colors
                     bg-white/75 hover:bg-white/85
-                    dark:bg-[#1c2626]/80 dark:hover:bg-[#1c2626]/90"
+                    dark:bg-[#312B37]/80 dark:hover:bg-[#312B37]/90"
                 >
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full
-                    border border-[#1c2626]/40
-                    dark:bg-[#323E3E] dark:border-transparent">
+                    border border-[#312B37]/40
+                    dark:bg-[#47414D] dark:border-transparent">
                     <item.icon
-                      className="h-[30px] w-[30px] text-[#1c2626] dark:text-white"
+                      className="h-[30px] w-[30px] text-[#312B37] dark:text-white"
                       strokeWidth={1.5}
                     />
                   </span>
                   <span className="flex-1 flex flex-col items-center text-center px-2 -ml-10">
-                    <span className="text-[15px] font-semibold uppercase tracking-wide text-[#1c2626] dark:text-white leading-tight">
+                    <span className="text-[15px] font-semibold uppercase tracking-wide text-[#312B37] dark:text-white leading-tight">
                       {item.label}
                     </span>
                     {item.desc && (
-                      <span className="text-[12px] font-medium text-[#1c2626]/70 dark:text-white/80 mt-0.5">
+                      <span className="text-[12px] font-medium text-[#312B37]/70 dark:text-white/80 mt-0.5">
                         {item.desc}
                       </span>
                     )}
