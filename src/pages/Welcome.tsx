@@ -14,6 +14,7 @@ import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { useProperty } from "@/property/useProperty";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type MenuItem = {
   label: string;
@@ -24,15 +25,16 @@ type MenuItem = {
 
 export default function Welcome() {
   const { data: property } = useProperty();
+  const { t } = useLanguage();
 
   const menu: MenuItem[] = [
-    { label: "Infos pratiques", desc: "Wifi, procédure d’accès", icon: KeyRound, to: "/checkin" },
-    { label: "Guide espace", icon: HomeIcon, to: "/facilities" },
-    { label: "Services", icon: ConciergeBell, to: "/services" },
-    { label: "Urgences", desc: "Contacts importants", icon: InfoIcon, to: "/info" },
-    { label: "Adresses utiles", icon: Compass, to: "/explore" },
-    { label: "Éco gestes", desc: "Gestion déchets, tri sélectif", icon: Recycle, to: "/checkout" },
-    { label: "Merci beaucoup", icon: Heart, to: "/thanks" },
+    { label: t.welcome.menu.checkin, icon: KeyRound, to: "/checkin" },
+    { label: t.welcome.menu.facilities, icon: HomeIcon, to: "/facilities" },
+    { label: t.welcome.menu.services, icon: ConciergeBell, to: "/services" },
+    { label: t.welcome.menu.info, icon: InfoIcon, to: "/info" },
+    { label: t.welcome.menu.explore, icon: Compass, to: "/explore" },
+    { label: t.welcome.menu.checkout, icon: Recycle, to: "/checkout" },
+    { label: t.welcome.menu.thanks, icon: Heart, to: "/thanks" },
   ];
 
   return (
@@ -41,7 +43,7 @@ export default function Welcome() {
         {/* Background image */}
         <img
           src={heroImg}
-          alt={property ? `Bienvenue à ${property.name}` : "Bienvenue"}
+          alt={property ? `${t.welcome.heroAltPrefix}${property.name}` : t.welcome.heroAltFallback}
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Subtle dark overlay for readability (stronger in dark mode) */}
@@ -57,20 +59,20 @@ export default function Welcome() {
           {/* Title / subtitle (same level as other page titles) */}
           <div className="text-center px-4 mt-1 shrink-0">
             <h1 className="font-serif font-medium text-white text-[44px] leading-none tracking-tight uppercase">
-              Bienvenue
+              {t.welcome.title}
             </h1>
             <p className="mt-2 text-white/95 text-[17px] font-medium">
-              chez {property?.name ?? " "}
+              {t.welcome.subtitlePrefix} {property?.name ?? " "}
             </p>
           </div>
 
           {/* Menu buttons — fills space between title and footer logo */}
           <nav className="flex-1 min-h-0 flex flex-col justify-center gap-[15px] py-6 px-[40px]">
             {menu
-              .filter((item) => item.label !== "Merci beaucoup")
+              .filter((item) => item.to !== "/thanks")
               .map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.to}
                   to={item.to}
                   className="group relative flex items-center rounded-full p-[3px] backdrop-blur-md transition-colors
                     bg-white/75 hover:bg-white/85

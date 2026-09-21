@@ -13,6 +13,7 @@ import {
   Sun,
   ChevronLeft,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
@@ -20,106 +21,40 @@ import planetLogo from "@/assets/one-for-planet.webp";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { ContactWidget } from "@/components/ContactWidget";
 
+const SECTION_ICONS: Record<string, LucideIcon> = {
+  equipements: Tv,
+  "cuisine-equipements": CookingPot,
+  "r-1": Building2,
+  rdc: DoorOpen,
+  "r+1": Building2,
+  "r+2": Building2,
+  "r+3-rooftop": Sun,
+};
+
 export default function Facilities() {
   const { t } = useLanguage();
 
-  const sections = [
-    {
-      id: "equipements",
-      icon: Tv,
-      title: "Équipements",
-      kind: "video" as const,
-      items: [
-        { name: "Télévisions Smart TV" },
-        { name: "Click & Play" },
-        { name: "Climatisation" },
-        { name: "Chauffage" },
-      ],
-    },
-    {
-      id: "cuisine-equipements",
-      icon: CookingPot,
-      title: "Cuisine",
-      kind: "video" as const,
-      items: [
-        { name: "Machine à café" },
-        { name: "Micro ondes" },
-      ],
-    },
-    {
-      id: "r-1",
-      icon: Building2,
-      title: "R-1",
-      kind: "info" as const,
-      items: [
-        { name: "Salle de réunion", detail: "1 Télévisions Smart TV, chauffage" },
-        { name: "Cuisine", detail: "2 Machine à café, 1 micro ondes, 1 Lave vaisselle" },
-        { name: "Espace convivialité", detail: "18 m² intérieur" },
-        { name: "Sanitaires", detail: "6 toilettes" },
-        { name: "Douches", detail: "2 douches, 1 évier" },
-      ],
-    },
-    {
-      id: "rdc",
-      icon: DoorOpen,
-      title: "RDC",
-      kind: "info" as const,
-      items: [
-        { name: "Accueil", detail: "1 poste d'accueil" },
-        { name: "Open space sous verrière", detail: "20 postes, 18 m² intérieur, 2 Phone Box" },
-        { name: "Salles de réunion", detail: "1 Télévisions Smart TV, chauffage" },
-      ],
-    },
-    {
-      id: "r+1",
-      icon: Building2,
-      title: "R+1",
-      kind: "info" as const,
-      items: [
-        { name: "Bureaux open-space, 2 Phone Box", detail: "20 postes, 18 m² intérieur" },
-      ],
-    },
-    {
-      id: "r+2",
-      icon: Building2,
-      title: "R+2",
-      kind: "info" as const,
-      items: [
-        { name: "Bureaux open-space", detail: "20 postes, 2 Phone Box" },
-        { name: "Salle de réunion", detail: "1 Télévisions Smart TV, chauffage" },
-      ],
-    },
-    {
-      id: "r+3-rooftop",
-      icon: Sun,
-      title: "R+3/Rooftop",
-      kind: "info" as const,
-      items: [
-        { name: "Terrasse privative", detail: "18 m² intérieur + 123 m² extérieur" },
-      ],
-    },
-  ];
+  const sections = t.facilities.sections.map((section) => ({
+    ...section,
+    icon: SECTION_ICONS[section.id],
+  }));
 
   return (
-    <div className="min-h-screen w-full bg-muted/30">
-      <div className="mx-auto w-full max-w-[760px] min-h-screen relative overflow-hidden shadow-sm">
-        {/* Background image (fixed full-viewport wrapper to avoid jumps on mobile scroll) */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="relative mx-auto h-full w-full max-w-[760px]">
-            <img
-              src={heroImg}
-              alt="Haussmann Mogador"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
-          </div>
-        </div>
+    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+        {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
+        <img
+          src={heroImg}
+          alt="Haussmann Mogador"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col min-h-screen pb-6">
+        <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/" aria-label="Back" className="h-11 w-11 flex items-center justify-center">
+            <Link to="/" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
             <SettingsPopover variant="light" />
@@ -166,14 +101,25 @@ export default function Facilities() {
                             </p>
                             <div className="flex items-start justify-between gap-3">
                               <p className="text-sm text-[#312B37]/70 dark:text-white/70">
-                                Notice d'utilisation :
+                                {t.facilities.noticeLabel}
                               </p>
-                              <span
-                                aria-disabled="true"
-                                className="text-sm text-[#312B37] dark:text-white underline underline-offset-2 shrink-0 cursor-default"
-                              >
-                                Lien vidéo
-                              </span>
+                              {item.videoUrl ? (
+                                <a
+                                  href={item.videoUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-sm text-[#312B37] dark:text-white underline underline-offset-2 shrink-0"
+                                >
+                                  {t.facilities.videoLinkLabel}
+                                </a>
+                              ) : (
+                                <span
+                                  aria-disabled="true"
+                                  className="text-sm text-[#312B37] dark:text-white underline underline-offset-2 shrink-0 cursor-default"
+                                >
+                                  {t.facilities.videoLinkLabel}
+                                </span>
+                              )}
                             </div>
                           </div>
                         ))}

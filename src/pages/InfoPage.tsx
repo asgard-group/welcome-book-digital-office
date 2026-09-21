@@ -23,25 +23,21 @@ export default function InfoPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-muted/30">
-      <div className="mx-auto w-full max-w-[760px] min-h-screen relative overflow-hidden shadow-sm">
-        {/* Background image (fixed full-viewport wrapper to avoid jumps on mobile scroll) */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="relative mx-auto h-full w-full max-w-[760px]">
-            <img
-              src={heroImg}
-              alt="Haussmann Mogador"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
-          </div>
-        </div>
+    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+        {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
+        <img
+          src={heroImg}
+          alt="Haussmann Mogador"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col min-h-screen pb-6">
+        <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/" aria-label="Back" className="h-11 w-11 flex items-center justify-center">
+            <Link to="/" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
             <SettingsPopover variant="light" />

@@ -1,30 +1,33 @@
 import { Phone, Mail } from "lucide-react";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type TeamMember = {
   name: string;
-  role: string;
+  role: "roleMultisite" | "roleWelcomeManager";
   email?: string;
   phoneHref?: string;
 };
 
 const TEAM: TeamMember[] = [
-  { name: "Manuel", role: "Responsable multisite", email: "manuel.colores@joro-space.fr" },
-  { name: "Alexandra", role: "Responsable multisite", email: "alexandra.delbart@joro-space.fr" },
-  { name: "Audrey", role: "Welcome Manager" },
+  { name: "Manuel", role: "roleMultisite", email: "manuel.colores@joro-space.fr", phoneHref: "+33764012129" },
+  { name: "Alexandra", role: "roleMultisite", email: "alexandra.delbart@joro-space.fr", phoneHref: "+33778877806" },
+  { name: "Audrey", role: "roleWelcomeManager", email: "audrey.robin@joro-space.fr", phoneHref: "+33659668978" },
 ];
 
 export function ContactWidget() {
+  const { t } = useLanguage();
+
   return (
     <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
       {/* Header */}
       <div className="flex flex-col items-center text-center pt-2 pb-4">
         <Phone className="h-10 w-10 text-foreground" strokeWidth={2} />
         <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
-          Contact Jöro
+          {t.contact.title}
         </h2>
         <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
-          Voici quelques numéros utiles
+          {t.contact.subtitle}
         </p>
       </div>
 
@@ -36,7 +39,7 @@ export function ContactWidget() {
           <div key={member.name} className="flex items-center justify-between gap-3 py-4">
             <div className="flex-1 min-w-0 space-y-0.5">
               <p className="font-semibold text-[#312B37] dark:text-white text-sm">{member.name}</p>
-              <p className="text-xs uppercase text-[#312B37]/70 dark:text-white/80">{member.role}</p>
+              <p className="text-xs uppercase text-[#312B37]/70 dark:text-white/80">{t.contact[member.role]}</p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
               {member.email ? (
