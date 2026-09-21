@@ -1,5 +1,4 @@
 import { Wifi, MapPin, ChevronLeft, Copy, KeyRound } from "lucide-react";
-import { ContactWidget } from "@/components/ContactWidget";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
@@ -7,6 +6,8 @@ import joroLogo from "@/assets/logo-joro-office.png";
 import planetLogo from "@/assets/one-for-planet.webp";
 import { useProperty } from "@/property/useProperty";
 import { SettingsPopover } from "@/components/SettingsPopover";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { Translation } from "@/i18n/translations";
 
 function Widget({ children }: { children: React.ReactNode }) {
   return (
@@ -17,13 +18,13 @@ function Widget({ children }: { children: React.ReactNode }) {
 }
 
 
-function CopyField({ value }: { value: string }) {
+function CopyField({ value, t }: { value: string; t: Translation }) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(value);
-      toast.success("Copié");
+      toast.success(t.checkin.copiedToast);
     } catch {
-      toast.error("Impossible de copier");
+      toast.error(t.checkin.copyErrorToast);
     }
   };
   return (
@@ -31,7 +32,7 @@ function CopyField({ value }: { value: string }) {
       <span className="text-sm text-[#312B37] dark:text-white">{value}</span>
       <button
         onClick={handleCopy}
-        aria-label="Copier"
+        aria-label={t.checkin.copyAria}
         className="text-[#312B37]/60 hover:text-[#312B37] dark:text-white/70 dark:hover:text-white transition-colors"
       >
         <Copy className="h-4 w-4" />
@@ -60,27 +61,24 @@ function Step({ step, title, children }: { step: number; title: string; children
 
 export default function Checkin() {
   const { data: property } = useProperty();
+  const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen w-full bg-muted/30">
-      <div className="mx-auto w-full max-w-[760px] min-h-screen relative overflow-hidden shadow-sm">
-        {/* Background image (fixed full-viewport wrapper to avoid jumps on mobile scroll) */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="relative mx-auto h-full w-full max-w-[760px]">
-            <img
-              src={heroImg}
-              alt={property?.name ?? ""}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
-          </div>
-        </div>
+    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+        {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
+        <img
+          src={heroImg}
+          alt={property?.name ?? ""}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col min-h-screen pb-6">
+        <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/home" aria-label="Retour" className="h-11 w-11 flex items-center justify-center">
+            <Link to="/home" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
             <SettingsPopover variant="light" />
@@ -89,9 +87,9 @@ export default function Checkin() {
           {/* Title */}
           <div className="text-center px-4 mt-1 mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
-              Infos pratiques
+              {t.checkin.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">Wifi, Accès bureaux</p>
+            <p className="text-base text-white/80 mt-1">{t.checkin.subtitle}</p>
           </div>
 
           {/* Widgets */}
@@ -100,16 +98,16 @@ export default function Checkin() {
             <Widget>
               <div className="flex items-center gap-3 mb-4">
                 <Wifi className="h-5 w-5 text-foreground" strokeWidth={2} />
-                <h2 className="font-semibold text-foreground">Wifi</h2>
+                <h2 className="font-semibold text-foreground">{t.checkin.wifiTitle}</h2>
               </div>
               <div className="space-y-3">
                 <div>
-                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">Network</p>
-                  {property ? <CopyField value={property.wifi.network} /> : <FieldSkeleton />}
+                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
+                  {property ? <CopyField value={property.wifi.network} t={t} /> : <FieldSkeleton />}
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">Mot de passe</p>
-                  {property ? <CopyField value={property.wifi.password} /> : <FieldSkeleton />}
+                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
+                  {property ? <CopyField value={property.wifi.password} t={t} /> : <FieldSkeleton />}
                 </div>
               </div>
             </Widget>
@@ -174,9 +172,6 @@ export default function Checkin() {
               </div>
             </Widget>
             */}
-
-            {/* Contact Jöro */}
-            <ContactWidget />
           </div>
 
           {/* Footer logo */}
