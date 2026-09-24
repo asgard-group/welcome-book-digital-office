@@ -9,8 +9,7 @@ import {
 import { useLanguage } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import planetLogo from "@/assets/one-for-planet.webp";
-import { SettingsPopover } from "@/components/SettingsPopover";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { ContactWidget } from "@/components/ContactWidget";
 
 export default function InfoPage() {
@@ -36,15 +35,14 @@ export default function InfoPage() {
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
+          <div className="px-4 pt-4 flex items-center shrink-0">
+            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
-            <SettingsPopover variant="light" />
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.info.securityTitle}
             </h1>
@@ -58,13 +56,13 @@ export default function InfoPage() {
             {/* Carte 112 */}
             <a
               href="tel:112"
-              className="block rounded-xl p-5 backdrop-blur-md bg-destructive/90 text-destructive-foreground"
+              className="block rounded-xl p-4 backdrop-blur-md bg-destructive/90 text-destructive-foreground"
             >
               <p className="text-sm font-semibold mb-3">{t.info.emergencyNumber}</p>
               <div className="flex items-center justify-center gap-4">
                 <Phone className="h-[56px] w-[56px] shrink-0" strokeWidth={1.5} />
                 <div className="text-left">
-                  <p className="text-[56px] font-medium leading-none tracking-tight">
+                  <p className="text-[56px] font-medium leading-none">
                     112
                   </p>
                   <p className="text-sm mt-1 opacity-90 font-medium">
@@ -80,7 +78,7 @@ export default function InfoPage() {
                 <a
                   key={item.number}
                   href={`tel:${item.number}`}
-                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 border border-[#312B37]/20 dark:border-transparent transition-colors hover:bg-white/95 dark:hover:bg-[#312B37]/85"
+                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 transition-colors hover:bg-[#FFFBF2]/90 dark:hover:bg-[#312B37]/85"
                 >
                   <item.icon
                     className="h-5 w-5 text-[#312B37] dark:text-white shrink-0"
@@ -101,16 +99,16 @@ export default function InfoPage() {
           </div>
 
           {/* Footer logo */}
-          <div className="flex items-center justify-center gap-5 pt-8 pb-2">
+          <div className="flex items-center justify-center gap-5 pt-8">
             <img
               src={joroLogo}
               alt="Jöro Office"
-              className="h-[26px] w-auto object-contain brightness-0 invert"
+              className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={planetLogo}
-              alt="1% for the Planet"
-              className="h-[42px] w-auto object-contain"
+              src={photoroomLogo}
+              alt="Photoroom"
+              className="h-[25px] w-auto object-contain"
             />
           </div>
         </div>

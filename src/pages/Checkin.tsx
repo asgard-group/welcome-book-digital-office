@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import planetLogo from "@/assets/one-for-planet.webp";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useProperty } from "@/property/useProperty";
-import { SettingsPopover } from "@/components/SettingsPopover";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { Translation } from "@/i18n/translations";
 
 function Widget({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
+    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
       {children}
     </div>
   );
@@ -28,7 +27,7 @@ function CopyField({ value, t }: { value: string; t: Translation }) {
     }
   };
   return (
-    <div className="flex items-center justify-between rounded-xl px-3 py-2.5 bg-white/80 dark:bg-[#47414D]/60 border border-[#312B37]/20 dark:border-transparent">
+    <div className="flex items-center justify-between rounded-xl px-3 py-2.5 backdrop-blur-md bg-white/65 dark:bg-[#47414D]/60">
       <span className="text-sm text-[#312B37] dark:text-white">{value}</span>
       <button
         onClick={handleCopy}
@@ -77,15 +76,14 @@ export default function Checkin() {
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
+          <div className="px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
-            <SettingsPopover variant="light" />
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.checkin.title}
             </h1>
@@ -121,7 +119,7 @@ export default function Checkin() {
                   <p className="text-xs text-[#312B37]/70 dark:text-white/70">75009 Paris, France</p>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden border border-[#312B37]/20 dark:border-white/10">
+              <div className="rounded-xl overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps?q=6+Rue+Lamartine,+75009+Paris&output=embed"
                   width="100%"
@@ -175,16 +173,16 @@ export default function Checkin() {
           </div>
 
           {/* Footer logo */}
-          <div className="flex items-center justify-center gap-5 pt-8 pb-2">
+          <div className="flex items-center justify-center gap-5 pt-8">
             <img
               src={joroLogo}
               alt="Jöro Office"
-              className="h-[26px] w-auto object-contain brightness-0 invert"
+              className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={planetLogo}
-              alt="1% for the Planet"
-              className="h-[42px] w-auto object-contain"
+              src={photoroomLogo}
+              alt="Photoroom"
+              className="h-[25px] w-auto object-contain"
             />
           </div>
         </div>
