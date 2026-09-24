@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import logo from "@/assets/logo-joro-office.png";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Onboarding() {
@@ -22,39 +24,28 @@ export default function Onboarding() {
           alt={t.onboarding.heroAlt}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(49, 43, 55, 0.49) 0%, rgba(49, 43, 55, 0) 100%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
 
         <div className="relative z-10 flex h-full w-full flex-col">
-          {/* Logo */}
-          <div className="flex justify-center pt-[10%]">
-            <img src={logo} alt="Joro Living" className="w-[88%] max-w-[420px]" />
+          {/* Logos */}
+          <div className="flex flex-col items-center px-5 pt-[35%]">
+            <img src={photoroomLogo} alt="Photoroom" className="h-[3.25rem] w-auto object-contain" />
+            <span className="text-white/90 font-light text-[3rem] leading-none">×</span>
+            <img src={logo} alt="Joro Office" className="w-[16.17rem] h-auto object-contain" />
           </div>
 
-          {/* Bottom widget */}
-          <div className="mt-auto px-5 pb-10">
-            <div className="w-full max-w-[390px] mx-auto flex flex-col items-center justify-center gap-6 rounded-xl bg-[#312B37]/80 px-5 py-[26px] backdrop-blur-sm">
-              <p className="w-full text-center text-white text-base font-medium">
-                {t.onboarding.messageLine1}
-                <br />
-                {t.onboarding.messageLine2}
-              </p>
-
-              <button
-                type="button"
-                onClick={handleStart}
-                className="flex items-center justify-center gap-[7px] rounded-full bg-white px-8 py-[0.8rem] transition-colors hover:bg-white/90"
-              >
-                <span className="text-center text-[#312B37] text-sm font-semibold uppercase">
-                  {t.onboarding.cta}
-                </span>
-              </button>
-            </div>
+          {/* CTA button */}
+          <div className="mt-auto pl-[2.25rem] pr-[2.25rem] pb-10 flex justify-center">
+            <button
+              type="button"
+              onClick={handleStart}
+              className="relative flex w-full max-w-[390px] items-center justify-center rounded-full bg-[#FFFBF2]/80 backdrop-blur-[12px] px-8 py-[0.8rem] transition-colors hover:bg-[#FFFBF2]/90"
+            >
+              <span className="text-center text-[#312B37] text-sm font-semibold uppercase">
+                {t.onboarding.cta}
+              </span>
+              <ChevronRight className="absolute right-[1rem] h-5 w-5 text-[#312B37]" strokeWidth={2} />
+            </button>
           </div>
         </div>
       </div>

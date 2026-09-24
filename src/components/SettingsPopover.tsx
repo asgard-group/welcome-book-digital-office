@@ -18,7 +18,7 @@ export function SettingsPopover({ variant = "dark" }: Props) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button aria-label={t.settings.ariaLabel} className={`${triggerColor} h-11 w-11 flex items-center justify-center`}>
+        <button aria-label={t.settings.ariaLabel} className={`${triggerColor} h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]`}>
           <Settings className="h-6 w-6" strokeWidth={1.75} />
         </button>
       </PopoverTrigger>
@@ -35,7 +35,7 @@ export function SettingsPopover({ variant = "dark" }: Props) {
 
         {/* Language */}
         <div className="px-4 py-3">
-          <p className="text-[12px] uppercase tracking-wide text-[#312B37]/70 dark:text-white/70 mb-2">
+          <p className="text-[12px] uppercase text-[#312B37]/70 dark:text-white/70 mb-2">
             {t.settings.language}
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -55,11 +55,9 @@ export function SettingsPopover({ variant = "dark" }: Props) {
           </div>
         </div>
 
-        <div className="h-px bg-[#312B37]/15 dark:bg-white/15" />
-
         {/* Theme */}
         <div className="px-4 py-3">
-          <p className="text-[12px] uppercase tracking-wide text-[#312B37]/70 dark:text-white/70 mb-2">
+          <p className="text-[12px] uppercase text-[#312B37]/70 dark:text-white/70 mb-2">
             {t.settings.appearance}
           </p>
           <div className="grid grid-cols-2 gap-2">

@@ -12,7 +12,7 @@ export function PageHeader({ title }: { title: string }) {
         >
           <ChevronLeft className="h-4 w-4 text-foreground" />
         </Link>
-        <h1 className="text-[14px] font-bold tracking-wide text-foreground uppercase">
+        <h1 className="text-[14px] font-bold text-foreground uppercase">
           {title}
         </h1>
       </div>

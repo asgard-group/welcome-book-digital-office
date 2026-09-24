@@ -11,7 +11,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import planetLogo from "@/assets/one-for-planet.webp";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { SettingsPopover } from "@/components/SettingsPopover";
 import { useProperty } from "@/property/useProperty";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -47,7 +47,7 @@ export default function Welcome() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Subtle dark overlay for readability (stronger in dark mode) */}
-        <div className="absolute inset-0 bg-[#312B37]/20 dark:bg-[#312B37]/40" />
+        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full pb-6">
@@ -56,18 +56,18 @@ export default function Welcome() {
             <SettingsPopover variant="light" />
           </div>
 
-          {/* Title / subtitle (same level as other page titles) */}
-          <div className="text-center px-4 mt-1 shrink-0">
-            <h1 className="font-serif font-medium text-white text-[44px] leading-none tracking-tight uppercase">
+          {/* Title / subtitle (same UI rules as other page headers) */}
+          <div className="text-center px-4 pt-[30px] mt-1 shrink-0">
+            <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.welcome.title}
             </h1>
-            <p className="mt-2 text-white/95 text-[17px] font-medium">
+            <p className="text-base text-white/80 mt-1">
               {t.welcome.subtitlePrefix} {property?.name ?? " "}
             </p>
           </div>
 
           {/* Menu buttons — fills space between title and footer logo */}
-          <nav className="flex-1 min-h-0 flex flex-col justify-center gap-[15px] py-6 px-[40px]">
+          <nav className="flex-1 min-h-0 flex flex-col justify-center gap-[15px] pb-6 px-[40px]">
             {menu
               .filter((item) => item.to !== "/thanks")
               .map((item) => (
@@ -75,19 +75,19 @@ export default function Welcome() {
                   key={item.to}
                   to={item.to}
                   className="group relative flex items-center rounded-full p-[3px] backdrop-blur-md transition-colors
-                    bg-white/75 hover:bg-white/85
+                    bg-[#FFFBF2]/80 hover:bg-[#FFFBF2]/90
                     dark:bg-[#312B37]/80 dark:hover:bg-[#312B37]/90"
                 >
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full
-                    border border-[#312B37]/40
+                  <span className="flex h-[3rem] w-[3rem] shrink-0 items-center justify-center rounded-full
+                    bg-white/65
                     dark:bg-[#47414D] dark:border-transparent">
                     <item.icon
-                      className="h-[30px] w-[30px] text-[#312B37] dark:text-white"
+                      className="h-[25px] w-[25px] text-[#312B37] dark:text-white"
                       strokeWidth={1.5}
                     />
                   </span>
                   <span className="flex-1 flex flex-col items-center text-center px-2 -ml-10">
-                    <span className="text-[15px] font-semibold uppercase tracking-wide text-[#312B37] dark:text-white leading-tight">
+                    <span className="text-[15px] font-semibold uppercase text-[#312B37] dark:text-white leading-tight">
                       {item.label}
                     </span>
                     {item.desc && (
@@ -106,12 +106,12 @@ export default function Welcome() {
             <img
               src={joroLogo}
               alt="Jöro Office"
-              className="h-[26px] w-auto object-contain brightness-0 invert"
+              className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={planetLogo}
-              alt="1% for the Planet"
-              className="h-[42px] w-auto object-contain"
+              src={photoroomLogo}
+              alt="Photoroom"
+              className="h-[25px] w-auto object-contain"
             />
           </div>
         </div>

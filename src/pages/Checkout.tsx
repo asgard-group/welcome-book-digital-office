@@ -20,13 +20,12 @@ import {
 } from "@/components/ui/accordion";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import planetLogo from "@/assets/one-for-planet.webp";
-import { SettingsPopover } from "@/components/SettingsPopover";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 function Widget({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
+    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
       {children}
     </div>
   );
@@ -69,15 +68,14 @@ export default function Checkout() {
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center justify-between shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-11 w-11 flex items-center justify-center">
+          <div className="px-4 pt-4 flex items-center shrink-0">
+            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
-            <SettingsPopover variant="light" />
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.checkout.title}
             </h1>
@@ -143,7 +141,7 @@ export default function Checkout() {
                 <AccordionItem
                   key={section.id}
                   value={section.id}
-                  className="rounded-xl px-4 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 border border-[#312B37]/20 dark:border-transparent"
+                  className="rounded-xl px-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80"
                 >
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
@@ -176,16 +174,16 @@ export default function Checkout() {
           </div>
 
           {/* Footer logo */}
-          <div className="flex items-center justify-center gap-5 pt-8 pb-2">
+          <div className="flex items-center justify-center gap-5 pt-8">
             <img
               src={joroLogo}
               alt="Jöro Office"
-              className="h-[26px] w-auto object-contain brightness-0 invert"
+              className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={planetLogo}
-              alt="1% for the Planet"
-              className="h-[42px] w-auto object-contain"
+              src={photoroomLogo}
+              alt="Photoroom"
+              className="h-[25px] w-auto object-contain"
             />
           </div>
         </div>

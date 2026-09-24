@@ -19,7 +19,7 @@ export function ContactWidget() {
   const { t } = useLanguage();
 
   return (
-    <div className="rounded-xl p-5 backdrop-blur-md bg-white/90 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
+    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
       {/* Header */}
       <div className="flex flex-col items-center text-center pt-2 pb-4">
         <Phone className="h-10 w-10 text-foreground" strokeWidth={2} />

@@ -4,10 +4,9 @@ import { ChevronLeft, Star, Heart } from "lucide-react";
 import { toast } from "sonner";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import planetLogo from "@/assets/one-for-planet.webp";
+import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { SettingsPopover } from "@/components/SettingsPopover";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Thanks() {
@@ -41,20 +40,19 @@ export default function Thanks() {
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center justify-between">
+          <div className="px-4 pt-4 flex items-center">
             <Link
               to="/home"
               aria-label={t.common.back}
-              className="h-11 w-11 flex items-center justify-center"
+              className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]"
             >
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
-            <SettingsPopover variant="light" />
           </div>
 
           {/* Title / subtitle */}
-          <div className="text-center px-4 mt-1 mb-5">
-            <h1 className="font-serif font-medium text-white text-[44px] leading-none tracking-tight uppercase">
+          <div className="text-center px-4 pt-[30px] mt-1 mb-5">
+            <h1 className="font-serif font-medium text-white text-[44px] leading-none uppercase">
               {t.thanks.title}
             </h1>
             <p className="mt-2 text-white/95 text-[17px] font-medium">
@@ -64,7 +62,7 @@ export default function Thanks() {
 
           {/* Review card */}
           <div className="flex-1 flex flex-col justify-center px-[30px]">
-            <div className="rounded-3xl p-6 backdrop-blur-md bg-white/75 dark:bg-[#312B37]/80">
+            <div className="rounded-3xl p-6 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
               <div className="flex flex-col items-center text-center mb-6">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#312B37]/40 dark:bg-[#47414D] dark:border-transparent mb-4">
                   <Heart
@@ -72,7 +70,7 @@ export default function Thanks() {
                     strokeWidth={1.5}
                   />
                 </span>
-                <h2 className="text-[18px] font-semibold uppercase tracking-wide text-[#312B37] dark:text-white">
+                <h2 className="text-[18px] font-semibold uppercase text-[#312B37] dark:text-white">
                   {t.thanks.cardTitle}
                 </h2>
                 <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[260px]">
@@ -123,14 +121,14 @@ export default function Thanks() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder={t.thanks.messagePlaceholder}
-                    className="min-h-[120px] rounded-xl border-[#312B37]/20 bg-white/60 text-[#312B37] placeholder:text-[#312B37]/40 dark:bg-[#47414D]/60 dark:text-white dark:placeholder:text-white/50 dark:border-transparent resize-none"
+                    className="min-h-[120px] rounded-xl border-[#312B37]/20 bg-[#FFFBF2]/80 text-[#312B37] placeholder:text-[#312B37]/40 dark:bg-[#47414D]/60 dark:text-white dark:placeholder:text-white/50 dark:border-transparent resize-none"
                   />
                 </div>
 
                 {/* Submit */}
                 <Button
                   type="submit"
-                  className="w-full h-12 rounded-full bg-[#312B37] text-white hover:bg-[#312B37]/90 text-[15px] font-semibold uppercase tracking-wide"
+                  className="w-full h-12 rounded-full bg-[#312B37] text-white hover:bg-[#312B37]/90 text-[15px] font-semibold uppercase"
                 >
                   {t.thanks.submit}
                 </Button>
@@ -151,12 +149,12 @@ export default function Thanks() {
             <img
               src={joroLogo}
               alt="Jöro Office"
-              className="h-[26px] w-auto object-contain brightness-0 invert"
+              className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={planetLogo}
-              alt="1% for the Planet"
-              className="h-[42px] w-auto object-contain"
+              src={photoroomLogo}
+              alt="Photoroom"
+              className="h-[25px] w-auto object-contain"
             />
           </div>
         </div>
