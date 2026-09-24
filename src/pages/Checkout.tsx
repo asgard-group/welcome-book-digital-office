@@ -1,8 +1,5 @@
 import {
-  AlertCircle,
   ChevronLeft,
-  Trash2,
-  Leaf,
   Wind,
   Thermometer,
   Lightbulb,
@@ -21,20 +18,37 @@ import {
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
+import binMenager from "@/assets/ménager.png";
+import binVerres from "@/assets/verres.png";
+import binRecyclables from "@/assets/récyclables.png";
+import iconBanane from "@/assets/banane.png";
+import iconPapier from "@/assets/papier.png";
+import iconGobelet from "@/assets/gobelet_carton.png";
+import iconSac from "@/assets/sac_poubelle.png";
+import iconBouteille from "@/assets/bouteille.png";
+import iconBocale from "@/assets/bocale.png";
+import iconBouteillePlastique from "@/assets/bouteille_plastique.png";
+import iconCanette from "@/assets/canette.png";
+import iconCarton from "@/assets/carton.png";
+import iconPapierJourneau from "@/assets/papier_journeau.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-function Widget({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
-      {children}
-    </div>
-  );
-}
-
-const WASTE_ICONS: { icon: LucideIcon; color: string }[] = [
-  { icon: Trash2, color: "text-[#7E7E7E]" },
-  { icon: Trash2, color: "text-[#009300]" },
-  { icon: Trash2, color: "text-[#ECA600]" },
+const WASTE_META = [
+  {
+    bg: "rgba(238,237,234,0.8)",
+    bin: binMenager,
+    icons: [iconBanane, iconPapier, iconGobelet, iconSac],
+  },
+  {
+    bg: "rgba(225,238,224,0.8)",
+    bin: binVerres,
+    icons: [iconBouteille, iconBocale, iconBouteille, iconBocale],
+  },
+  {
+    bg: "rgba(250,239,195,0.8)",
+    bin: binRecyclables,
+    icons: [iconBouteillePlastique, iconCanette, iconCarton, iconPapierJourneau],
+  },
 ];
 
 const SECTION_ICONS: Record<string, LucideIcon> = {
@@ -48,7 +62,7 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
 
 export default function Checkout() {
   const { t } = useLanguage();
-  const wasteItems = t.checkout.wasteItems.map((item, i) => ({ ...item, ...WASTE_ICONS[i] }));
+  const wasteItems = t.checkout.wasteItems.map((item, i) => ({ ...item, ...WASTE_META[i] }));
   const ecoSections = t.checkout.sections.map((section) => ({
     ...section,
     icon: SECTION_ICONS[section.id],
@@ -85,55 +99,41 @@ export default function Checkout() {
           {/* Widgets */}
           <div className="px-[30px] space-y-4">
             {/* Gestion des déchets */}
-            <Widget>
-              <div className="flex flex-col items-center text-center pt-2 pb-4">
-                <Trash2 className="h-10 w-10 text-foreground" strokeWidth={2} />
-                <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
-                  {t.checkout.wasteTitle}
-                </h2>
-                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
-                  {t.checkout.wasteSubtitle}
-                </p>
-              </div>
-              <div className="border-t border-[#312B37]/15 dark:border-white/15" />
-              <div className="divide-y divide-[#312B37]/15 dark:divide-white/15">
+            <div>
+              <div className="space-y-3">
                 {wasteItems.map((item) => (
-                  <div key={item.title} className="flex items-start gap-3 py-4">
-                    <item.icon className={`h-5 w-5 shrink-0 ${item.color}`} strokeWidth={2} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#312B37] dark:text-white">
+                  <div
+                    key={item.title}
+                    className="relative overflow-hidden rounded-xl backdrop-blur-[25px]"
+                    style={{ backgroundColor: item.bg }}
+                  >
+                    <div className="relative z-10 py-3 pl-4 pr-[120px]">
+                      <h3 className="text-[15px] font-semibold text-[#1c2626] leading-tight">
                         {item.title}
+                      </h3>
+                      <p className="text-[12px] text-[#1c2626]/70 mt-1 leading-snug">
+                        {item.desc}
                       </p>
-                      <p className="text-sm text-[#312B37]/70 dark:text-white/80">{item.desc}</p>
+                      <div className="flex gap-1.5 mt-2.5">
+                        {item.icons.map((icon, i) => (
+                          <span
+                            key={i}
+                            className="h-8 w-8 rounded-full bg-white/70 flex items-center justify-center shrink-0 overflow-hidden"
+                          >
+                            <img src={icon} alt="" className="h-5 w-5 object-contain" />
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <img
+                      src={item.bin}
+                      alt=""
+                      className="absolute right-[16px] top-[20px] bottom-0 w-[104px] object-cover object-top"
+                    />
                   </div>
                 ))}
               </div>
-            </Widget>
-
-            {/* Information */}
-            <Widget>
-              <div className="flex items-center gap-3 mb-3">
-                <AlertCircle className="h-5 w-5 text-[#312B37] dark:text-white" strokeWidth={2} />
-                <h2 className="font-semibold text-[#312B37] dark:text-white">{t.checkout.infoTitle}</h2>
-              </div>
-              <p className="text-sm text-[#312B37]/70 dark:text-white/80 leading-relaxed">
-                {t.checkout.infoBody}
-              </p>
-            </Widget>
-
-            {/* Éco Geste à adopter */}
-            <Widget>
-              <div className="flex flex-col items-center text-center pt-2 pb-2">
-                <Leaf className="h-10 w-10 text-foreground" strokeWidth={2} />
-                <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
-                  {t.checkout.adoptTitle}
-                </h2>
-                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
-                  {t.checkout.adoptSubtitle}
-                </p>
-              </div>
-            </Widget>
+            </div>
 
             {/* Éco gestes accordion */}
             <Accordion type="multiple" defaultValue={["climatisation"]} className="space-y-3">

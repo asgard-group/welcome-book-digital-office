@@ -30,10 +30,13 @@ settings:
   dark: "Sombre"
 
 contact:
-  title: "Contact Jöro"
-  subtitle: "Voici quelques numéros utiles"
   roleMultisite: "Responsable multisite"
-  roleWelcomeManager: "Welcome Manager"
+  roleOfficeManager: "Office Manager"
+  emailLabel: "Email"
+  whatsappLabel: "WhatsApp"
+  descAlexandra: "Vie du site, services et événements"
+  descManuel: "Gestion du site, assistance au quotidien"
+  descAudrey: "Référent technique et opérationnel"
 
 welcome:
   title: "Bienvenue"
@@ -66,19 +69,13 @@ checkin:
 checkout:
   title: "Éco gestes"
   subtitle: "Gestion déchets, tri sélectif"
-  wasteTitle: "Gestion des déchets"
-  wasteSubtitle: "Lorem ipsum"
   wasteItems:
     - title: "Déchets ménagers"
-      desc: "Restes alimentaires"
-    - title: "Verres"
-      desc: "Bouteilles, Bocaux conserve, Pots confitures"
+      desc: "Restes alimentaires, autres déchets non recyclables."
+    - title: "Verre"
+      desc: "Bouteilles, bocaux, pots en verre uniquement."
     - title: "Déchets recyclables"
-      desc: "Emballages et bouteilles plastiques, Cartons, papiers, magazines, Boites de conserves, Canettes"
-  infoTitle: "Information"
-  infoBody: "Pensez au tri sélectif dans votre entreprise, cela permet aux déchets de faire l'objet d'un traitement spécifique et être ainsi valorisés."
-  adoptTitle: "Éco Geste à adopter"
-  adoptSubtitle: "Quels sont les bons gestes éco responsables à adopter au bureau ?"
+      desc: "Emballages en plastique, carton, papier, canettes."
   sections:
     - id: climatisation
       title: "Climatisation"
@@ -469,11 +466,13 @@ info:
   securityTitle: "Urgences"
   subtitle: "Contacts importants"
   emergency: "Numéros d'urgence"
-  emergencyNumber: "Numéro d'urgence"
-  europeanUniversal: "Numéro européen universel"
-  samu: "SAMU (Médical)"
-  police: "Police"
-  fire: "Pompiers"
+  europeanUniversal: "Numéro d'urgence européen"
+  samu: "SAMU"
+  samuDesc: "Urgence médical"
+  police: "Police secours"
+  policeDesc: "Force de l'ordre"
+  fire: "Pompier"
+  fireDesc: "Incendie, secours"
   urgentJoro: "Urgent — Contacter Jöro"
   nearby: "Services à proximité"
 

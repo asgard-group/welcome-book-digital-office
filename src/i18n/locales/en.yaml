@@ -30,10 +30,13 @@ settings:
   dark: "Dark"
 
 contact:
-  title: "Contact Jöro"
-  subtitle: "Here are some useful contacts"
   roleMultisite: "Multi-site Manager"
-  roleWelcomeManager: "Welcome Manager"
+  roleOfficeManager: "Office Manager"
+  emailLabel: "Email"
+  whatsappLabel: "WhatsApp"
+  descAlexandra: "Site life, services and events"
+  descManuel: "Site management, day-to-day support"
+  descAudrey: "Technical and operational contact"
 
 welcome:
   title: "Welcome"
@@ -66,19 +69,13 @@ checkin:
 checkout:
   title: "Green Habits"
   subtitle: "Waste management, sorting"
-  wasteTitle: "Waste management"
-  wasteSubtitle: "Lorem ipsum"
   wasteItems:
     - title: "Household waste"
-      desc: "Food leftovers"
+      desc: "Food leftovers, other non-recyclable waste."
     - title: "Glass"
-      desc: "Bottles, jars, jam pots"
+      desc: "Bottles, jars and glass pots only."
     - title: "Recyclable waste"
-      desc: "Plastic packaging and bottles, cardboard, paper, magazines, cans"
-  infoTitle: "Information"
-  infoBody: "Remember to sort your waste at work — this allows it to be specifically processed and recovered."
-  adoptTitle: "Green habits to adopt"
-  adoptSubtitle: "What are the best eco-friendly habits to adopt at the office?"
+      desc: "Plastic packaging, cardboard, paper, cans."
   sections:
     - id: climatisation
       title: "Air conditioning"
@@ -469,11 +466,13 @@ info:
   securityTitle: "Emergency"
   subtitle: "Important contacts"
   emergency: "Emergency Numbers"
-  emergencyNumber: "Emergency number"
-  europeanUniversal: "European universal number"
-  samu: "SAMU (Medical)"
+  europeanUniversal: "European emergency number"
+  samu: "SAMU"
+  samuDesc: "Medical emergency"
   police: "Police"
+  policeDesc: "Law enforcement"
   fire: "Fire Department"
+  fireDesc: "Fire, rescue"
   urgentJoro: "Urgent — Contact Jöro"
   nearby: "Nearby Services"
 

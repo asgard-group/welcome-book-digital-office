@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  ChevronLeft,
-  Phone,
-  Shield,
-  Ambulance,
-  Flame,
-} from "lucide-react";
+import { ChevronLeft, Phone } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
@@ -16,9 +10,9 @@ export default function InfoPage() {
   const { t } = useLanguage();
 
   const emergencyList = [
-    { label: t.info.police, number: "17", icon: Shield },
-    { label: t.info.samu, number: "15", icon: Ambulance },
-    { label: t.info.fire, number: "18", icon: Flame },
+    { label: t.info.police, desc: t.info.policeDesc, number: "17" },
+    { label: t.info.samu, desc: t.info.samuDesc, number: "15" },
+    { label: t.info.fire, desc: t.info.fireDesc, number: "18" },
   ];
 
   return (
@@ -56,39 +50,40 @@ export default function InfoPage() {
             {/* Carte 112 */}
             <a
               href="tel:112"
-              className="block rounded-xl p-4 backdrop-blur-md bg-destructive/90 text-destructive-foreground"
+              className="flex items-center gap-4 rounded-xl p-4 backdrop-blur-md bg-destructive text-destructive-foreground"
             >
-              <p className="text-sm font-semibold mb-3">{t.info.emergencyNumber}</p>
-              <div className="flex items-center justify-center gap-4">
-                <Phone className="h-[56px] w-[56px] shrink-0" strokeWidth={1.5} />
-                <div className="text-left">
-                  <p className="text-[56px] font-medium leading-none">
-                    112
-                  </p>
-                  <p className="text-sm mt-1 opacity-90 font-medium">
-                    {t.info.europeanUniversal}
-                  </p>
-                </div>
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 shrink-0">
+                <Phone className="h-6 w-6" strokeWidth={2} />
+              </span>
+              <div>
+                <p className="text-[32px] font-bold leading-none">112</p>
+                <p className="text-sm mt-1.5 opacity-85 font-medium">
+                  {t.info.europeanUniversal}
+                </p>
               </div>
             </a>
 
             {/* Lignes d'urgence */}
-            <div className="space-y-2">
+            <div className="rounded-xl backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 divide-y divide-[#312B37]/10 dark:divide-white/10">
               {emergencyList.map((item) => (
                 <a
                   key={item.number}
                   href={`tel:${item.number}`}
-                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 transition-colors hover:bg-[#FFFBF2]/90 dark:hover:bg-[#312B37]/85"
+                  className="flex items-center justify-between gap-3 px-4 py-4"
                 >
-                  <item.icon
-                    className="h-5 w-5 text-[#312B37] dark:text-white shrink-0"
-                    strokeWidth={2}
-                  />
-                  <span className="flex-1 text-[15px] font-medium text-[#312B37] dark:text-white">
-                    {item.label}
-                  </span>
-                  <span className="text-[17px] font-semibold text-[#312B37] dark:text-white">
-                    {item.number}
+                  <div>
+                    <p className="text-[15px] font-bold uppercase text-[#312B37] dark:text-white">
+                      {item.label}
+                    </p>
+                    <p className="text-sm text-[#312B37]/60 dark:text-white/60">{item.desc}</p>
+                  </div>
+                  <span className="relative flex items-center shrink-0">
+                    <span className="flex items-center h-9 pl-4 pr-11 rounded-full bg-destructive/15 text-destructive font-bold text-lg">
+                      {item.number}
+                    </span>
+                    <span className="absolute right-0 flex h-9 w-9 items-center justify-center rounded-full bg-white dark:bg-[#47414D] shadow-sm">
+                      <Phone className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2} />
+                    </span>
                   </span>
                 </a>
               ))}
