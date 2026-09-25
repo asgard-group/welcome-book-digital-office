@@ -66,17 +66,17 @@ export default function Explore() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.explore.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">
+            <p className="text-base text-white/80">
               {t.explore.subtitle}
             </p>
           </div>
 
           {/* Widgets */}
-          <div className="px-[30px] space-y-6">
+          <div className="px-[30px] space-y-4">
             <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-3">
               {categories.map((cat) => (
                 <button

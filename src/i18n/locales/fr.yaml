@@ -68,7 +68,7 @@ checkin:
 
 checkout:
   title: "Éco gestes"
-  subtitle: "Gestion déchets, tri sélectif"
+  subtitle: "Les bons gestes à adopter"
   wasteItems:
     - title: "Déchets ménagers"
       desc: "Restes alimentaires, autres déchets non recyclables."
@@ -76,69 +76,93 @@ checkout:
       desc: "Bouteilles, bocaux, pots en verre uniquement."
     - title: "Déchets recyclables"
       desc: "Emballages en plastique, carton, papier, canettes."
+  doLabel: "À faire"
+  avoidLabel: "À éviter"
   sections:
     - id: climatisation
       title: "Climatisation"
       items:
         - name: "Fermez les fenêtres"
-          detail: "lorsque la climatisation fonctionne"
-        - name: "Pensez à l'éteindre"
-          detail: "avant de partir en week-end"
-        - name: "Attention au émetteurs de froid"
-          detail: "veiller à ne pas les obstruer"
-        - name: "Penser à baisser les stores"
-          detail: "afin de réduire la consommation"
-        - name: "Profiter de l'air frais du matin"
-          detail: "pour rafraîchir et ventiler vos locaux"
+          detail: "lorsque la climatisation fonctionne."
+          type: faire
+        - name: "Éteignez la climatisation"
+          detail: "avant de partir en week-end."
+          type: faire
+        - name: "Baissez les stores"
+          detail: "afin de limiter la chaleur en journée."
+          type: faire
+        - name: "Aérez tôt le matin"
+          detail: "pour rafraîchir et ventiler vos locaux."
+          type: faire
+        - name: "Ne bloquez pas les émetteurs de froid"
+          detail: "pour assurer leur bon fonctionnement."
+          type: eviter
     - id: chauffage
       title: "Chauffage"
       items:
         - name: "Limiter la température à 19°C"
           detail: "1°C de moins permet d'économiser 7% d'énergie"
+          type: faire
     - id: eclairage
       title: "Éclairage"
       items:
         - name: "Veillez à éteindre les lumières"
           detail: "lorsque vous sortez d'une pièce"
+          type: faire
         - name: "Installer des minuteurs ou détecteur"
           detail: "dans les locaux de passage"
+          type: faire
         - name: "Remplacer vos ampoules classiques"
           detail: "par des ampoules basse consommation de type LED"
+          type: faire
     - id: eau
       title: "Eau"
       items:
         - name: "Couper l'eau"
           detail: "quand vous ne vous en servez pas"
+          type: faire
         - name: "Signaler les fuites"
           detail: "au Welcome Manager"
+          type: faire
         - name: "Utiliser la demi-chasse d'eau"
           detail: "cela permet d'économiser 3 litres d'eau à chaque passage"
+          type: faire
         - name: "Remplir sa gourde ou son mug"
           detail: "éviter les bouteilles en plastique"
+          type: faire
     - id: papier
       title: "Papier"
       items:
         - name: "Imprimer avec parcimonie"
           detail: "seulement ce qui est essentiel"
+          type: faire
         - name: "Imprimer en noir et blanc"
           detail: "et de préférence en recto verso"
+          type: faire
         - name: "Recycler les papiers imprimés"
           detail: "en brouillon"
+          type: faire
         - name: "Penser à installer une badgeuse"
           detail: "Cela réduit de moitié la consommation de papier et d'encre"
+          type: faire
     - id: bureautique
       title: "Bureautique"
       items:
         - name: "Débrancher les prises inutilisés"
           detail: "et ne pas laisser d'appareil en veille"
+          type: faire
         - name: "Ne pas laisser un chargeur branché"
           detail: "même non relié à un appareil, il consomme de l'énergie"
+          type: eviter
         - name: "Penser à éteindre votre ordinateur"
           detail: "pendant les périodes prolongées de non utilisation (notamment à midi)"
+          type: faire
         - name: "Préférer un fond d'écran sombre et fixe"
           detail: "il consommera moins"
+          type: faire
         - name: "Privilégier la messagerie instantané"
           detail: "pour envoyer des messages à vos collègues plutôt que les emails"
+          type: faire
 
 services:
   title: "Services"
@@ -148,26 +172,24 @@ services:
   includedItems:
     - title: "Maintenance technique"
       desc: "Office manager dédié"
-    - title: "Contrôle d'accès"
-      desc: "Badge/Smartphone"
-    - title: "Ménage"
-      desc: "2 fois par jour"
-    - title: "Internet fibre pro"
-      desc: "Fibre dédiée sur demande"
     - title: "Accès 24/7 sécurisé"
       desc: "Accès sécurisé jour et nuit"
+    - title: "Contrôle d'accès"
+      desc: "Badge/Smartphone"
+    - title: "Internet fibre pro"
+      desc: "Fibre dédiée sur demande"
     - title: "Cuisine équipée"
       desc: "Micro-ondes, vaisselle"
     - title: "Livraison café"
       desc: "Grains livrés chaque semaine"
+    - title: "Ménage"
+      desc: "2 fois par jour"
   quoteItems:
     - title: "Fontaine à eau"
       desc: "Eau fraîche et pétillante"
-    - title: "Alarme"
-      desc: "Installation compris"
-    - title: "Copieur/Imprimante"
+    - title: "Imprimante"
       desc: "Impression et scan"
-    - title: "Panier de fruits & food"
+    - title: "Panier de fruits & food"
       desc: "Plateaux repas, traiteur"
     - title: "Branding & décoration"
       desc: "Aménagement sur mesure"
@@ -175,6 +197,8 @@ services:
       desc: "Entretien compris"
     - title: "Mobilier supplémentaire"
       desc: "Phonebox, desk, écran"
+    - title: "Alarme"
+      desc: "Installation compris"
   joroSpaceTitle: "Jöro Space"
   joroSpaceSubtitle: "Découvrez l'écosystème de Jöro"
   joroSpaceItems:
@@ -222,7 +246,7 @@ rules:
 facilities:
   title: "Guide de l'espace"
   subtitle: "Tout ce qu'il faut savoir"
-  noticeLabel: "Notice d'utilisation :"
+  noticeLabel: "Notice :"
   videoLinkLabel: "Lien vidéo"
   sections:
     - id: equipements
@@ -232,7 +256,7 @@ facilities:
         - name: "Projeter l'écran"
         - name: "Écran"
           detail: "45/55/65 pouces"
-        - name: "Visioconférence"
+        - name: "Visio conférence"
           detail: "Réservation de salle"
         - name: "Fontaine d'eau"
           detail: "Eau fraîche & pétillante"
@@ -243,7 +267,9 @@ facilities:
         - name: "Micro ondes"
           videoUrl: "https://www.youtube.com/watch?v=yqazuy6ngjs"
         - name: "Machine à café"
+          detail: "Notice à venir"
         - name: "Lave vaisselle"
+          detail: "Notice à venir"
     - id: r-1
       title: "R-1"
       kind: info

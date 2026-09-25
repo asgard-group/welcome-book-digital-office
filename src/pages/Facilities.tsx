@@ -19,7 +19,18 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
-import { ContactWidget } from "@/components/ContactWidget";
+import projeterImg from "@/assets/projeter.png";
+import ecranImg from "@/assets/écran.png";
+import visioImg from "@/assets/Visioconférence.png";
+import fontaineImg from "@/assets/fontaine.png";
+import microOndeImg from "@/assets/micro_onde.png";
+import cafeImg from "@/assets/café.png";
+import laveVaisselleImg from "@/assets/lave_vaisselle.png";
+import rMoins1Img from "@/assets/r-1.jpg";
+import rdcImg from "@/assets/rdc.jpg";
+import rPlus1Img from "@/assets/r+1.jpg";
+import rPlus2Img from "@/assets/r+2.jpg";
+import rooftopImg from "@/assets/rooftop.jpg";
 
 const SECTION_ICONS: Record<string, LucideIcon> = {
   equipements: Tv,
@@ -29,6 +40,19 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
   "r+1": Building2,
   "r+2": Building2,
   "r+3-rooftop": Sun,
+};
+
+const SECTION_ITEM_IMAGES: Record<string, string[]> = {
+  equipements: [projeterImg, ecranImg, visioImg, fontaineImg],
+  "cuisine-equipements": [microOndeImg, cafeImg, laveVaisselleImg],
+};
+
+const FLOOR_IMAGES: Record<string, string> = {
+  "r-1": rMoins1Img,
+  rdc: rdcImg,
+  "r+1": rPlus1Img,
+  "r+2": rPlus2Img,
+  "r+3-rooftop": rooftopImg,
 };
 
 export default function Facilities() {
@@ -60,11 +84,11 @@ export default function Facilities() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.facilities.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">
+            <p className="text-base text-white/80">
               {t.facilities.subtitle}
             </p>
           </div>
@@ -93,12 +117,12 @@ export default function Facilities() {
                   <AccordionContent className="pb-4">
                     {section.kind === "video" ? (
                       <div className="pt-1 space-y-3">
-                        {section.items.map((item) => (
+                        {section.items.map((item, i) => (
                           <div key={item.name} className="flex items-center gap-3">
                             <img
-                              src={heroImg}
+                              src={SECTION_ITEM_IMAGES[section.id]?.[i] ?? heroImg}
                               alt=""
-                              className="h-12 w-12 rounded-lg object-cover shrink-0"
+                              className="w-[5rem] h-[4rem] rounded-[0.5rem] object-cover shrink-0"
                             />
                             <div className="min-w-0 flex-1">
                               <p className="text-sm font-medium text-[#312B37] dark:text-white truncate">
@@ -135,17 +159,17 @@ export default function Facilities() {
                     ) : (
                       <div className="pt-1">
                         <img
-                          src={heroImg}
+                          src={FLOOR_IMAGES[section.id] ?? heroImg}
                           alt=""
-                          className="w-full aspect-[16/9] rounded-lg object-cover mb-4"
+                          className="w-full aspect-[16/7] rounded-lg object-cover mb-4"
                         />
                         <div className="space-y-3">
                           {section.items.map((item) => (
-                            <div key={item.name} className="flex items-start justify-between gap-4">
-                              <p className="text-sm font-medium text-[#312B37] dark:text-white shrink-0">
+                            <div key={item.name} className="grid grid-cols-2 items-start gap-4">
+                              <p className="text-sm font-medium text-[#312B37] dark:text-white">
                                 {item.name}
                               </p>
-                              <div className="text-right">
+                              <div className="text-left">
                                 {item.detail.split("\n").map((line, i) => (
                                   <p
                                     key={i}
@@ -164,9 +188,6 @@ export default function Facilities() {
                 </AccordionItem>
               ))}
             </Accordion>
-
-            {/* Contact Jöro */}
-            <ContactWidget />
           </div>
 
           {/* Footer logo */}

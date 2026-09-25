@@ -3,10 +3,25 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   ChevronLeft,
-  ChevronRight,
   ArrowRight,
   Check,
+  Pencil,
+  Wrench,
+  KeyRound,
+  Sparkles,
+  Wifi,
+  ShieldCheck,
+  CookingPot,
+  Coffee,
+  Droplet,
+  BellRing,
+  Printer,
+  Apple,
+  Palette,
+  Leaf,
+  Armchair,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
@@ -17,26 +32,27 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const JORO_SPACE_IMAGES = [meetingImg, kaffeImg, livingImg];
 
-function ItemRow({
+const INCLUDED_ICONS: LucideIcon[] = [Wrench, ShieldCheck, KeyRound, Wifi, CookingPot, Coffee, Sparkles];
+const QUOTE_ICONS: LucideIcon[] = [Droplet, Printer, Apple, Palette, Leaf, Armchair, BellRing];
+
+function ServiceCard({
+  icon: Icon,
   title,
-  desc,
   indicator,
 }: {
+  icon: LucideIcon;
   title: string;
-  desc: string;
   indicator: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
-      <div className="min-w-0 flex-1">
-        <p className="text-[17px] font-semibold text-[#312B37] dark:text-white truncate">
-          {title}
-        </p>
-        <p className="text-[14px] text-[#312B37]/70 dark:text-white/80 truncate">
-          {desc}
-        </p>
-      </div>
-      {indicator}
+    <div className="relative rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
+      <Icon className="h-6 w-6 text-[#312B37] dark:text-white" strokeWidth={1.75} />
+      <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-[#312B37]/10 dark:bg-white/15">
+        {indicator}
+      </span>
+      <p className="mt-4 pr-[36px] text-[15px] font-semibold text-[#312B37] dark:text-white leading-snug">
+        {title}
+      </p>
     </div>
   );
 }
@@ -71,15 +87,15 @@ export default function Services() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.services.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">{t.services.subtitle}</p>
+            <p className="text-base text-white/80">{t.services.subtitle}</p>
           </div>
 
           {/* Widgets */}
-          <div className="px-[30px] space-y-6">
+          <div className="px-[30px] space-y-4">
             <div className="flex rounded-full p-[0.1rem] backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
               {tabs.map((tab) => (
                 <button
@@ -108,36 +124,26 @@ export default function Services() {
             </div>
 
             {active === "inclus" && (
-              <div className="space-y-2">
-                {t.services.includedItems.map((item) => (
-                  <ItemRow
+              <div className="grid grid-cols-2 gap-3">
+                {t.services.includedItems.map((item, i) => (
+                  <ServiceCard
                     key={item.title}
+                    icon={INCLUDED_ICONS[i]}
                     title={item.title}
-                    desc={item.desc}
-                    indicator={
-                      <Check
-                        className="h-5 w-5 text-[#312B37] dark:text-white shrink-0 ml-3"
-                        strokeWidth={2}
-                      />
-                    }
+                    indicator={<Check className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
               </div>
             )}
 
             {active === "devis" && (
-              <div className="space-y-2">
-                {t.services.quoteItems.map((item) => (
-                  <ItemRow
+              <div className="grid grid-cols-2 gap-3">
+                {t.services.quoteItems.map((item, i) => (
+                  <ServiceCard
                     key={item.title}
+                    icon={QUOTE_ICONS[i]}
                     title={item.title}
-                    desc={item.desc}
-                    indicator={
-                      <ChevronRight
-                        className="h-6 w-6 text-[#312B37]/70 dark:text-white/80 shrink-0 ml-3"
-                        strokeWidth={1.5}
-                      />
-                    }
+                    indicator={<Pencil className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
               </div>

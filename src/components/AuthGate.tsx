@@ -52,6 +52,7 @@ export function AccessExpired() {
  * is in flight we show a splash; on 401/error we show the expired screen.
  */
 export function AuthGate() {
+  if (import.meta.env.DEV) return <Outlet />; // Auth désactivée en dev pour l'instant
   const { data, isLoading, isError } = useProperty();
   if (isLoading) return <Splash />;
   if (isError || !data) return <AccessExpired />;

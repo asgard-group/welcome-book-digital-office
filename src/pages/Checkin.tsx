@@ -6,6 +6,7 @@ import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useProperty } from "@/property/useProperty";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ContactWidget } from "@/components/ContactWidget";
 import type { Translation } from "@/i18n/translations";
 
 function Widget({ children }: { children: React.ReactNode }) {
@@ -83,11 +84,11 @@ export default function Checkin() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.checkin.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">{t.checkin.subtitle}</p>
+            <p className="text-base text-white/80">{t.checkin.subtitle}</p>
           </div>
 
           {/* Widgets */}
@@ -119,7 +120,7 @@ export default function Checkin() {
                   <p className="text-xs text-[#312B37]/70 dark:text-white/70">75009 Paris, France</p>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden">
+              <div className="rounded-[0.5rem] overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps?q=6+Rue+Lamartine,+75009+Paris&output=embed"
                   width="100%"
@@ -131,6 +132,9 @@ export default function Checkin() {
                 />
               </div>
             </Widget>
+
+            {/* Contact Jöro */}
+            <ContactWidget />
 
             {/* Contrôle d'accès — masqué sur demande, code conservé pour réactivation future
             <Widget>

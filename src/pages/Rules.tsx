@@ -14,7 +14,7 @@ export default function Rules() {
 
   return (
     <AppLayout title={t.rules.navTitle}>
-      <div className="page-container space-y-6">
+      <div className="page-container space-y-4">
         <div>
           <p className="page-subtitle">{t.rules.subtitle}</p>
         </div>

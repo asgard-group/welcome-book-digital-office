@@ -126,7 +126,7 @@ function GrantPanel({ onLogout }: { onLogout: () => void }) {
 
   return (
     <div className="min-h-screen w-full bg-muted/30 px-4 py-10">
-      <div className="mx-auto w-full max-w-md space-y-6">
+      <div className="mx-auto w-full max-w-md space-y-4">
         <div className="flex items-center justify-between">
           <h1 className="text-lg font-semibold">Créer un accès</h1>
           <Button variant="ghost" size="sm" onClick={handleLogout}>

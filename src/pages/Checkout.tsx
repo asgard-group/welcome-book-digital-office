@@ -89,11 +89,11 @@ export default function Checkout() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.checkout.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">{t.checkout.subtitle}</p>
+            <p className="text-base text-white/80">{t.checkout.subtitle}</p>
           </div>
 
           {/* Widgets */}
@@ -107,7 +107,7 @@ export default function Checkout() {
                     className="relative overflow-hidden rounded-xl backdrop-blur-[25px]"
                     style={{ backgroundColor: item.bg }}
                   >
-                    <div className="relative z-10 py-3 pl-4 pr-[120px]">
+                    <div className="relative z-10 max-w-[230px] pr-2 min-[330px]:max-w-none min-[330px]:pr-[128px] py-3 pl-4">
                       <h3 className="text-[15px] font-semibold text-[#1c2626] leading-tight">
                         {item.title}
                       </h3>
@@ -128,7 +128,7 @@ export default function Checkout() {
                     <img
                       src={item.bin}
                       alt=""
-                      className="absolute right-[16px] top-[20px] bottom-0 w-[104px] object-cover object-top"
+                      className="hidden min-[330px]:block absolute right-[16px] top-[20px] bottom-0 w-[104px] object-cover object-top"
                     />
                   </div>
                 ))}
@@ -136,41 +136,75 @@ export default function Checkout() {
             </div>
 
             {/* Éco gestes accordion */}
-            <Accordion type="multiple" defaultValue={["climatisation"]} className="space-y-3">
-              {ecoSections.map((section) => (
-                <AccordionItem
-                  key={section.id}
-                  value={section.id}
-                  className="rounded-xl px-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80"
-                >
-                  <AccordionTrigger className="hover:no-underline py-4">
-                    <div className="flex items-center gap-3">
-                      <section.icon
-                        className="h-5 w-5 text-[#312B37] dark:text-white"
-                        strokeWidth={2}
-                      />
-                      <span className="font-semibold text-[#312B37] dark:text-white">
-                        {section.title}
-                      </span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-4">
-                    <div className="space-y-3 pt-1">
-                      {section.items.map((item) => (
-                        <div key={item.name} className="pl-8">
-                          <p className="text-sm font-medium text-[#312B37] dark:text-white">
-                            {item.name}
-                          </p>
-                          <p className="text-sm text-[#312B37]/70 dark:text-white/80">
-                            {item.detail}
-                          </p>
+            <div>
+              <Accordion type="multiple" className="space-y-3">
+                {ecoSections.map((section) => {
+                  const faireItems = section.items.filter((item) => item.type === "faire");
+                  const eviterItems = section.items.filter((item) => item.type === "eviter");
+                  return (
+                    <AccordionItem
+                      key={section.id}
+                      value={section.id}
+                      className="rounded-xl px-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80"
+                    >
+                      <AccordionTrigger className="hover:no-underline py-4">
+                        <div className="flex items-center gap-3">
+                          <section.icon
+                            className="h-5 w-5 text-[#312B37] dark:text-white"
+                            strokeWidth={2}
+                          />
+                          <span className="font-semibold text-[#312B37] dark:text-white">
+                            {section.title}
+                          </span>
                         </div>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-4">
+                        <div className="space-y-4 pt-1">
+                          {faireItems.length > 0 && (
+                            <div>
+                              <span className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                                {t.checkout.doLabel}
+                              </span>
+                              <div className="mt-2 space-y-3">
+                                {faireItems.map((item) => (
+                                  <div key={item.name}>
+                                    <p className="text-sm font-medium text-[#312B37] dark:text-white">
+                                      {item.name}
+                                    </p>
+                                    <p className="text-sm text-[#312B37]/70 dark:text-white/80">
+                                      {item.detail}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          {eviterItems.length > 0 && (
+                            <div>
+                              <span className="text-[11px] font-semibold uppercase tracking-wide text-red-600 dark:text-red-400">
+                                {t.checkout.avoidLabel}
+                              </span>
+                              <div className="mt-2 space-y-3">
+                                {eviterItems.map((item) => (
+                                  <div key={item.name}>
+                                    <p className="text-sm font-medium text-[#312B37] dark:text-white">
+                                      {item.name}
+                                    </p>
+                                    <p className="text-sm text-[#312B37]/70 dark:text-white/80">
+                                      {item.detail}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+            </div>
           </div>
 
           {/* Footer logo */}

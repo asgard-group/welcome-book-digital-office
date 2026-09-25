@@ -51,7 +51,7 @@ export default function Thanks() {
           </div>
 
           {/* Title / subtitle */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5">
+          <div className="text-center px-4 pt-[30px] mb-5">
             <h1 className="font-serif font-medium text-white text-[44px] leading-none uppercase">
               {t.thanks.title}
             </h1>

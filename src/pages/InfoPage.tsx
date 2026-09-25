@@ -36,11 +36,11 @@ export default function InfoPage() {
           </div>
 
           {/* Title */}
-          <div className="text-center px-4 pt-[30px] mt-1 mb-5 shrink-0">
+          <div className="text-center px-4 pt-[30px] mb-5 shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.info.securityTitle}
             </h1>
-            <p className="text-base text-white/80 mt-1">
+            <p className="text-base text-white/80">
               {t.info.subtitle}
             </p>
           </div>
