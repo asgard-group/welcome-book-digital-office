@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ExternalLink as ExternalLinkConfirm } from "@/components/ExternalLink";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
@@ -134,15 +135,14 @@ export default function Facilities() {
                             </div>
                             {!item.detail && (
                               item.videoUrl ? (
-                                <a
+                                <ExternalLinkConfirm
                                   href={item.videoUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                  newTab
                                   aria-label={t.facilities.videoLinkLabel}
                                   className="text-[#312B37] dark:text-white shrink-0"
                                 >
                                   <ExternalLink className="h-5 w-5" strokeWidth={1.75} />
-                                </a>
+                                </ExternalLinkConfirm>
                               ) : (
                                 <span
                                   aria-disabled="true"

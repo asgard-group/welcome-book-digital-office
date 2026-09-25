@@ -8,6 +8,7 @@ import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ExternalLink } from "@/components/ExternalLink";
 
 export default function Thanks() {
   const { t } = useLanguage();
@@ -134,12 +135,12 @@ export default function Thanks() {
                 </Button>
 
                 {/* Contact link */}
-                <a
+                <ExternalLink
                   href="mailto:reservation@joro-space.fr"
                   className="block text-center text-[13px] font-medium text-[#312B37]/70 dark:text-white/70 hover:text-[#312B37] dark:hover:text-white transition-colors"
                 >
                   {t.thanks.contactLink}
-                </a>
+                </ExternalLink>
               </form>
             </div>
           </div>
