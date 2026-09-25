@@ -29,23 +29,35 @@ import meetingImg from "@/assets/meeting.jpg";
 import kaffeImg from "@/assets/kaffe.jpg";
 import livingImg from "@/assets/living.jpg";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ExternalLink } from "@/components/ExternalLink";
 
 const JORO_SPACE_IMAGES = [meetingImg, kaffeImg, livingImg];
 
 const INCLUDED_ICONS: LucideIcon[] = [Wrench, ShieldCheck, KeyRound, Wifi, CookingPot, Coffee, Sparkles];
 const QUOTE_ICONS: LucideIcon[] = [Droplet, Printer, Apple, Palette, Leaf, Armchair, BellRing];
+const QUOTE_EMAILS: string[] = [
+  "audrey.robin@joro-space.fr",
+  "audrey.robin@joro-space.fr",
+  "audrey.robin@joro-space.fr",
+  "berenice.carrey@joro-space.fr",
+  "audrey.robin@joro-space.fr",
+  "audrey.robin@joro-space.fr",
+  "audrey.robin@joro-space.fr",
+];
 
 function ServiceCard({
   icon: Icon,
   title,
   indicator,
+  href,
 }: {
   icon: LucideIcon;
   title: string;
   indicator: React.ReactNode;
+  href?: string;
 }) {
-  return (
-    <div className="relative rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
+  const content = (
+    <>
       <Icon className="h-6 w-6 text-[#312B37] dark:text-white" strokeWidth={1.75} />
       <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-[#312B37]/10 dark:bg-white/15">
         {indicator}
@@ -53,8 +65,18 @@ function ServiceCard({
       <p className="mt-4 pr-[36px] text-[15px] font-semibold text-[#312B37] dark:text-white leading-snug">
         {title}
       </p>
-    </div>
+    </>
   );
+  const className = "relative rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80";
+
+  if (href) {
+    return (
+      <ExternalLink href={href} className={className}>
+        {content}
+      </ExternalLink>
+    );
+  }
+  return <div className={className}>{content}</div>;
 }
 
 export default function Services() {
@@ -143,6 +165,7 @@ export default function Services() {
                     key={item.title}
                     icon={QUOTE_ICONS[i]}
                     title={item.title}
+                    href={`mailto:${QUOTE_EMAILS[i]}`}
                     indicator={<Pencil className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
@@ -160,11 +183,10 @@ export default function Services() {
 
               <div className="space-y-3">
                 {t.services.joroSpaceItems.map((item, i) => (
-                  <a
+                  <ExternalLink
                     key={item.name}
                     href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    newTab
                     className="relative block aspect-[16/6] rounded-[0.5rem] overflow-hidden"
                   >
                     <img src={JORO_SPACE_IMAGES[i]} alt="" className="absolute inset-0 h-full w-full object-cover" />
@@ -178,7 +200,7 @@ export default function Services() {
                         <ArrowRight className="h-4 w-4 text-white" strokeWidth={2} />
                       </span>
                     </div>
-                  </a>
+                  </ExternalLink>
                 ))}
               </div>
             </div>

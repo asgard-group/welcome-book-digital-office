@@ -5,6 +5,7 @@ import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { ContactWidget } from "@/components/ContactWidget";
+import { ExternalLink } from "@/components/ExternalLink";
 
 export default function InfoPage() {
   const { t } = useLanguage();
@@ -48,7 +49,7 @@ export default function InfoPage() {
           {/* Widgets */}
           <div className="px-[30px] space-y-4">
             {/* Carte 112 */}
-            <a
+            <ExternalLink
               href="tel:112"
               className="flex items-center gap-4 rounded-xl p-4 backdrop-blur-md bg-destructive text-destructive-foreground"
             >
@@ -61,18 +62,18 @@ export default function InfoPage() {
                   {t.info.europeanUniversal}
                 </p>
               </div>
-            </a>
+            </ExternalLink>
 
             {/* Lignes d'urgence */}
             <div className="rounded-xl backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 divide-y divide-[#312B37]/10 dark:divide-white/10">
               {emergencyList.map((item) => (
-                <a
+                <ExternalLink
                   key={item.number}
                   href={`tel:${item.number}`}
                   className="flex items-center justify-between gap-3 px-4 py-4"
                 >
                   <div>
-                    <p className="text-[15px] font-bold uppercase text-[#312B37] dark:text-white">
+                    <p className="text-[15px] font-semibold uppercase text-[#312B37] dark:text-white">
                       {item.label}
                     </p>
                     <p className="text-sm text-[#312B37]/60 dark:text-white/60">{item.desc}</p>
@@ -85,7 +86,7 @@ export default function InfoPage() {
                       <Phone className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2} />
                     </span>
                   </span>
-                </a>
+                </ExternalLink>
               ))}
             </div>
 

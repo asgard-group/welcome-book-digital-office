@@ -1,5 +1,6 @@
 import { CigaretteOff, PartyPopper, PawPrint, VolumeX, UserX, Phone, Mail } from "lucide-react";
 import { AppLayout } from "@/components/AppLayout";
+import { ExternalLink } from "@/components/ExternalLink";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Rules() {
@@ -37,12 +38,12 @@ export default function Rules() {
           <h2 className="font-semibold text-foreground mb-2">{t.rules.emergency}</h2>
           <p className="text-sm text-muted-foreground mb-3">{t.rules.emergencyDesc}</p>
           <div className="space-y-2 text-sm">
-            <a href="mailto:reservation@joro-space.fr" className="flex items-center gap-2 text-accent hover:underline">
+            <ExternalLink href="mailto:reservation@joro-space.fr" className="flex items-center gap-2 text-accent hover:underline">
               <Mail className="h-4 w-4" /> reservation@joro-space.fr
-            </a>
-            <a href="tel:+33637754570" className="flex items-center gap-2 text-accent hover:underline">
+            </ExternalLink>
+            <ExternalLink href="tel:+33637754570" className="flex items-center gap-2 text-accent hover:underline">
               <Phone className="h-4 w-4" /> +33 6 37 75 45 70
-            </a>
+            </ExternalLink>
           </div>
         </div>
       </div>

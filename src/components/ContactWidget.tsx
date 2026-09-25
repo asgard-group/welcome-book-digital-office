@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { ExternalLink } from "@/components/ExternalLink";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 type TeamMember = {
@@ -33,13 +34,13 @@ export function ContactWidget() {
           </p>
           <div className="grid grid-cols-2 gap-3 mt-3">
             {member.email ? (
-              <a
+              <ExternalLink
                 href={`mailto:${member.email}`}
                 className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
                 {t.contact.emailLabel}
-              </a>
+              </ExternalLink>
             ) : (
               <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
@@ -47,15 +48,14 @@ export function ContactWidget() {
               </span>
             )}
             {member.phoneHref ? (
-              <a
+              <ExternalLink
                 href={`https://wa.me/${member.phoneHref.replace("+", "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                newTab
                 className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {t.contact.whatsappLabel}
-              </a>
+              </ExternalLink>
             ) : (
               <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <WhatsAppIcon className="h-5 w-5" />

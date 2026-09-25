@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import { useProperty } from "@/property/useProperty";
 import joroLogo from "@/assets/logo-joro-office.png";
+import { ExternalLink } from "@/components/ExternalLink";
 
 function Screen({ children }: { children: ReactNode }) {
   return (
@@ -35,12 +36,12 @@ export function AccessExpired() {
         </p>
       </div>
       <div className="space-y-1 text-sm">
-        <a href="tel:+33637754570" className="block text-white/90 hover:text-white">
+        <ExternalLink href="tel:+33637754570" className="block text-white/90 hover:text-white">
           +33 6 37 75 45 70
-        </a>
-        <a href="mailto:reservation@joro-space.fr" className="block text-white/90 hover:text-white">
+        </ExternalLink>
+        <ExternalLink href="mailto:reservation@joro-space.fr" className="block text-white/90 hover:text-white">
           reservation@joro-space.fr
-        </a>
+        </ExternalLink>
       </div>
     </Screen>
   );

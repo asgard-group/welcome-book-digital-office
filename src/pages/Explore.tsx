@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { ExternalLink } from "@/components/ExternalLink";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
@@ -102,7 +103,7 @@ export default function Explore() {
                 </p>
               )}
               {displayList?.map((place, i) => (
-                <a
+                <ExternalLink
                   key={`${place.name}-${i}`}
                   href={`https://www.google.com/maps/search/${encodeURIComponent(
                     place.mapQuery
@@ -111,32 +112,26 @@ export default function Explore() {
                       ? `${place.name}, ${place.address}, Paris`
                       : `${place.name} Paris 9`
                   )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  newTab
                   className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 hover:bg-[#FFFBF2]/90 dark:hover:bg-[#312B37]/85 transition-colors"
                 >
                   <div className="min-w-0 flex-1">
                     <p className="text-[17px] font-semibold text-[#312B37] dark:text-white truncate">
                       {place.name}
                     </p>
-                    {place.desc && (
+                    {[place.desc, place.right, place.price].filter(Boolean).length > 0 && (
                       <p className="text-[14px] text-[#312B37]/70 dark:text-white/80 mt-0.5 truncate">
-                        {place.desc}
+                        {[place.desc, place.right, place.price].filter(Boolean).join(" · ")}
                       </p>
                     )}
                   </div>
-                  {place.right && (
-                    <div className="flex items-center gap-1 shrink-0 ml-3">
-                      <span className="text-[15px] font-medium text-[#312B37]/70 dark:text-white/80">
-                        {place.right}
-                      </span>
-                      <ChevronRight
-                        className="h-5 w-5 text-[#312B37]/70 dark:text-white/80"
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                  )}
-                </a>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#312B37]/10 dark:bg-white/15 shrink-0 ml-3">
+                    <ChevronRight
+                      className="h-5 w-5 text-[#312B37] dark:text-white"
+                      strokeWidth={1.75}
+                    />
+                  </span>
+                </ExternalLink>
               ))}
             </div>
           </div>
