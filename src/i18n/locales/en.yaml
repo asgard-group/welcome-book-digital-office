@@ -68,7 +68,7 @@ checkin:
 
 checkout:
   title: "Green Habits"
-  subtitle: "Waste management, sorting"
+  subtitle: "Good habits to adopt"
   wasteItems:
     - title: "Household waste"
       desc: "Food leftovers, other non-recyclable waste."
@@ -76,69 +76,93 @@ checkout:
       desc: "Bottles, jars and glass pots only."
     - title: "Recyclable waste"
       desc: "Plastic packaging, cardboard, paper, cans."
+  doLabel: "Do"
+  avoidLabel: "Avoid"
   sections:
     - id: climatisation
       title: "Air conditioning"
       items:
         - name: "Close the windows"
-          detail: "while the air conditioning is running"
-        - name: "Remember to turn it off"
-          detail: "before leaving for the weekend"
-        - name: "Watch out for cold air vents"
-          detail: "make sure not to obstruct them"
-        - name: "Remember to lower the blinds"
-          detail: "to reduce energy consumption"
-        - name: "Make the most of the cool morning air"
-          detail: "to refresh and ventilate your space"
+          detail: "while the air conditioning is running."
+          type: faire
+        - name: "Turn off the air conditioning"
+          detail: "before leaving for the weekend."
+          type: faire
+        - name: "Lower the blinds"
+          detail: "to limit heat during the day."
+          type: faire
+        - name: "Air out the room early"
+          detail: "to refresh and ventilate your space."
+          type: faire
+        - name: "Don't block the cold air vents"
+          detail: "to keep them working properly."
+          type: eviter
     - id: chauffage
       title: "Heating"
       items:
         - name: "Limit the temperature to 19°C"
           detail: "1°C less saves 7% of energy"
+          type: faire
     - id: eclairage
       title: "Lighting"
       items:
         - name: "Remember to turn off the lights"
           detail: "when you leave a room"
+          type: faire
         - name: "Install timers or sensors"
           detail: "in passageways"
+          type: faire
         - name: "Replace your standard bulbs"
           detail: "with low-consumption LED bulbs"
+          type: faire
     - id: eau
       title: "Water"
       items:
         - name: "Turn off the water"
           detail: "when you're not using it"
+          type: faire
         - name: "Report leaks"
           detail: "to the Welcome Manager"
+          type: faire
         - name: "Use the half-flush"
           detail: "this saves 3 litres of water each time"
+          type: faire
         - name: "Fill up your own bottle or mug"
           detail: "avoid plastic bottles"
+          type: faire
     - id: papier
       title: "Paper"
       items:
         - name: "Print sparingly"
           detail: "only what's essential"
+          type: faire
         - name: "Print in black and white"
           detail: "and preferably double-sided"
+          type: faire
         - name: "Recycle printed paper"
           detail: "as scrap paper"
+          type: faire
         - name: "Consider installing a badge reader"
           detail: "this halves paper and ink consumption"
+          type: faire
     - id: bureautique
       title: "Office equipment"
       items:
         - name: "Unplug unused sockets"
           detail: "and don't leave devices on standby"
+          type: faire
         - name: "Don't leave a charger plugged in"
           detail: "even without a device attached, it still uses energy"
+          type: eviter
         - name: "Remember to turn off your computer"
           detail: "during extended periods of inactivity (e.g. at lunchtime)"
+          type: faire
         - name: "Prefer a dark, static wallpaper"
           detail: "it will consume less power"
+          type: faire
         - name: "Favour instant messaging"
           detail: "to reach colleagues rather than email"
+          type: faire
 
 services:
   title: "Services"
@@ -148,26 +172,24 @@ services:
   includedItems:
     - title: "Technical maintenance"
       desc: "Dedicated office manager"
-    - title: "Access control"
-      desc: "Badge/Smartphone"
-    - title: "Cleaning"
-      desc: "Twice a day"
-    - title: "Pro fibre internet"
-      desc: "Dedicated fibre on request"
     - title: "Secure 24/7 access"
       desc: "Secure access day and night"
+    - title: "Access control"
+      desc: "Badge/Smartphone"
+    - title: "Pro fibre internet"
+      desc: "Dedicated fibre on request"
     - title: "Equipped kitchen"
       desc: "Microwave, tableware"
     - title: "Coffee delivery"
       desc: "Beans delivered weekly"
+    - title: "Cleaning"
+      desc: "Twice a day"
   quoteItems:
     - title: "Water fountain"
       desc: "Still and sparkling water"
-    - title: "Alarm"
-      desc: "Installation included"
-    - title: "Copier/Printer"
+    - title: "Printer"
       desc: "Printing and scanning"
-    - title: "Fruit & food basket"
+    - title: "Fruit & food basket"
       desc: "Meal trays, catering"
     - title: "Branding & decoration"
       desc: "Bespoke fit-out"
@@ -175,6 +197,8 @@ services:
       desc: "Maintenance included"
     - title: "Additional furniture"
       desc: "Phone box, desk, screen"
+    - title: "Alarm"
+      desc: "Installation included"
   joroSpaceTitle: "Jöro Space"
   joroSpaceSubtitle: "Discover the Jöro ecosystem"
   joroSpaceItems:
@@ -222,7 +246,7 @@ rules:
 facilities:
   title: "Office Guide"
   subtitle: "Everything you need to know"
-  noticeLabel: "Usage guide:"
+  noticeLabel: "Notice:"
   videoLinkLabel: "Video link"
   sections:
     - id: equipements
@@ -243,7 +267,9 @@ facilities:
         - name: "Microwave"
           videoUrl: "https://www.youtube.com/watch?v=yqazuy6ngjs"
         - name: "Coffee machine"
+          detail: "Manual coming soon"
         - name: "Dishwasher"
+          detail: "Manual coming soon"
     - id: r-1
       title: "R-1"
       kind: info

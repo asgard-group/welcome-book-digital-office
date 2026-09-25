@@ -57,11 +57,11 @@ export default function Welcome() {
           </div>
 
           {/* Title / subtitle (same UI rules as other page headers) */}
-          <div className="text-center px-4 pt-[30px] mt-1 shrink-0">
+          <div className="text-center px-4 pt-[30px] shrink-0">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.welcome.title}
             </h1>
-            <p className="text-base text-white/80 mt-1">
+            <p className="text-base text-white/80">
               {t.welcome.subtitlePrefix} {property?.name ?? " "}
             </p>
           </div>
@@ -102,7 +102,7 @@ export default function Welcome() {
 
 
           {/* Footer logo */}
-          <div className="flex items-center justify-center gap-5 pt-2 shrink-0">
+          <div className="flex items-center justify-center gap-5 pt-6 shrink-0">
             <img
               src={joroLogo}
               alt="Jöro Office"

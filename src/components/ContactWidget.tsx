@@ -35,13 +35,13 @@ export function ContactWidget() {
             {member.email ? (
               <a
                 href={`mailto:${member.email}`}
-                className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
                 {t.contact.emailLabel}
               </a>
             ) : (
-              <span className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
+              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
                 {t.contact.emailLabel}
               </span>
@@ -51,13 +51,13 @@ export function ContactWidget() {
                 href={`https://wa.me/${member.phoneHref.replace("+", "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {t.contact.whatsappLabel}
               </a>
             ) : (
-              <span className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
+              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <WhatsAppIcon className="h-5 w-5" />
                 {t.contact.whatsappLabel}
               </span>

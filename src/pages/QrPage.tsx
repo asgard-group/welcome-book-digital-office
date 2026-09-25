@@ -38,12 +38,12 @@ export default function QrPage() {
 
   return (
     <AppLayout title={t.nav.qr}>
-      <div className="page-container space-y-6">
+      <div className="page-container space-y-4">
         <div>
           <p className="page-subtitle">{t.qr.subtitle}</p>
         </div>
 
-        <div className="info-card flex flex-col items-center py-8 space-y-6">
+        <div className="info-card flex flex-col items-center py-8 space-y-4">
           <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
             <QrCode className="h-5 w-5 text-accent" />
           </div>
