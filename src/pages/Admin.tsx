@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 
 const BUILDINGS = [
-  { id: "haussmann-halevy", label: "Lamartine" },
+  { id: "lamartine", label: "Lamartine" },
   { id: "demo-marais", label: "Demo — Marais" },
   { id: "demo-montmartre", label: "Demo — Montmartre" },
   { id: "demo-bastille", label: "Demo — Bastille" },

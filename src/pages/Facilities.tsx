@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -17,9 +17,8 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ExternalLink as ExternalLinkConfirm } from "@/components/ExternalLink";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 import joroLogo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import projeterImg from "@/assets/projeter.png";
 import ecranImg from "@/assets/écran.png";
 import visioImg from "@/assets/Visioconférence.png";
@@ -57,7 +56,9 @@ const FLOOR_IMAGES: Record<string, string> = {
 };
 
 export default function Facilities() {
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
   const { t } = useLanguage();
+  const { data: property } = useProperty();
 
   const sections = t.facilities.sections.map((section) => ({
     ...section,
@@ -69,8 +70,8 @@ export default function Facilities() {
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
-          src={heroImg}
-          alt="Jöro Office 6 Lamartine"
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
+          alt={property?.name ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
@@ -79,7 +80,7 @@ export default function Facilities() {
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
+            <Link to={`/${buildingSlug}/home`} aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -121,7 +122,7 @@ export default function Facilities() {
                         {section.items.map((item, i) => (
                           <div key={item.name} className="flex items-center gap-3">
                             <img
-                              src={SECTION_ITEM_IMAGES[section.id]?.[i] ?? heroImg}
+                              src={SECTION_ITEM_IMAGES[section.id]?.[i] ?? property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
                               alt=""
                               className="w-[5rem] h-[4rem] rounded-[0.5rem] object-cover shrink-0"
                             />
@@ -159,7 +160,7 @@ export default function Facilities() {
                     ) : (
                       <div className="pt-1">
                         <img
-                          src={FLOOR_IMAGES[section.id] ?? heroImg}
+                          src={FLOOR_IMAGES[section.id] ?? property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
                           alt=""
                           className="w-full aspect-[16/7] rounded-lg object-cover mb-4"
                         />
@@ -198,8 +199,8 @@ export default function Facilities() {
               className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={photoroomLogo}
-              alt="Photoroom"
+              src={property?.logoUrl ?? DEFAULT_LOGO_URL}
+              alt="Logo"
               className="h-[25px] w-auto object-contain"
             />
           </div>

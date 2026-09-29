@@ -1,22 +1,26 @@
-// GET /api/building
+// GET /api/building?slug=<buildingId>
 //
-// Returns the guest's building data. If their session cookie maps to a
-// currently-valid grant, it's derived from that grant (so a guest can't read
-// another building's codes). Otherwise it falls back to DEFAULT_BUILDING_ID —
-// the magic-link requirement is temporarily disabled (REQUIRE_GRANT = false)
-// so the booklet is reachable with no link at all. Flip REQUIRE_GRANT back to
-// true to re-enforce it once ready.
+// Returns one building's guest-facing data, selected by (in priority order):
+//   1. The session cookie's grant, if valid (so a guest can't read another
+//      building's codes by editing the URL).
+//   2. The `slug` query param — how the multi-property sub-URLs (/:buildingSlug/*)
+//      pick their building.
+//   3. DEFAULT_BUILDING_ID, if neither of the above applies.
+// The magic-link requirement is temporarily disabled (REQUIRE_GRANT = false) so
+// each building's booklet is reachable from its own URL with no link at all.
+// Flip REQUIRE_GRANT back to true to re-enforce it once ready.
 import buildings from "./_data/buildings.json";
 import { COOKIE_NAME, getCookie, getGrant, isGrantValid, json } from "./_lib/grants";
 
 const REQUIRE_GRANT = false;
-const DEFAULT_BUILDING_ID = "haussmann-halevy";
+const DEFAULT_BUILDING_ID = "lamartine";
 
 export default async (req: Request) => {
   const token = getCookie(req, COOKIE_NAME);
   const grant = token ? await getGrant(token) : null;
+  const slug = new URL(req.url).searchParams.get("slug");
 
-  let buildingId = DEFAULT_BUILDING_ID;
+  let buildingId = slug || DEFAULT_BUILDING_ID;
   let validUntil: number | undefined;
 
   if (isGrantValid(grant)) {

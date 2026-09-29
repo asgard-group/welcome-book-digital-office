@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useProperty } from "@/property/useProperty";
+import { hexToHslString } from "@/lib/color";
 import joroLogo from "@/assets/logo-joro-office.png";
 import { ExternalLink } from "@/components/ExternalLink";
 
@@ -47,15 +49,48 @@ export function AccessExpired() {
   );
 }
 
+export function BuildingNotFound() {
+  return (
+    <Screen>
+      <div className="max-w-[300px] space-y-2">
+        <h1 className="text-[20px] font-semibold">Adresse introuvable</h1>
+        <p className="text-sm text-white/80">
+          Ce lien ne correspond à aucun logement. Contactez l'équipe Jöro pour obtenir la bonne
+          adresse.
+        </p>
+      </div>
+      <div className="space-y-1 text-sm">
+        <ExternalLink href="tel:+33637754570" className="block text-white/90 hover:text-white">
+          +33 6 37 75 45 70
+        </ExternalLink>
+        <ExternalLink href="mailto:reservation@joro-space.fr" className="block text-white/90 hover:text-white">
+          reservation@joro-space.fr
+        </ExternalLink>
+      </div>
+    </Screen>
+  );
+}
+
 /**
- * Gate for the whole booklet: a guest needs a currently-valid grant (via the
- * magic link → session cookie) to see any content. While the building request
- * is in flight we show a splash; on 401/error we show the expired screen.
+ * Gate for one building's booklet (rendered at `/:buildingSlug`): loads that
+ * building's data, applies its brand colors as CSS custom properties, and
+ * shows a splash while loading. On an unknown slug it shows BuildingNotFound;
+ * on any other error (e.g. an expired magic-link grant), AccessExpired.
  */
 export function AuthGate() {
   if (import.meta.env.DEV) return <Outlet />; // Auth désactivée en dev pour l'instant
-  const { data, isLoading, isError } = useProperty();
+  const { data, isLoading, isError, error } = useProperty();
+
+  useEffect(() => {
+    if (!data?.colors) return;
+    const root = document.documentElement.style;
+    root.setProperty("--brand-ink", hexToHslString(data.colors.primary));
+    root.setProperty("--brand-surface", hexToHslString(data.colors.secondary));
+  }, [data?.colors]);
+
   if (isLoading) return <Splash />;
-  if (isError || !data) return <AccessExpired />;
+  if (isError || !data) {
+    return error?.message === "building_not_found" ? <BuildingNotFound /> : <AccessExpired />;
+  }
   return <Outlet />;
 }

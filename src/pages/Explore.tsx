@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   ChevronLeft,
@@ -14,9 +14,8 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ExternalLink } from "@/components/ExternalLink";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 import joroLogo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   restaurants: UtensilsCrossed,
@@ -28,7 +27,9 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 };
 
 export default function Explore() {
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
   const { t } = useLanguage();
+  const { data: property } = useProperty();
   const [active, setActive] = useState<string>("restaurants");
 
   const categories = t.explore.categories.map((cat) => ({
@@ -43,8 +44,8 @@ export default function Explore() {
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
-          src={heroImg}
-          alt="Jöro Office 6 Lamartine"
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
+          alt={property?.name ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
@@ -53,7 +54,7 @@ export default function Explore() {
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
+            <Link to={`/${buildingSlug}/home`} aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -136,8 +137,8 @@ export default function Explore() {
               className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={photoroomLogo}
-              alt="Photoroom"
+              src={property?.logoUrl ?? DEFAULT_LOGO_URL}
+              alt="Logo"
               className="h-[25px] w-auto object-contain"
             />
           </div>

@@ -1,15 +1,26 @@
 {
-  "haussmann-halevy": {
-    "id": "haussmann-halevy",
-    "name": "Jöro Office 6 Lamartine",
+  "lamartine": {
+    "id": "lamartine",
+    "name": "6 rue Lamartine, Paris 9",
+    "address": "6 rue Lamartine, Paris 75009",
     "wifi": {
-      "network": "Joro-Living",
-      "password": "WELCOME09!"
+      "network": "Photoroom HQ",
+      "password": "ilovephotoroom"
+    },
+    "guestWifi": {
+      "network": "Photoroom_Guests",
+      "password": "welcometophotoroom"
     },
     "entryCodes": {
       "buildingDoor": "A 3187",
       "hallCode": "A4326"
-    }
+    },
+    "colors": {
+      "primary": "#312B37",
+      "secondary": "#FFFBF2"
+    },
+    "backgroundUrl": "/buildings/lamartine/hero.jpg",
+    "logoUrl": "/buildings/lamartine/logo-photoroom-white.png"
   },
   "demo-marais": {
     "id": "demo-marais",
