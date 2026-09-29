@@ -17,14 +17,14 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         <img
           src={heroImg}
           alt={t.onboarding.heroAlt}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         <div className="relative z-10 flex h-full w-full flex-col">
           {/* Logos */}
@@ -39,12 +39,12 @@ export default function Onboarding() {
             <button
               type="button"
               onClick={handleStart}
-              className="relative flex w-full max-w-[390px] items-center justify-center rounded-full bg-[#FFFBF2]/80 backdrop-blur-[12px] px-8 py-[0.8rem] transition-colors hover:bg-[#FFFBF2]/90"
+              className="relative flex w-full max-w-[390px] items-center justify-center rounded-full bg-brand-surface/80 backdrop-blur-[12px] px-8 py-[0.8rem] transition-colors hover:bg-brand-surface/90"
             >
-              <span className="text-center text-[#312B37] text-sm font-semibold uppercase">
+              <span className="text-center text-brand-ink text-sm font-semibold uppercase">
                 {t.onboarding.cta}
               </span>
-              <ChevronRight className="absolute right-[1rem] h-5 w-5 text-[#312B37]" strokeWidth={2} />
+              <ChevronRight className="absolute right-[1rem] h-5 w-5 text-brand-ink" strokeWidth={2} />
             </button>
           </div>
         </div>

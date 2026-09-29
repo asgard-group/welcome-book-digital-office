@@ -6,6 +6,7 @@ const DEV_BUILDING: PropertyData = {
   id: "dev",
   name: "Dev Building",
   wifi: { network: "Dev_WiFi_5G", password: "dev-password-123" },
+  guestWifi: { network: "Dev_WiFi_Guest", password: "dev-guest-123" },
   entryCodes: { buildingDoor: "0000", hallCode: "0000" },
 };
 

@@ -1,4 +1,4 @@
-import { Wifi, MapPin, ChevronLeft, Copy, KeyRound } from "lucide-react";
+import { Wifi, MapPin, ChevronLeft, Copy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import heroImg from "@/assets/_MG_5435_WEB.jpg";
@@ -6,12 +6,11 @@ import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useProperty } from "@/property/useProperty";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { ContactWidget } from "@/components/ContactWidget";
 import type { Translation } from "@/i18n/translations";
 
 function Widget({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
+    <div className="rounded-xl p-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 text-brand-ink dark:text-white">
       {children}
     </div>
   );
@@ -28,12 +27,12 @@ function CopyField({ value, t }: { value: string; t: Translation }) {
     }
   };
   return (
-    <div className="flex items-center justify-between rounded-xl px-3 py-2.5 backdrop-blur-md bg-white/65 dark:bg-[#47414D]/60">
-      <span className="text-sm text-[#312B37] dark:text-white">{value}</span>
+    <div className="flex items-center justify-between rounded-xl px-3 py-2.5 backdrop-blur-md bg-white/65 dark:bg-white/10">
+      <span className="text-sm text-brand-ink dark:text-white">{value}</span>
       <button
         onClick={handleCopy}
         aria-label={t.checkin.copyAria}
-        className="text-[#312B37]/60 hover:text-[#312B37] dark:text-white/70 dark:hover:text-white transition-colors"
+        className="text-brand-ink/60 hover:text-brand-ink dark:text-white/70 dark:hover:text-white transition-colors"
       >
         <Copy className="h-4 w-4" />
       </button>
@@ -42,21 +41,7 @@ function CopyField({ value, t }: { value: string; t: Translation }) {
 }
 
 function FieldSkeleton() {
-  return <div className="h-[42px] rounded-xl bg-[#312B37]/10 dark:bg-white/10 animate-pulse" />;
-}
-
-function Step({ step, title, children }: { step: number; title: string; children: React.ReactNode }) {
-  return (
-    <div className="flex gap-3">
-      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#312B37]/10 dark:bg-white/15 text-[#312B37] dark:text-white flex items-center justify-center text-xs font-semibold">
-        {step}
-      </div>
-      <div className="flex-1">
-        <p className="font-semibold text-[#312B37] dark:text-white text-sm">{title}</p>
-        <p className="text-[#312B37]/70 dark:text-white/80 text-sm mt-0.5">{children}</p>
-      </div>
-    </div>
-  );
+  return <div className="h-[42px] rounded-xl bg-brand-ink/10 dark:bg-white/10 animate-pulse" />;
 }
 
 export default function Checkin() {
@@ -64,21 +49,21 @@ export default function Checkin() {
   const { t } = useLanguage();
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
           alt={property?.name ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -101,12 +86,30 @@ export default function Checkin() {
               </div>
               <div className="space-y-3">
                 <div>
-                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
+                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
                   {property ? <CopyField value={property.wifi.network} t={t} /> : <FieldSkeleton />}
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-[#312B37]/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
+                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
                   {property ? <CopyField value={property.wifi.password} t={t} /> : <FieldSkeleton />}
+                </div>
+              </div>
+            </Widget>
+
+            {/* Wifi Guest */}
+            <Widget>
+              <div className="flex items-center gap-3 mb-4">
+                <Wifi className="h-5 w-5 text-foreground" strokeWidth={2} />
+                <h2 className="font-semibold text-foreground">{t.checkin.wifiGuestTitle}</h2>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
+                  {property?.guestWifi ? <CopyField value={property.guestWifi.network} t={t} /> : <FieldSkeleton />}
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
+                  {property?.guestWifi ? <CopyField value={property.guestWifi.password} t={t} /> : <FieldSkeleton />}
                 </div>
               </div>
             </Widget>
@@ -117,7 +120,7 @@ export default function Checkin() {
                 <MapPin className="h-5 w-5 text-foreground" strokeWidth={2} />
                 <div>
                   <p className="font-semibold text-foreground">6 Rue Lamartine</p>
-                  <p className="text-xs text-[#312B37]/70 dark:text-white/70">75009 Paris, France</p>
+                  <p className="text-xs text-brand-ink/70 dark:text-white/70">75009 Paris, France</p>
                 </div>
               </div>
               <div className="rounded-[0.5rem] overflow-hidden">
@@ -133,22 +136,19 @@ export default function Checkin() {
               </div>
             </Widget>
 
-            {/* Contact Jöro */}
-            <ContactWidget />
-
             {/* Contrôle d'accès — masqué sur demande, code conservé pour réactivation future
             <Widget>
               <div className="flex flex-col items-center text-center pt-2 pb-4">
                 <KeyRound className="h-10 w-10 text-foreground" strokeWidth={2} />
-                <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight mt-3">
+                <h2 className="text-xl font-semibold text-brand-ink dark:text-white leading-tight mt-3">
                   Contrôle d'accès
                 </h2>
-                <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mt-1 max-w-[280px]">
+                <p className="text-[13px] text-brand-ink/70 dark:text-white/80 mt-1 max-w-[280px]">
                   Process contrôle d'accès Bluetooth
                 </p>
               </div>
-              <div className="border-t border-[#312B37]/15 dark:border-white/15" />
-              <div className="divide-y divide-[#312B37]/15 dark:divide-white/15">
+              <div className="border-t border-brand-ink/15 dark:border-white/15" />
+              <div className="divide-y divide-brand-ink/15 dark:divide-white/15">
                 <div className="py-4">
                   <Step step={1} title="Télécharger STid Mobile ID">
                     Sur l'App Store ou Google Play

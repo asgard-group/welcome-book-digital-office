@@ -35,7 +35,7 @@ settings:
 
 contact:
   roleMultisite: "Multi-site Manager"
-  roleOfficeManager: "Office Manager"
+  roleOfficeManager: "Operations Manager"
   emailLabel: "Email"
   whatsappLabel: "WhatsApp"
   descAlexandra: "Site life, services and events"
@@ -54,7 +54,6 @@ welcome:
     info: "Emergencies"
     explore: "Useful Addresses"
     checkout: "Green Habits"
-    thanks: "Thank You"
 
 onboarding:
   heroAlt: "Interior of the space"
@@ -64,6 +63,7 @@ checkin:
   title: "Practical Info"
   subtitle: "Wifi, Office access"
   wifiTitle: "Wifi"
+  wifiGuestTitle: "Wifi Guest"
   network: "Network"
   password: "Password"
   copyAria: "Copy"
@@ -215,20 +215,6 @@ services:
     - name: "Jöro Living"
       role: "Aparthotels"
       link: "https://joro-space.fr/reservation-joro/"
-
-thanks:
-  title: "Thank You So Much"
-  subtitle: "Your feedback means a lot to us"
-  cardTitle: "Share your experience"
-  cardDesc: "Your feedback helps us improve every stay at Jöro Living."
-  ratingLabel: "Rate your stay"
-  starLabel: "star"
-  messageLabel: "Your message"
-  messagePlaceholder: "Tell us about your stay..."
-  submit: "Send my review"
-  contactLink: "Contact me directly"
-  toastNoRating: "Please select a rating"
-  toastSuccess: "Thank you for your review!"
 
 rules:
   navTitle: "House Rules"

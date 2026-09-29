@@ -18,14 +18,6 @@ import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
 import photoroomLogo from "@/assets/logo-photoroom-white.png";
 
-function Widget({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
-      {children}
-    </div>
-  );
-}
-
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   restaurants: UtensilsCrossed,
   parking: ParkingSquare,
@@ -47,21 +39,21 @@ export default function Explore() {
 
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
-          alt="Haussmann Mogador"
+          alt="Jöro Office 6 Lamartine"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -86,8 +78,8 @@ export default function Explore() {
                   className={cn(
                     "flex flex-col items-center justify-center gap-[6px] w-full aspect-[106/92] rounded-xl text-sm font-medium transition-colors backdrop-blur-md",
                     active === cat.id
-                      ? "bg-[#312B37] text-white dark:bg-white dark:text-[#312B37]"
-                      : "bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white hover:bg-[#FFFBF2]/90 dark:hover:bg-[#312B37]/85"
+                      ? "bg-brand-ink text-white dark:bg-white dark:text-brand-ink"
+                      : "bg-brand-surface/80 dark:bg-brand-ink/80 text-brand-ink dark:text-white hover:bg-brand-surface/90 dark:hover:bg-brand-ink/85"
                   )}
                 >
                   <cat.icon className="h-7 w-7 shrink-0" strokeWidth={1.5} />
@@ -113,21 +105,21 @@ export default function Explore() {
                       : `${place.name} Paris 9`
                   )}`}
                   newTab
-                  className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 hover:bg-[#FFFBF2]/90 dark:hover:bg-[#312B37]/85 transition-colors"
+                  className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 hover:bg-brand-surface/90 dark:hover:bg-brand-ink/85 transition-colors"
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-[17px] font-semibold text-[#312B37] dark:text-white truncate">
+                    <p className="text-[17px] font-semibold text-brand-ink dark:text-white truncate">
                       {place.name}
                     </p>
                     {[place.desc, place.right, place.price].filter(Boolean).length > 0 && (
-                      <p className="text-[14px] text-[#312B37]/70 dark:text-white/80 mt-0.5 truncate">
+                      <p className="text-[14px] text-brand-ink/70 dark:text-white/80 mt-0.5 truncate">
                         {[place.desc, place.right, place.price].filter(Boolean).join(" · ")}
                       </p>
                     )}
                   </div>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#312B37]/10 dark:bg-white/15 shrink-0 ml-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-ink/10 dark:bg-white/10 shrink-0 ml-3">
                     <ChevronRight
-                      className="h-5 w-5 text-[#312B37] dark:text-white"
+                      className="h-5 w-5 text-brand-ink dark:text-white"
                       strokeWidth={1.75}
                     />
                   </span>

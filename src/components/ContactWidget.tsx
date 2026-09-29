@@ -13,7 +13,7 @@ type TeamMember = {
 
 const TEAM: TeamMember[] = [
   { name: "Audrey", role: "roleOfficeManager", desc: "descAudrey", email: "audrey.robin@joro-space.fr", phoneHref: "+33659668978" },
-  { name: "Alexandra", role: "roleMultisite", desc: "descAlexandra", email: "alexandra.delbart@joro-space.fr", phoneHref: "+33778877806" },
+  { name: "Pauline", role: "roleMultisite", desc: "descAlexandra", email: "pauline.roureau@joro-space.fr", phoneHref: "+33659195073" },
   { name: "Manuel", role: "roleMultisite", desc: "descManuel", email: "manuel.colores@joro-space.fr", phoneHref: "+33764012129" },
 ];
 
@@ -25,24 +25,24 @@ export function ContactWidget() {
       {TEAM.map((member) => (
         <div
           key={member.name}
-          className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white"
+          className="rounded-xl p-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 text-brand-ink dark:text-white"
         >
-          <p className="font-semibold text-[#312B37] dark:text-white text-base">{member.name}</p>
-          <p className="text-sm text-[#312B37]/70 dark:text-white/70">{t.contact[member.role]}</p>
-          <p className="text-sm text-[#312B37]/70 dark:text-white/70 mt-2">
+          <p className="font-semibold text-brand-ink dark:text-white text-base">{member.name}</p>
+          <p className="text-sm text-brand-ink/70 dark:text-white/70">{t.contact[member.role]}</p>
+          <p className="text-sm text-brand-ink/70 dark:text-white/70 mt-2">
             {t.contact[member.desc]}
           </p>
           <div className="grid grid-cols-2 gap-3 mt-3">
             {member.email ? (
               <ExternalLink
                 href={`mailto:${member.email}`}
-                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-brand-ink dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
                 {t.contact.emailLabel}
               </ExternalLink>
             ) : (
-              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
+              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-brand-ink/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <Mail className="h-5 w-5" strokeWidth={1.75} />
                 {t.contact.emailLabel}
               </span>
@@ -51,13 +51,13 @@ export function ContactWidget() {
               <ExternalLink
                 href={`https://wa.me/${member.phoneHref.replace("+", "")}`}
                 newTab
-                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37] dark:text-white bg-white/70 dark:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-brand-ink dark:text-white bg-white/70 dark:bg-white/10"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {t.contact.whatsappLabel}
               </ExternalLink>
             ) : (
-              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-[#312B37]/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
+              <span className="flex items-center justify-center gap-2 rounded-[8px] py-3 text-sm font-medium text-brand-ink/40 dark:text-white/40 bg-white/70 dark:bg-white/10">
                 <WhatsAppIcon className="h-5 w-5" />
                 {t.contact.whatsappLabel}
               </span>
