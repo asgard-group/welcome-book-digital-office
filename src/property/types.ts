@@ -1,14 +1,16 @@
 /**
  * Shape of a single building's guest-facing data.
  *
- * One JSON document per building lives at `public/buildings/<id>.json` and is
- * fetched at runtime (see PropertyContext). Keep this in sync with those files.
+ * Served by `GET /api/building` (see `netlify/functions/building.ts`), backed
+ * by `netlify/functions/_data/buildings.json`. Keep this in sync with that file.
  */
 export type PropertyData = {
-  /** Stable building identifier; matches the `/buildings/<id>.json` filename. */
+  /** Stable building identifier; matches its key in `buildings.json`. */
   id: string;
   /** Public-facing building / property name (shown on the welcome screen). */
   name: string;
+  /** Optional until every building sets it. */
+  address?: string;
   wifi: {
     network: string;
     password: string;
@@ -24,6 +26,15 @@ export type PropertyData = {
     /** Hall access code, entered on the intercom after the street door. */
     hallCode: string;
   };
+  /** Brand colors as hex strings. Optional until every building sets them. */
+  colors?: {
+    primary: string;
+    secondary: string;
+  };
+  /** Hero background photo, served from /buildings/<id>/. Optional until every building sets it. */
+  backgroundUrl?: string;
+  /** Client logo, served from /buildings/<id>/. Optional until every building sets it. */
+  logoUrl?: string;
   /** epoch ms when access ends; sent by the API so the client can expire values offline. */
   validUntil?: number;
 };
