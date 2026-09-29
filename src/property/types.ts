@@ -35,6 +35,4 @@ export type PropertyData = {
   backgroundUrl?: string;
   /** Client logo, served from /buildings/<id>/. Optional until every building sets it. */
   logoUrl?: string;
-  /** epoch ms when access ends; sent by the API so the client can expire values offline. */
-  validUntil?: number;
 };

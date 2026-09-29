@@ -23,12 +23,11 @@ const DEV_BUILDING: PropertyData = {
 };
 
 /**
- * Fetch the guest's building data for the given slug (the `:buildingSlug` route param).
+ * Fetch the building data for the given slug (the `:buildingSlug` route param).
  *
- * A valid session cookie (set at `/access`) overrides the slug server-side, so a
- * guest with a grant always sees their own building even if the URL is edited.
- * A 404 means the slug doesn't match any building and surfaces as `isError`
- * with a "building_not_found" message for AuthGate to show a dedicated screen.
+ * Each building is a fixed, public URL — no login, no session. A 404 means the
+ * slug doesn't match any building and surfaces as `isError` with a
+ * "building_not_found" message for BuildingGate to show a dedicated screen.
  *
  * Plain `vite dev` has no functions, so a dev sample is returned to keep UI
  * work possible regardless of slug. Under `netlify dev` the real function runs
@@ -38,7 +37,7 @@ async function fetchBuilding(buildingSlug?: string): Promise<PropertyData> {
   const url = buildingSlug ? `/api/building?slug=${encodeURIComponent(buildingSlug)}` : "/api/building";
   let res: Response;
   try {
-    res = await fetch(url, { credentials: "include" });
+    res = await fetch(url);
   } catch {
     if (import.meta.env.DEV) return DEV_BUILDING;
     throw new Error("network_error");
