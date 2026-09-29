@@ -58,16 +58,16 @@ function ServiceCard({
 }) {
   const content = (
     <>
-      <Icon className="h-6 w-6 text-[#312B37] dark:text-white" strokeWidth={1.75} />
-      <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-[#312B37]/10 dark:bg-white/15">
+      <Icon className="h-6 w-6 text-brand-ink dark:text-white" strokeWidth={1.75} />
+      <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-ink/10 dark:bg-white/10">
         {indicator}
       </span>
-      <p className="mt-4 pr-[36px] text-[15px] font-semibold text-[#312B37] dark:text-white leading-snug">
+      <p className="mt-4 pr-[36px] text-[15px] font-semibold text-brand-ink dark:text-white leading-snug">
         {title}
       </p>
     </>
   );
-  const className = "relative rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80";
+  const className = "relative rounded-xl p-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80";
 
   if (href) {
     return (
@@ -89,21 +89,21 @@ export default function Services() {
   ];
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
-          alt="Haussmann Mogador"
+          alt="Jöro Office 6 Lamartine"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -118,7 +118,7 @@ export default function Services() {
 
           {/* Widgets */}
           <div className="px-[30px] space-y-4">
-            <div className="flex rounded-full p-[0.1rem] backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80">
+            <div className="flex rounded-full p-[0.1rem] backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -126,8 +126,8 @@ export default function Services() {
                   className={cn(
                     "flex-1 flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium transition-colors",
                     active === tab.id
-                      ? "bg-[#312B37] text-white dark:bg-white dark:text-[#312B37]"
-                      : "text-[#312B37] dark:text-white"
+                      ? "bg-brand-ink text-white dark:bg-white dark:text-brand-ink"
+                      : "text-brand-ink dark:text-white"
                   )}
                 >
                   <span>{tab.label}</span>
@@ -135,8 +135,8 @@ export default function Services() {
                     className={cn(
                       "flex items-center justify-center h-5 min-w-[20px] px-1.5 rounded-full text-xs font-medium",
                       active === tab.id
-                        ? "bg-white/20 text-white dark:bg-[#312B37]/10 dark:text-[#312B37]"
-                        : "bg-[#312B37]/10 text-[#312B37] dark:bg-white/15 dark:text-white"
+                        ? "bg-white/20 text-white dark:bg-brand-ink/10 dark:text-brand-ink"
+                        : "bg-brand-ink/10 text-brand-ink dark:bg-white/10 dark:text-white"
                     )}
                   >
                     {tab.count}
@@ -152,7 +152,7 @@ export default function Services() {
                     key={item.title}
                     icon={INCLUDED_ICONS[i]}
                     title={item.title}
-                    indicator={<Check className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2.5} />}
+                    indicator={<Check className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
               </div>
@@ -166,18 +166,18 @@ export default function Services() {
                     icon={QUOTE_ICONS[i]}
                     title={item.title}
                     href={`mailto:${QUOTE_EMAILS[i]}`}
-                    indicator={<Pencil className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2.5} />}
+                    indicator={<Pencil className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
               </div>
             )}
 
             {/* Jöro Space */}
-            <div className="rounded-xl p-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 text-[#312B37] dark:text-white">
-              <h2 className="text-xl font-semibold text-[#312B37] dark:text-white leading-tight text-left">
+            <div className="rounded-xl p-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 text-brand-ink dark:text-white">
+              <h2 className="text-xl font-semibold text-brand-ink dark:text-white leading-tight text-left">
                 {t.services.joroSpaceTitle}
               </h2>
-              <p className="text-[13px] text-[#312B37]/70 dark:text-white/80 mb-4">
+              <p className="text-[13px] text-brand-ink/70 dark:text-white/80 mb-4">
                 {t.services.joroSpaceSubtitle}
               </p>
 

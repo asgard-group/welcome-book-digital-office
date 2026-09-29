@@ -27,11 +27,11 @@ import fontaineImg from "@/assets/fontaine.png";
 import microOndeImg from "@/assets/micro_onde.png";
 import cafeImg from "@/assets/café.png";
 import laveVaisselleImg from "@/assets/lave_vaisselle.png";
-import rMoins1Img from "@/assets/r-1.jpg";
-import rdcImg from "@/assets/rdc.jpg";
-import rPlus1Img from "@/assets/r+1.jpg";
-import rPlus2Img from "@/assets/r+2.jpg";
-import rooftopImg from "@/assets/rooftop.jpg";
+import rMoins1Img from "@/assets/r-1.webp";
+import rdcImg from "@/assets/rdc.webp";
+import rPlus1Img from "@/assets/r+1.webp";
+import rPlus2Img from "@/assets/r+2.webp";
+import rooftopImg from "@/assets/rooftop.webp";
 
 const SECTION_ICONS: Record<string, LucideIcon> = {
   equipements: Tv,
@@ -65,21 +65,21 @@ export default function Facilities() {
   }));
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
-          alt="Haussmann Mogador"
+          alt="Jöro Office 6 Lamartine"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -97,20 +97,20 @@ export default function Facilities() {
           {/* Widgets */}
           <div className="px-[30px] space-y-4">
             {/* Sections accordion */}
-            <Accordion type="multiple" defaultValue={["equipements"]} className="space-y-3">
+            <Accordion type="multiple" className="space-y-3">
               {sections.map((section) => (
                 <AccordionItem
                   key={section.id}
                   value={section.id}
-                  className="rounded-xl px-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80"
+                  className="rounded-xl px-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80"
                 >
                   <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center gap-3">
                       <section.icon
-                        className="h-5 w-5 text-[#312B37] dark:text-white"
+                        className="h-5 w-5 text-brand-ink dark:text-white"
                         strokeWidth={2}
                       />
-                      <span className="font-semibold text-[#312B37] dark:text-white">
+                      <span className="font-semibold text-brand-ink dark:text-white">
                         {section.title}
                       </span>
                     </div>
@@ -126,10 +126,10 @@ export default function Facilities() {
                               className="w-[5rem] h-[4rem] rounded-[0.5rem] object-cover shrink-0"
                             />
                             <div className="min-w-0 flex-1">
-                              <p className="text-sm font-medium text-[#312B37] dark:text-white truncate">
+                              <p className="text-sm font-medium text-brand-ink dark:text-white truncate">
                                 {item.name}
                               </p>
-                              <p className="text-sm text-[#312B37]/70 dark:text-white/70 truncate">
+                              <p className="text-sm text-brand-ink/70 dark:text-white/70 truncate">
                                 {item.detail ?? t.facilities.noticeLabel}
                               </p>
                             </div>
@@ -139,7 +139,7 @@ export default function Facilities() {
                                   href={item.videoUrl}
                                   newTab
                                   aria-label={t.facilities.videoLinkLabel}
-                                  className="text-[#312B37] dark:text-white shrink-0"
+                                  className="text-brand-ink dark:text-white shrink-0"
                                 >
                                   <ExternalLink className="h-5 w-5" strokeWidth={1.75} />
                                 </ExternalLinkConfirm>
@@ -147,7 +147,7 @@ export default function Facilities() {
                                 <span
                                   aria-disabled="true"
                                   aria-label={t.facilities.videoLinkLabel}
-                                  className="text-[#312B37]/40 dark:text-white/40 shrink-0 cursor-default"
+                                  className="text-brand-ink/40 dark:text-white/40 shrink-0 cursor-default"
                                 >
                                   <ExternalLink className="h-5 w-5" strokeWidth={1.75} />
                                 </span>
@@ -166,14 +166,14 @@ export default function Facilities() {
                         <div className="space-y-3">
                           {section.items.map((item) => (
                             <div key={item.name} className="grid grid-cols-2 items-start gap-4">
-                              <p className="text-sm font-medium text-[#312B37] dark:text-white">
+                              <p className="text-sm font-medium text-brand-ink dark:text-white">
                                 {item.name}
                               </p>
                               <div className="text-left">
                                 {item.detail.split("\n").map((line, i) => (
                                   <p
                                     key={i}
-                                    className="text-sm text-[#312B37]/70 dark:text-white/80 leading-snug"
+                                    className="text-sm text-brand-ink/70 dark:text-white/80 leading-snug"
                                   >
                                     {line}
                                   </p>

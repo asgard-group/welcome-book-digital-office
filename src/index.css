@@ -46,6 +46,15 @@
     --sidebar-accent-foreground: 180 20% 98%;
     --sidebar-border: 195 20% 28%;
     --sidebar-ring: 185 38% 52%;
+
+    /* Brand colors for the "Jöro" pages (Welcome, Checkin, Checkout, Services,
+       Facilities, Explore, InfoPage...). Single source of truth so a future
+       multi-property setup can override these per building. Intentionally
+       theme-independent (not redefined under .dark) — pages already switch
+       between them explicitly via dark: variants (e.g. text-brand-ink
+       dark:text-white, bg-brand-surface dark:bg-brand-ink). */
+    --brand-ink: 270 12% 19%; /* #312B37 */
+    --brand-surface: 42 100% 97%; /* #FFFBF2 */
   }
 
   .dark {
@@ -104,10 +113,6 @@
     @apply text-muted-foreground text-sm mb-6;
   }
 
-  .info-card {
-    @apply bg-card rounded-xl border p-4 shadow-sm;
-  }
-
   .wifi-card {
     @apply bg-teal-light rounded-xl p-5 border border-accent/20;
   }
@@ -138,5 +143,12 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* 100vh first as a fallback for browsers/OS versions without dvh support
+     (e.g. old iOS Safari) — the second declaration wins wherever dvh works. */
+  .h-app-shell {
+    height: 100vh;
+    height: 100dvh;
   }
 }

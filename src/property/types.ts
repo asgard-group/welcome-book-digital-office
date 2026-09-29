@@ -13,6 +13,11 @@ export type PropertyData = {
     network: string;
     password: string;
   };
+  /** Guest wifi network, separate from the main one above. Optional until every building sets it. */
+  guestWifi?: {
+    network: string;
+    password: string;
+  };
   entryCodes: {
     /** Street door / building entrance keypad code. */
     buildingDoor: string;

@@ -5,13 +5,10 @@ import { BottomTabBar } from "./BottomTabBar";
 export function AppLayout({
   children,
   title,
-  hideHeader,
   hideTabBar,
 }: {
   children: ReactNode;
   hideTabBar?: boolean;
-  hideContact?: boolean;
-  hideHeader?: boolean;
   title?: string;
 }) {
   return (

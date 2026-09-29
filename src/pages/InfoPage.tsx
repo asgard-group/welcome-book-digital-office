@@ -17,21 +17,21 @@ export default function InfoPage() {
   ];
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
-          alt="Haussmann Mogador"
+          alt="Jöro Office 6 Lamartine"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -65,7 +65,7 @@ export default function InfoPage() {
             </ExternalLink>
 
             {/* Lignes d'urgence */}
-            <div className="rounded-xl backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80 divide-y divide-[#312B37]/10 dark:divide-white/10">
+            <div className="rounded-xl backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 divide-y divide-brand-ink/10 dark:divide-white/10">
               {emergencyList.map((item) => (
                 <ExternalLink
                   key={item.number}
@@ -73,17 +73,17 @@ export default function InfoPage() {
                   className="flex items-center justify-between gap-3 px-4 py-4"
                 >
                   <div>
-                    <p className="text-[15px] font-semibold uppercase text-[#312B37] dark:text-white">
+                    <p className="text-[15px] font-semibold uppercase text-brand-ink dark:text-white">
                       {item.label}
                     </p>
-                    <p className="text-sm text-[#312B37]/60 dark:text-white/60">{item.desc}</p>
+                    <p className="text-sm text-brand-ink/60 dark:text-white/60">{item.desc}</p>
                   </div>
                   <span className="relative flex items-center shrink-0">
                     <span className="flex items-center h-9 pl-4 pr-11 rounded-full bg-destructive/15 text-destructive font-bold text-lg">
                       {item.number}
                     </span>
-                    <span className="absolute right-0 flex h-9 w-9 items-center justify-center rounded-full bg-white dark:bg-[#47414D] shadow-sm">
-                      <Phone className="h-4 w-4 text-[#312B37] dark:text-white" strokeWidth={2} />
+                    <span className="absolute right-0 flex h-9 w-9 items-center justify-center rounded-full bg-white dark:bg-white/10 shadow-sm">
+                      <Phone className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2} />
                     </span>
                   </span>
                 </ExternalLink>

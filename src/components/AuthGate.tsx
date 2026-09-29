@@ -6,7 +6,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 
 function Screen({ children }: { children: ReactNode }) {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-[#312B37] px-8 text-center text-white">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-6 bg-brand-ink px-8 text-center text-white">
       <img
         src={joroLogo}
         alt="Jöro Living"

@@ -18,7 +18,6 @@ import Services from "./pages/Services";
 import Explore from "./pages/Explore";
 import InfoPage from "./pages/InfoPage";
 import QrPage from "./pages/QrPage";
-import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 
 const OnboardingGate = () => {
@@ -60,7 +59,6 @@ const App = () => (
                 <Route path="/explore" element={<Explore />} />
                 <Route path="/info" element={<InfoPage />} />
                 <Route path="/qr" element={<QrPage />} />
-                <Route path="/thanks" element={<Thanks />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

@@ -35,7 +35,7 @@ settings:
 
 contact:
   roleMultisite: "Responsable multisite"
-  roleOfficeManager: "Office Manager"
+  roleOfficeManager: "Responsable des opérations"
   emailLabel: "Email"
   whatsappLabel: "WhatsApp"
   descAlexandra: "Vie du site, services et événements"
@@ -54,7 +54,6 @@ welcome:
     info: "Urgences"
     explore: "Adresses utiles"
     checkout: "Éco gestes"
-    thanks: "Merci beaucoup"
 
 onboarding:
   heroAlt: "Intérieur du logement"
@@ -64,6 +63,7 @@ checkin:
   title: "Infos pratiques"
   subtitle: "Wifi, Accès bureaux"
   wifiTitle: "Wifi"
+  wifiGuestTitle: "Wifi Guest"
   network: "Réseau"
   password: "Mot de passe"
   copyAria: "Copier"
@@ -215,20 +215,6 @@ services:
     - name: "Jöro Living"
       role: "Apparthôtels"
       link: "https://joro-space.fr/reservation-joro/"
-
-thanks:
-  title: "Merci beaucoup"
-  subtitle: "Votre retour compte beaucoup pour nous"
-  cardTitle: "Partagez votre expérience"
-  cardDesc: "Votre avis nous aide à améliorer chaque séjour chez Jöro Living."
-  ratingLabel: "Notez votre séjour"
-  starLabel: "étoile"
-  messageLabel: "Votre message"
-  messagePlaceholder: "Racontez-nous votre séjour..."
-  submit: "Envoyer mon avis"
-  contactLink: "Me contacter directement"
-  toastNoRating: "Veuillez sélectionner une note"
-  toastSuccess: "Merci pour votre avis !"
 
 rules:
   navTitle: "Règlement"

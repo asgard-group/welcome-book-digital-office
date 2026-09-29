@@ -5,7 +5,6 @@ import {
   Info as InfoIcon,
   Compass,
   Recycle,
-  Heart,
   ConciergeBell,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -34,12 +33,11 @@ export default function Welcome() {
     { label: t.welcome.menu.info, icon: InfoIcon, to: "/info" },
     { label: t.welcome.menu.explore, icon: Compass, to: "/explore" },
     { label: t.welcome.menu.checkout, icon: Recycle, to: "/checkout" },
-    { label: t.welcome.menu.thanks, icon: Heart, to: "/thanks" },
   ];
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image */}
         <img
           src={heroImg}
@@ -47,7 +45,7 @@ export default function Welcome() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Subtle dark overlay for readability (stronger in dark mode) */}
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full pb-6">
@@ -56,8 +54,8 @@ export default function Welcome() {
             <SettingsPopover variant="light" />
           </div>
 
-          {/* Title / subtitle (same UI rules as other page headers) */}
-          <div className="text-center px-4 pt-[30px] shrink-0">
+          {/* Title / subtitle — hidden on very short viewports so it never overlaps the menu below */}
+          <div className="text-center px-4 pt-[30px] shrink-0 [@media(max-height:700px)]:hidden">
             <h1 className="text-[32px] leading-tight font-serif font-semibold text-white uppercase">
               {t.welcome.title}
             </h1>
@@ -67,31 +65,29 @@ export default function Welcome() {
           </div>
 
           {/* Menu buttons — fills space between title and footer logo */}
-          <nav className="flex-1 min-h-0 flex flex-col justify-center gap-[15px] pb-6 px-[40px]">
-            {menu
-              .filter((item) => item.to !== "/thanks")
-              .map((item) => (
+          <nav className="flex-1 min-h-0 flex flex-col justify-center gap-[15px] pb-6 px-[40px] [@media(max-height:700px)]:pb-0">
+            {menu.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   className="group relative flex items-center rounded-full p-[3px] backdrop-blur-md transition-colors
-                    bg-[#FFFBF2]/80 hover:bg-[#FFFBF2]/90
-                    dark:bg-[#312B37]/80 dark:hover:bg-[#312B37]/90"
+                    bg-brand-surface/80 hover:bg-brand-surface/90
+                    dark:bg-brand-ink/80 dark:hover:bg-brand-ink/90"
                 >
                   <span className="flex h-[3rem] w-[3rem] shrink-0 items-center justify-center rounded-full
                     bg-white/65
-                    dark:bg-[#47414D] dark:border-transparent">
+                    dark:bg-white/10 dark:border-transparent">
                     <item.icon
-                      className="h-[25px] w-[25px] text-[#312B37] dark:text-white"
+                      className="h-[25px] w-[25px] text-brand-ink dark:text-white"
                       strokeWidth={1.5}
                     />
                   </span>
                   <span className="flex-1 flex flex-col items-center text-center px-2 -ml-10">
-                    <span className="text-[15px] font-semibold uppercase text-[#312B37] dark:text-white leading-tight">
+                    <span className="text-[15px] font-semibold uppercase text-brand-ink dark:text-white leading-tight">
                       {item.label}
                     </span>
                     {item.desc && (
-                      <span className="text-[12px] font-medium text-[#312B37]/70 dark:text-white/80 mt-0.5">
+                      <span className="text-[12px] font-medium text-brand-ink/70 dark:text-white/80 mt-0.5">
                         {item.desc}
                       </span>
                     )}

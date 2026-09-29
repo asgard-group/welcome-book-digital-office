@@ -69,21 +69,21 @@ export default function Checkout() {
   }));
 
   return (
-    <div className="h-[100dvh] w-full bg-muted/30 overflow-hidden">
-      <div className="mx-auto w-full max-w-[760px] h-[100dvh] relative overflow-hidden shadow-sm">
+    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+      <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
           src={heroImg}
-          alt="Haussmann Mogador"
+          alt="Jöro Office 6 Lamartine"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#312B37]/30 dark:bg-[#312B37]/50" />
+        <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
-          <div className="px-4 pt-4 flex items-center shrink-0">
-            <Link to="/" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-muted/30 rounded-[6px]">
+          <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
+            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -108,10 +108,10 @@ export default function Checkout() {
                     style={{ backgroundColor: item.bg }}
                   >
                     <div className="relative z-10 max-w-[230px] pr-2 min-[330px]:max-w-none min-[330px]:pr-[128px] py-3 pl-4">
-                      <h3 className="text-[15px] font-semibold text-[#1c2626] leading-tight">
+                      <h3 className="text-[15px] font-semibold text-brand-ink leading-tight">
                         {item.title}
                       </h3>
-                      <p className="text-[12px] text-[#1c2626]/70 mt-1 leading-snug">
+                      <p className="text-[12px] text-brand-ink/70 mt-1 leading-snug">
                         {item.desc}
                       </p>
                       <div className="flex gap-1.5 mt-2.5">
@@ -145,15 +145,15 @@ export default function Checkout() {
                     <AccordionItem
                       key={section.id}
                       value={section.id}
-                      className="rounded-xl px-4 backdrop-blur-md bg-[#FFFBF2]/80 dark:bg-[#312B37]/80"
+                      className="rounded-xl px-4 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80"
                     >
                       <AccordionTrigger className="hover:no-underline py-4">
                         <div className="flex items-center gap-3">
                           <section.icon
-                            className="h-5 w-5 text-[#312B37] dark:text-white"
+                            className="h-5 w-5 text-brand-ink dark:text-white"
                             strokeWidth={2}
                           />
-                          <span className="font-semibold text-[#312B37] dark:text-white">
+                          <span className="font-semibold text-brand-ink dark:text-white">
                             {section.title}
                           </span>
                         </div>
@@ -168,10 +168,10 @@ export default function Checkout() {
                               <div className="mt-2 space-y-3">
                                 {faireItems.map((item) => (
                                   <div key={item.name}>
-                                    <p className="text-sm font-medium text-[#312B37] dark:text-white">
+                                    <p className="text-sm font-medium text-brand-ink dark:text-white">
                                       {item.name}
                                     </p>
-                                    <p className="text-sm text-[#312B37]/70 dark:text-white/80">
+                                    <p className="text-sm text-brand-ink/70 dark:text-white/80">
                                       {item.detail}
                                     </p>
                                   </div>
@@ -187,10 +187,10 @@ export default function Checkout() {
                               <div className="mt-2 space-y-3">
                                 {eviterItems.map((item) => (
                                   <div key={item.name}>
-                                    <p className="text-sm font-medium text-[#312B37] dark:text-white">
+                                    <p className="text-sm font-medium text-brand-ink dark:text-white">
                                       {item.name}
                                     </p>
-                                    <p className="text-sm text-[#312B37]/70 dark:text-white/80">
+                                    <p className="text-sm text-brand-ink/70 dark:text-white/80">
                                       {item.detail}
                                     </p>
                                   </div>
