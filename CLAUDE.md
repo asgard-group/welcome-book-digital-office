@@ -4,49 +4,47 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Mobile-first PWA that serves as a digital "welcome booklet" for a short-stay Paris apartment (branded "Jöro" / "Haussmann Mogador"). Bilingual FR/EN. Generated with [Lovable](https://lovable.dev) — Vite + React 18 + TypeScript + Tailwind + shadcn/ui.
+Mobile-first PWA that serves as a digital "welcome booklet" for short-stay apartments, branded "Jöro Office". Multi-property: each building is served from its own sub-URL (e.g. `/lamartine`). Bilingual FR/EN. Generated with [Lovable](https://lovable.dev) — Vite + React 18 + TypeScript + Tailwind + shadcn/ui.
 
 ## Commands
 
 npm scripts are canonical (both `bun.lockb` and `package-lock.json` are checked in; the repo currently tracks `package-lock.json`).
 
-- `netlify dev` — **preferred local dev.** Runs the app *and* the serverless functions (+ local Blobs) on one origin, so `/api/*` works. Requires the Netlify CLI.
-- `npm run dev` — Vite-only dev server on **port 8080**, host `::`. No `/api/*`; `useProperty` falls back to a dev sample building so UI work still renders (auth can't be exercised here).
+- `netlify dev` — **preferred local dev.** Runs the app *and* the serverless function on one origin, so `/api/building` works. Requires the Netlify CLI.
+- `npm run dev` — Vite-only dev server on **port 8080**, host `::`. No `/api/*`; `useProperty` falls back to a dev sample building so UI work still renders regardless of slug.
 - `npm run build` — production build; `npm run build:dev` builds in development mode
 - `npm run lint` — ESLint (flat config, `eslint.config.js`)
 - `npm run test` — Vitest run once; `npm run test:watch` for watch mode
 - `npx vitest run src/test/example.test.ts` — run a single test file; add `-t "name"` to filter by test name
 - `npm run preview` — serve the production build
 
-Issue a test magic link (needs `ADMIN_KEY` set): `POST /api/grants` with header `x-admin-key` and body `{"buildingId","days","email?"}` — the response returns the `/access?token=…` link (and emails it when `RESEND_API_KEY` is set).
-
 ## Architecture
 
 **Entry & providers.** `src/main.tsx` → `src/App.tsx`. Provider nesting order (outer→inner): `QueryClientProvider` → `ThemeProvider` → `LanguageProvider` → `TooltipProvider` → toasters → `BrowserRouter`.
 
-**Routing.** All routes live in `src/App.tsx`, one page component per route under `src/pages/`. `react-router-dom` v6. `/access` is public (magic-link landing); **every other route is nested under `<AuthGate>`** and requires a valid access grant. `/` is an `OnboardingGate`: if `localStorage["joro_onboarded"] === "1"` it redirects to `/home` (the `Welcome` page), otherwise it shows `Onboarding` (which sets that flag on "start").
+**Multi-property routing.** Every building lives under its own sub-URL, `/:buildingSlug/*` (e.g. `/lamartine/home`), defined once in `src/App.tsx`. The bare `/` redirects to `DEFAULT_BUILDING_SLUG` (from `src/property/useProperty.ts`). `/:buildingSlug` renders `BuildingGate` (`src/components/BuildingGate.tsx`), which loads that building's data and gates its children (`Outlet`) on it; each concrete page is a route nested under it (`home`, `checkin`, `checkout`, `facilities`, `services`, `explore`, `info`). The index route is `OnboardingGate` (in `App.tsx`): if `localStorage["joro_onboarded_<slug>"] === "1"` it redirects to `<slug>/home`, otherwise it shows `Onboarding` (which sets that flag — scoped per building — on "start"). Internal links/navigation must stay slug-aware (read `buildingSlug` via `useParams()` and build `` `/${buildingSlug}/...` `` paths) rather than hardcoding absolute paths.
 
-**Auth & building data (magic-link grants).** There are no user accounts — access is a time-boxed *grant* to one building, keyed by an unguessable token.
-- **Backend:** Netlify Functions in `netlify/functions/` (`grants` = admin issues a grant + link; `enter` = exchanges the link token for an HttpOnly `joro_token` cookie; `building` = returns the guest's building data iff the cookie maps to a currently-valid grant). Shared helpers in `_lib/grants.ts`; grants persist in **Netlify Blobs** (store name `grants`, key = SHA-256 of the token). Building content is private in `_data/buildings.json` — **never** put it back in `public/`. Env vars: `ADMIN_KEY`, `TOKEN_PEPPER`, `RESEND_API_KEY`, `EMAIL_FROM`, `APP_URL`.
-- **Frontend:** `useProperty()` (`src/property/useProperty.ts`) fetches `GET /api/building` via React Query (query key `["building"]`); the client never sends a building id (server derives it). `AuthGate` (`src/components/AuthGate.tsx`) shows a splash while loading and an "expired link" screen on 401. `Access` (`src/pages/Access.tsx`) posts the token to `/api/enter`, strips it from the URL, then redirects to `/`.
+**Building data.** No accounts, no login, no access grants — each building's booklet is a fixed, public URL. `GET /api/building?slug=<id>` (`netlify/functions/building.ts`) looks up that id in `netlify/functions/_data/buildings.json` (private; **never** put it back in `public/`) and returns it, or 404 `building_not_found` if the slug is unknown. `useProperty()` (`src/property/useProperty.ts`) reads `buildingSlug` from the route itself via `useParams()` — callers just call `useProperty()`, no slug plumbing needed — and fetches/caches it with React Query (key `["building", buildingSlug]`). `BuildingGate` shows a splash while loading, `BuildingNotFound` on an unknown slug, `LoadError` on any other failure, and applies the building's brand colors (see below) once loaded.
 
-**i18n (custom, not i18next).** `useLanguage()` from `src/i18n/LanguageContext.tsx` returns `{ lang, setLang, t }`. All strings live in the nested `en`/`fr` object in `src/i18n/translations.ts`; access via `t.section.key`. Language persists to `localStorage["lang"]` and falls back to `navigator.language`.
+**Per-building brand colors.** `PropertyData.colors` (hex strings) are converted to `H S% L%` via `hexToHslString()` (`src/lib/color.ts`) and written onto `--brand-ink`/`--brand-surface` (`document.documentElement.style`) by `BuildingGate` once that building's data loads. The `:root` values in `src/index.css` are just the fallback shown before that happens (currently Lamartine's own colors, so there's no flash for the default building). Tailwind consumes them via the `<alpha-value>` pattern in `tailwind.config.ts` (`brand-ink`, `brand-surface`), so `bg-brand-ink/30`-style opacity modifiers work natively. Only three colors exist app-wide: `brand-ink`, `brand-surface`, and `white`.
 
-**Theme (custom, not next-themes).** `useTheme()` from `src/theme/ThemeContext.tsx` toggles the `.dark` class on `<html>` and persists to `localStorage["theme"]`. `next-themes` is a dependency but is **not** used for theming.
+**Per-building images.** `backgroundUrl`/`logoUrl` in a building's data are plain paths served from `public/buildings/<slug>/` (not bundler imports — they have to be resolvable by URL at runtime, since the building isn't known at build time). Pages fall back to `DEFAULT_BACKGROUND_URL`/`DEFAULT_LOGO_URL` (`src/property/useProperty.ts`) while `property` is still loading.
 
-**Styling.** Tailwind with HSL CSS-variable design tokens defined in `src/index.css` (`:root` for light, `.dark` for dark). shadcn/ui components live in `src/components/ui/`. Use the `cn()` helper (`src/lib/utils.ts`) to compose classes. Path alias `@` → `src/` is configured in `vite.config.ts`, `vitest.config.ts`, and `tsconfig.json`.
+**Adding a building.** Add an entry to `buildings.json` (id = its slug), drop its hero photo/logo under `public/buildings/<slug>/`, and it's immediately live at `/<slug>` — no code changes needed.
 
-**PWA.** `vite-plugin-pwa` (autoUpdate). Registration logic in `src/lib/registerSW.ts` deliberately **skips** the service worker in non-production builds, inside iframes, on Lovable preview/dev hostnames, and when `?sw=off` is present — and unregisters stale SWs in those cases. Expect no SW during local `dev`. A `NetworkFirst` runtime rule (in `vite.config.ts`) caches `GET /api/building` so entry codes / Wi-Fi stay available **offline** after the first online load.
+**i18n (custom, not i18next).** `useLanguage()` from `src/i18n/LanguageContext.tsx` returns `{ lang, setLang, t }`. Strings live in `src/i18n/locales/{en,fr}.yaml`, parsed at import time by `src/i18n/translations.ts` (`import ... from "./locales/en.yaml?raw"` + `yaml`'s `parse`); access via `t.section.key`. Language persists to `localStorage["lang"]` and falls back to `navigator.language`.
 
-**Hosting (Netlify).** `netlify.toml` sets `publish = dist`, `functions = netlify/functions`, redirects `/api/*` → functions, and adds the SPA fallback (`/*` → `/index.html`) so deep links like `/access` survive a hard refresh.
+**Theme (custom, not next-themes).** `useTheme()` from `src/theme/ThemeContext.tsx` toggles the `.dark` class on `<html>` and persists to `localStorage["theme"]`. `next-themes` is a dependency (one shadcn component, `sonner.tsx`, imports it internally) but the app's **own** theming does not use it.
 
-**Layout.** Single-column, mobile-first, capped at `max-w-[760px]`. `AppLayout` (`PageHeader` + `BottomTabBar`) exists but is only used by `Rules` and `QrPage`; most pages implement their own full-bleed layout.
+**Styling.** Tailwind with HSL CSS-variable design tokens defined in `src/index.css` (`:root` for light, `.dark` for dark). shadcn/ui components live in `src/components/ui/`. Use the `cn()` helper (`src/lib/utils.ts`) to compose classes. Path alias `@` → `src/` is configured in `vite.config.ts`, `vitest.config.ts`, and `tsconfig.json`. `.h-app-shell` (in `src/index.css`) is the standard full-height page wrapper — `height: 100vh` then `100dvh`, so it degrades on old browsers/iOS without `dvh` support instead of the two rules fighting each other.
+
+**PWA.** `vite-plugin-pwa` (autoUpdate). Registration logic in `src/lib/registerSW.ts` deliberately **skips** the service worker in non-production builds, inside iframes, on Lovable preview/dev hostnames, and when `?sw=off` is present — and unregisters stale SWs in those cases. Expect no SW during local `dev`. A `NetworkFirst` runtime rule (in `vite.config.ts`) caches `GET /api/building` so wifi/entry codes stay available **offline** after the first online load per building.
+
+**Hosting (Netlify).** `netlify.toml` sets `publish = dist`, `functions = netlify/functions`, redirects `/api/*` → functions, and adds the SPA fallback (`/*` → `/index.html`) so deep links like `/lamartine/checkin` survive a hard refresh.
+
+**Layout.** Single-column, mobile-first, capped at `max-w-[760px]`. Every page implements its own full-bleed layout (hero background + `h-app-shell`); there's no shared page chrome/tab bar.
 
 ## Conventions & gotchas
 
-- **Two coexisting page styles.** Match whichever the page you're editing already uses:
-  - *Template pages* use i18n `t` and the CSS design tokens: `Facilities`, `Rules`, `InfoPage`, `QrPage`, `Explore`.
-  - *Rebranded "Jöro" pages* hardcode **French** strings (no `t`), hardcode a dark-teal hex palette (`#1c2626`, `#2E3F3E`, `#323E3E`), and use hero-image backgrounds: `Welcome`, `Onboarding`, `Checkin`, `Checkout`, `Thanks`. Don't retrofit i18n here unless deliberately converting the page.
-- **`src/components/LanguageToggle.tsx` is dead code.** It's imported nowhere and imports two deleted assets (`flag-fr.svg`, `flag-gb.svg`). It was superseded by `SettingsPopover` (language + theme, used on `Welcome`). Don't re-import it without restoring the flag assets.
-- **Loose TypeScript.** `strictNullChecks`, `noImplicitAny`, `noUnusedLocals`/`noUnusedParameters` are all off, and `@typescript-eslint/no-unused-vars` is disabled — don't rely on strict null/unused checking to catch mistakes.
-- **Lovable project.** `lovable-tagger`'s `componentTagger` runs in dev mode only; `.lovable/plan.md` holds project plan state. Images under `src/assets/` have companion `*.asset.json` sidecar files (Lovable asset metadata) — keep them alongside their image.
+- **Loose TypeScript.** `strictNullChecks`, `noImplicitAny`, `noUnusedLocals`/`noUnusedParameters` are all off, and `@typescript-eslint/no-unused-vars` is disabled — don't rely on strict null/unused checking to catch mistakes. Periodically re-check with `npx tsc --noEmit --noUnusedLocals --noUnusedParameters -p tsconfig.app.json` if hunting for dead code.
+- **Lovable project.** `lovable-tagger`'s `componentTagger` runs in dev mode only; `.lovable/plan.md` holds project plan state. Images under `src/assets/` have companion `*.asset.json` sidecar files (Lovable asset metadata) — keep them alongside their image. Per-building images under `public/buildings/` are a separate, unrelated concept (see above) and don't get sidecar files.

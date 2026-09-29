@@ -27,14 +27,13 @@ export function Splash() {
   );
 }
 
-export function AccessExpired() {
+export function LoadError() {
   return (
     <Screen>
       <div className="max-w-[300px] space-y-2">
-        <h1 className="text-[20px] font-semibold">Lien indisponible</h1>
+        <h1 className="text-[20px] font-semibold">Indisponible</h1>
         <p className="text-sm text-white/80">
-          Ce lien d'accès est invalide ou a expiré. Contactez l'équipe Jöro pour recevoir un
-          nouveau lien.
+          Une erreur est survenue. Réessayez, ou contactez l'équipe Jöro si le problème persiste.
         </p>
       </div>
       <div className="space-y-1 text-sm">
@@ -73,12 +72,12 @@ export function BuildingNotFound() {
 
 /**
  * Gate for one building's booklet (rendered at `/:buildingSlug`): loads that
- * building's data, applies its brand colors as CSS custom properties, and
- * shows a splash while loading. On an unknown slug it shows BuildingNotFound;
- * on any other error (e.g. an expired magic-link grant), AccessExpired.
+ * building's data and applies its brand colors as CSS custom properties.
+ * Each building is a fixed, public URL — no login, no grant. Shows a splash
+ * while loading, BuildingNotFound on an unknown slug, LoadError otherwise.
  */
-export function AuthGate() {
-  if (import.meta.env.DEV) return <Outlet />; // Auth désactivée en dev pour l'instant
+export function BuildingGate() {
+  if (import.meta.env.DEV) return <Outlet />; // Chargement direct en dev pour l'instant
   const { data, isLoading, isError, error } = useProperty();
 
   useEffect(() => {
@@ -90,7 +89,7 @@ export function AuthGate() {
 
   if (isLoading) return <Splash />;
   if (isError || !data) {
-    return error?.message === "building_not_found" ? <BuildingNotFound /> : <AccessExpired />;
+    return error?.message === "building_not_found" ? <BuildingNotFound /> : <LoadError />;
   }
   return <Outlet />;
 }

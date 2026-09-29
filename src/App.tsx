@@ -5,12 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { ThemeProvider } from "@/theme/ThemeContext";
-import { AuthGate } from "@/components/AuthGate";
+import { BuildingGate } from "@/components/BuildingGate";
 import { DEFAULT_BUILDING_SLUG } from "@/property/useProperty";
 import Welcome from "./pages/Welcome";
 import Onboarding from "./pages/Onboarding";
-import Access from "./pages/Access";
-import Admin from "./pages/Admin";
 import Checkin from "./pages/Checkin";
 import Checkout from "./pages/Checkout";
 import Facilities from "./pages/Facilities";
@@ -42,18 +40,11 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Public: magic-link landing (no valid session yet) */}
-              <Route path="/access" element={<Access />} />
-
-              {/* Public: admin login + grant issuance, gated by its own server-side password */}
-              <Route path="/admin" element={<Admin />} />
-
               {/* Bare root: send visitors to the default building's own sub-URL */}
               <Route path="/" element={<Navigate to={`/${DEFAULT_BUILDING_SLUG}`} replace />} />
 
-              {/* One building per sub-URL (e.g. /lamartine/*); everything under it
-                  requires a valid, in-window access grant for that building. */}
-              <Route path="/:buildingSlug" element={<AuthGate />}>
+              {/* One building per sub-URL (e.g. /lamartine/*): each is a fixed, public URL. */}
+              <Route path="/:buildingSlug" element={<BuildingGate />}>
                 <Route index element={<OnboardingGate />} />
                 <Route path="home" element={<Welcome />} />
                 <Route path="checkin" element={<Checkin />} />
