@@ -52,6 +52,9 @@ const FLOOR_TAG_TITLES_EN = {
   "R+3": "R+3",
   Rooftop: "Rooftop",
 };
+// Display order for floor sections (bottom to top). A tag not listed here (a new
+// floor added later) sorts after all of these, in whatever order Notion returns it.
+const FLOOR_ORDER = ["R-1", "RDC", "R+1", "R+2", "R+3", "Rooftop"];
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BUILDINGS_JSON_PATH = path.join(ROOT, "netlify/functions/_data/buildings.json");
@@ -384,7 +387,9 @@ async function buildFacilities(equipmentDbId, floorsDbId, slug) {
     }
 
     for (const [key, group] of groups) {
-      sections.push({ id: key, title: group.title, kind: "video", items: group.items });
+      // Items with a notice link surface first, so guests spot them right away.
+      const items = [...group.items].sort((a, b) => Number(!a.videoUrl) - Number(!b.videoUrl));
+      sections.push({ id: key, title: group.title, kind: "video", items });
     }
   }
 
@@ -409,7 +414,7 @@ async function buildFacilities(equipmentDbId, floorsDbId, slug) {
         const titleEn = tags.map((tag) => FLOOR_TAG_TITLES_EN[tag] ?? tag).join(" / ");
         const icon = getText(props.icon).toLowerCase();
         const imageUrl = await syncFile(getFirstFileUrl(props["Fichiers et médias"]), slug, `floor-${slugify(key)}`);
-        groups.set(key, { title: { fr: titleFr, en: titleEn }, icon, imageUrl, items: [] });
+        groups.set(key, { id: key, title: { fr: titleFr, en: titleEn }, tags, icon, imageUrl, items: [] });
       }
 
       const item = { name: await bilingual(name) };
@@ -418,8 +423,10 @@ async function buildFacilities(equipmentDbId, floorsDbId, slug) {
       groups.get(key).items.push(item);
     }
 
-    for (const [key, group] of groups) {
-      const section = { id: key, title: group.title, kind: "info", items: group.items };
+    // Bottom-to-top floor order (R-1, RDC, R+1, R+2, R+3/Rooftop), not Notion's row order.
+    const floorGroups = [...groups.values()].sort((a, b) => floorSortKey(a.tags) - floorSortKey(b.tags));
+    for (const group of floorGroups) {
+      const section = { id: group.id, title: group.title, kind: "info", items: group.items };
       if (group.icon) section.icon = group.icon;
       if (group.imageUrl) section.imageUrl = group.imageUrl;
       sections.push(section);
@@ -438,6 +445,15 @@ async function syncLinkProperty(prop, slug, baseName) {
   const file = prop.files[0];
   if (file.type === "external") return file.external?.url ?? null;
   return syncFile(file.file?.url ?? null, slug, baseName);
+}
+
+/** Lowest FLOOR_ORDER index among a floor section's tags, for bottom-to-top sorting. */
+function floorSortKey(tags) {
+  const indices = tags.map((tag) => {
+    const i = FLOOR_ORDER.indexOf(tag);
+    return i === -1 ? FLOOR_ORDER.length : i;
+  });
+  return Math.min(...indices);
 }
 
 function getMultiSelect(prop) {

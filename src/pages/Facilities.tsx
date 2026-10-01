@@ -41,7 +41,7 @@ export default function Facilities() {
   }));
 
   return (
-    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink overflow-hidden">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
@@ -109,7 +109,7 @@ export default function Facilities() {
                                 {item.detail?.[lang] ?? t.facilities.noticeLabel}
                               </p>
                             </div>
-                            {item.videoUrl ? (
+                            {item.videoUrl && (
                               <ExternalLinkConfirm
                                 href={item.videoUrl}
                                 newTab
@@ -118,14 +118,6 @@ export default function Facilities() {
                               >
                                 <ExternalLink className="h-5 w-5" strokeWidth={1.75} />
                               </ExternalLinkConfirm>
-                            ) : (
-                              <span
-                                aria-disabled="true"
-                                aria-label={t.facilities.videoLinkLabel}
-                                className="text-brand-ink/40 dark:text-white/40 shrink-0 cursor-default"
-                              >
-                                <ExternalLink className="h-5 w-5" strokeWidth={1.75} />
-                              </span>
                             )}
                           </div>
                         ))}

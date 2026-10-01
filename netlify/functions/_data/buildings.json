@@ -470,6 +470,18 @@
           "items": [
             {
               "name": {
+                "fr": "Projeter l’écran",
+                "en": "Project the screen"
+              },
+              "detail": {
+                "fr": "Notice :",
+                "en": "Instructions:"
+              },
+              "imageUrl": "/buildings/lamartine/equip-projeter-l-ecran.png",
+              "videoUrl": "/buildings/lamartine/equip-notice-projeter-l-ecran.pdf"
+            },
+            {
+              "name": {
                 "fr": "Fontaine d’eau",
                 "en": "Water fountain"
               },
@@ -500,18 +512,6 @@
                 "en": "45/55/65 inches"
               },
               "imageUrl": "/buildings/lamartine/equip-ecran.png"
-            },
-            {
-              "name": {
-                "fr": "Projeter l’écran",
-                "en": "Project the screen"
-              },
-              "detail": {
-                "fr": "Notice :",
-                "en": "Instructions:"
-              },
-              "imageUrl": "/buildings/lamartine/equip-projeter-l-ecran.png",
-              "videoUrl": "/buildings/lamartine/equip-notice-projeter-l-ecran.pdf"
             }
           ]
         },
@@ -525,17 +525,6 @@
           "items": [
             {
               "name": {
-                "fr": "Lave vaisselle",
-                "en": "Dishwasher"
-              },
-              "detail": {
-                "fr": "Notice à venir",
-                "en": "Instructions to follow"
-              },
-              "imageUrl": "/buildings/lamartine/equip-lave-vaisselle.png"
-            },
-            {
-              "name": {
                 "fr": "Micro ondes",
                 "en": "Microwave"
               },
@@ -545,6 +534,17 @@
               },
               "imageUrl": "/buildings/lamartine/equip-micro-ondes.png",
               "videoUrl": "https://www.youtube.com/watch?v=yqazuy6ngjs"
+            },
+            {
+              "name": {
+                "fr": "Lave vaisselle",
+                "en": "Dishwasher"
+              },
+              "detail": {
+                "fr": "Notice à venir",
+                "en": "Instructions to follow"
+              },
+              "imageUrl": "/buildings/lamartine/equip-lave-vaisselle.png"
             },
             {
               "name": {
@@ -622,122 +622,6 @@
           "imageUrl": "/buildings/lamartine/floor-r-1.webp"
         },
         {
-          "id": "r+3 / rooftop",
-          "title": {
-            "fr": "R+3 / Rooftop",
-            "en": "R+3 / Rooftop"
-          },
-          "kind": "info",
-          "items": [
-            {
-              "name": {
-                "fr": "Terrasse privative",
-                "en": "Private terrace"
-              },
-              "detail": {
-                "fr": "123 m² extérieur",
-                "en": "123 m² outdoor area"
-              }
-            }
-          ],
-          "icon": "soleil",
-          "imageUrl": "/buildings/lamartine/floor-rplus3-rooftop.webp"
-        },
-        {
-          "id": "r+2",
-          "title": {
-            "fr": "R+2",
-            "en": "R+2"
-          },
-          "kind": "info",
-          "items": [
-            {
-              "name": {
-                "fr": "Salle de réunion",
-                "en": "Meeting room"
-              },
-              "detail": {
-                "fr": "5 places\n1 écran de 55 pouces",
-                "en": "5 seats\n1 55-inch screen"
-              }
-            },
-            {
-              "name": {
-                "fr": "Espace ouvert",
-                "en": "Open space"
-              },
-              "detail": {
-                "fr": "10 places",
-                "en": "10 seats"
-              }
-            },
-            {
-              "name": {
-                "fr": "Studio",
-                "en": "Studio flat"
-              },
-              "detail": {
-                "fr": "5 places",
-                "en": "5 seats"
-              }
-            },
-            {
-              "name": {
-                "fr": "Espace de travail",
-                "en": "Workspace"
-              },
-              "detail": {
-                "fr": "28 places (3 desks)\n1 écran de 55 pouces\n32 casiers",
-                "en": "28 seats (3 desks)\n1 55-inch screen\n32 lockers"
-              }
-            }
-          ],
-          "icon": "bâtiment",
-          "imageUrl": "/buildings/lamartine/floor-rplus2.webp"
-        },
-        {
-          "id": "r+1",
-          "title": {
-            "fr": "R+1",
-            "en": "R+1"
-          },
-          "kind": "info",
-          "items": [
-            {
-              "name": {
-                "fr": "Salles de réunion",
-                "en": "Meeting rooms"
-              },
-              "detail": {
-                "fr": "1 phone box duo\n4 phone box",
-                "en": "1 Phone Box Duo\n4 Phone Boxes"
-              }
-            },
-            {
-              "name": {
-                "fr": "Espace de travail",
-                "en": "Workspace"
-              },
-              "detail": {
-                "fr": "7 places (2 desks)\n4 armoires",
-                "en": "7 seats (2 desks)\n4 cupboards"
-              }
-            },
-            {
-              "name": {
-                "fr": "La bibliothèque",
-                "en": "The library"
-              },
-              "detail": {
-                "fr": "24 places (3 desks)\n32 casiers",
-                "en": "24 seats (3 desks)\n32 lockers"
-              }
-            }
-          ],
-          "icon": "bâtiment",
-          "imageUrl": "/buildings/lamartine/floor-rplus1.webp"
-        },
-        {
           "id": "rdc",
           "title": {
             "fr": "RDC",
@@ -808,6 +692,122 @@
           ],
           "icon": "porte",
           "imageUrl": "/buildings/lamartine/floor-rdc.webp"
+        },
+        {
+          "id": "r+1",
+          "title": {
+            "fr": "R+1",
+            "en": "R+1"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salles de réunion",
+                "en": "Meeting rooms"
+              },
+              "detail": {
+                "fr": "1 phone box duo\n4 phone box",
+                "en": "1 Phone Box Duo\n4 Phone Boxes"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace de travail",
+                "en": "Workspace"
+              },
+              "detail": {
+                "fr": "7 places (2 desks)\n4 armoires",
+                "en": "7 seats (2 desks)\n4 cupboards"
+              }
+            },
+            {
+              "name": {
+                "fr": "La bibliothèque",
+                "en": "The library"
+              },
+              "detail": {
+                "fr": "24 places (3 desks)\n32 casiers",
+                "en": "24 seats (3 desks)\n32 lockers"
+              }
+            }
+          ],
+          "icon": "bâtiment",
+          "imageUrl": "/buildings/lamartine/floor-rplus1.webp"
+        },
+        {
+          "id": "r+2",
+          "title": {
+            "fr": "R+2",
+            "en": "R+2"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salle de réunion",
+                "en": "Meeting room"
+              },
+              "detail": {
+                "fr": "5 places\n1 écran de 55 pouces",
+                "en": "5 seats\n1 55-inch screen"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace ouvert",
+                "en": "Open space"
+              },
+              "detail": {
+                "fr": "10 places",
+                "en": "10 seats"
+              }
+            },
+            {
+              "name": {
+                "fr": "Studio",
+                "en": "Studio flat"
+              },
+              "detail": {
+                "fr": "5 places",
+                "en": "5 seats"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace de travail",
+                "en": "Workspace"
+              },
+              "detail": {
+                "fr": "28 places (3 desks)\n1 écran de 55 pouces\n32 casiers",
+                "en": "28 seats (3 desks)\n1 55-inch screen\n32 lockers"
+              }
+            }
+          ],
+          "icon": "bâtiment",
+          "imageUrl": "/buildings/lamartine/floor-rplus2.webp"
+        },
+        {
+          "id": "r+3 / rooftop",
+          "title": {
+            "fr": "R+3 / Rooftop",
+            "en": "R+3 / Rooftop"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Terrasse privative",
+                "en": "Private terrace"
+              },
+              "detail": {
+                "fr": "123 m² extérieur",
+                "en": "123 m² outdoor area"
+              }
+            }
+          ],
+          "icon": "soleil",
+          "imageUrl": "/buildings/lamartine/floor-rplus3-rooftop.webp"
         }
       ]
     }

@@ -18,7 +18,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-app-shell w-full bg-muted/30">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         <img
           src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}

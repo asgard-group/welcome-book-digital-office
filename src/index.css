@@ -90,10 +90,6 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'General Sans', ui-sans-serif, system-ui, sans-serif;

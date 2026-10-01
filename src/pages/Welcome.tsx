@@ -35,7 +35,7 @@ export default function Welcome() {
   ];
 
   return (
-    <div className="h-app-shell w-full bg-muted/30">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image */}
         <img

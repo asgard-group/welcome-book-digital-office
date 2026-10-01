@@ -40,7 +40,7 @@ export default function Explore() {
 
 
   return (
-    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink overflow-hidden">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
