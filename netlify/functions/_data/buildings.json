@@ -1,23 +1,4 @@
 {
-  "taitbout": {
-    "id": "taitbout",
-    "name": "78 rue Taitbout, Paris 9",
-    "wifi": {
-      "network": "Taitbout HQ",
-      "password": "ilovetaitbout"
-    },
-    "entryCodes": {
-      "buildingDoor": "",
-      "hallCode": ""
-    },
-    "address": "78 rue Taitbout\n75009 Paris, France",
-    "colors": {
-      "primary": "#1B2424",
-      "secondary": "#F3F2ED"
-    },
-    "backgroundUrl": "/buildings/taitbout/hero.jpg",
-    "logoUrl": "/buildings/taitbout/logo.png"
-  },
   "lamartine": {
     "id": "lamartine",
     "name": "6 rue Lamartine, Paris 9",
