@@ -28,7 +28,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 
 export default function Explore() {
   const { buildingSlug } = useParams<{ buildingSlug: string }>();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { data: property } = useProperty();
   const [active, setActive] = useState<string>("restaurants");
 
@@ -36,7 +36,7 @@ export default function Explore() {
     ...cat,
     icon: CATEGORY_ICONS[cat.id],
   }));
-  const displayList = t.explore.places[active as keyof typeof t.explore.places];
+  const displayList = property?.addresses?.[active] ?? [];
 
 
   return (
@@ -99,11 +99,7 @@ export default function Explore() {
                 <ExternalLink
                   key={`${place.name}-${i}`}
                   href={`https://www.google.com/maps/search/${encodeURIComponent(
-                    place.mapQuery
-                      ? place.mapQuery
-                      : place.address
-                      ? `${place.name}, ${place.address}, Paris`
-                      : `${place.name} Paris 9`
+                    place.address ? `${place.name}, ${place.address}` : place.name
                   )}`}
                   newTab
                   className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 hover:bg-brand-surface/90 dark:hover:bg-brand-ink/85 transition-colors"
@@ -112,9 +108,9 @@ export default function Explore() {
                     <p className="text-[17px] font-semibold text-brand-ink dark:text-white truncate">
                       {place.name}
                     </p>
-                    {[place.desc, place.right, place.price].filter(Boolean).length > 0 && (
+                    {[place.description?.[lang], place.distance, place.price].filter(Boolean).length > 0 && (
                       <p className="text-[14px] text-brand-ink/70 dark:text-white/80 mt-0.5 truncate">
-                        {[place.desc, place.right, place.price].filter(Boolean).join(" · ")}
+                        {[place.description?.[lang], place.distance, place.price].filter(Boolean).join(" · ")}
                       </p>
                     )}
                   </div>

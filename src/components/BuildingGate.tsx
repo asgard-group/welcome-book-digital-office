@@ -77,7 +77,6 @@ export function BuildingNotFound() {
  * while loading, BuildingNotFound on an unknown slug, LoadError otherwise.
  */
 export function BuildingGate() {
-  if (import.meta.env.DEV) return <Outlet />; // Chargement direct en dev pour l'instant
   const { data, isLoading, isError, error } = useProperty();
 
   useEffect(() => {
@@ -86,6 +85,9 @@ export function BuildingGate() {
     root.setProperty("--brand-ink", hexToHslString(data.colors.primary));
     root.setProperty("--brand-surface", hexToHslString(data.colors.secondary));
   }, [data?.colors]);
+
+  // Chargement direct en dev, mais les couleurs ci-dessus s'appliquent quand même.
+  if (import.meta.env.DEV) return <Outlet />;
 
   if (isLoading) return <Splash />;
   if (isError || !data) {

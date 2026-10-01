@@ -14,6 +14,12 @@ function Widget({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Splits "6 Rue Lamartine 75009 Paris, France" into ["6 Rue Lamartine", "75009 Paris, France"]. */
+function splitAddress(address: string): [string, string?] {
+  const match = address.match(/^(.*?)[,]?\s+(\d{5}\s+.*)$/);
+  return match ? [match[1].trim(), match[2].trim()] : [address];
+}
+
 
 function CopyField({ value, t }: { value: string; t: Translation }) {
   const handleCopy = async () => {
@@ -95,30 +101,40 @@ export default function Checkin() {
               </div>
             </Widget>
 
-            {/* Wifi Guest */}
-            <Widget>
-              <div className="flex items-center gap-3 mb-4">
-                <Wifi className="h-5 w-5 text-foreground" strokeWidth={2} />
-                <h2 className="font-semibold text-foreground">{t.checkin.wifiGuestTitle}</h2>
-              </div>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
-                  {property?.guestWifi ? <CopyField value={property.guestWifi.network} t={t} /> : <FieldSkeleton />}
+            {/* Wifi Guest — hidden once loaded if this building has no guest wifi set */}
+            {(property === null || property.guestWifi) && (
+              <Widget>
+                <div className="flex items-center gap-3 mb-4">
+                  <Wifi className="h-5 w-5 text-foreground" strokeWidth={2} />
+                  <h2 className="font-semibold text-foreground">{t.checkin.wifiGuestTitle}</h2>
                 </div>
-                <div>
-                  <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
-                  {property?.guestWifi ? <CopyField value={property.guestWifi.password} t={t} /> : <FieldSkeleton />}
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.network}</p>
+                    {property?.guestWifi ? <CopyField value={property.guestWifi.network} t={t} /> : <FieldSkeleton />}
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-brand-ink/70 dark:text-white/70 mb-1.5">{t.checkin.password}</p>
+                    {property?.guestWifi ? <CopyField value={property.guestWifi.password} t={t} /> : <FieldSkeleton />}
+                  </div>
                 </div>
-              </div>
-            </Widget>
+              </Widget>
+            )}
 
             {/* Address */}
             <Widget>
               <div className="flex items-center gap-3 mb-4">
                 <MapPin className="h-5 w-5 text-foreground" strokeWidth={2} />
                 <div>
-                  <p className="font-semibold text-foreground">{property?.address ?? ""}</p>
+                  {(() => {
+                    const [street, rest] = splitAddress(property?.address ?? "");
+                    return (
+                      <>
+                        <p className="font-semibold text-foreground">{street}</p>
+                        {rest && <p className="text-xs text-brand-ink/70 dark:text-white/70">{rest}</p>}
+                      </>
+                    );
+                  })()}
                 </div>
               </div>
               <div className="rounded-[0.5rem] overflow-hidden">

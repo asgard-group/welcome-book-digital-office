@@ -32,17 +32,23 @@ import { ExternalLink } from "@/components/ExternalLink";
 
 const JORO_SPACE_IMAGES = [meetingImg, kaffeImg, livingImg];
 
-const INCLUDED_ICONS: LucideIcon[] = [Wrench, ShieldCheck, KeyRound, Wifi, CookingPot, Coffee, Sparkles];
-const QUOTE_ICONS: LucideIcon[] = [Droplet, Printer, Apple, Palette, Leaf, Armchair, BellRing];
-const QUOTE_EMAILS: string[] = [
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "berenice.carrey@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-];
+// Maps the "icone" Select option chosen in Notion's Services table to a lucide icon.
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  "clé": KeyRound,
+  bouclier: ShieldCheck,
+  wifi: Wifi,
+  cuisine: CookingPot,
+  "café": Coffee,
+  "ménage": Sparkles,
+  outil: Wrench,
+  eau: Droplet,
+  imprimante: Printer,
+  nourriture: Apple,
+  "déco": Palette,
+  plante: Leaf,
+  mobilier: Armchair,
+  alarme: BellRing,
+};
 
 function ServiceCard({
   icon: Icon,
@@ -80,13 +86,16 @@ function ServiceCard({
 
 export default function Services() {
   const { buildingSlug } = useParams<{ buildingSlug: string }>();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { data: property } = useProperty();
   const [active, setActive] = useState<string>("inclus");
 
+  const includedItems = property?.services?.included ?? [];
+  const quoteItems = property?.services?.quote ?? [];
+
   const tabs = [
-    { id: "inclus", label: t.services.tabIncluded, count: t.services.includedItems.length },
-    { id: "devis", label: t.services.tabQuote, count: t.services.quoteItems.length },
+    { id: "inclus", label: t.services.tabIncluded, count: includedItems.length },
+    { id: "devis", label: t.services.tabQuote, count: quoteItems.length },
   ];
 
   return (
@@ -148,11 +157,11 @@ export default function Services() {
 
             {active === "inclus" && (
               <div className="grid grid-cols-2 gap-3">
-                {t.services.includedItems.map((item, i) => (
+                {includedItems.map((item) => (
                   <ServiceCard
-                    key={item.title}
-                    icon={INCLUDED_ICONS[i]}
-                    title={item.title}
+                    key={item.name.fr}
+                    icon={SERVICE_ICONS[item.icon] ?? Wrench}
+                    title={item.name[lang]}
                     indicator={<Check className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
@@ -161,12 +170,12 @@ export default function Services() {
 
             {active === "devis" && (
               <div className="grid grid-cols-2 gap-3">
-                {t.services.quoteItems.map((item, i) => (
+                {quoteItems.map((item) => (
                   <ServiceCard
-                    key={item.title}
-                    icon={QUOTE_ICONS[i]}
-                    title={item.title}
-                    href={`mailto:${QUOTE_EMAILS[i]}`}
+                    key={item.name.fr}
+                    icon={SERVICE_ICONS[item.icon] ?? Wrench}
+                    title={item.name[lang]}
+                    href={`mailto:${item.email}`}
                     indicator={<Pencil className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}

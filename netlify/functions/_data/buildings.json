@@ -1,61 +1,815 @@
 {
+  "taitbout": {
+    "id": "taitbout",
+    "name": "78 rue Taitbout, Paris 9",
+    "wifi": {
+      "network": "Taitbout HQ",
+      "password": "ilovetaitbout"
+    },
+    "entryCodes": {
+      "buildingDoor": "",
+      "hallCode": ""
+    },
+    "address": "78 rue Taitbout\n75009 Paris, France",
+    "colors": {
+      "primary": "#1B2424",
+      "secondary": "#F3F2ED"
+    },
+    "backgroundUrl": "/buildings/taitbout/hero.jpg",
+    "logoUrl": "/buildings/taitbout/logo.png"
+  },
   "lamartine": {
     "id": "lamartine",
     "name": "6 rue Lamartine, Paris 9",
-    "address": "6 rue Lamartine, Paris 75009",
     "wifi": {
       "network": "Photoroom HQ",
       "password": "ilovephotoroom"
     },
+    "entryCodes": {
+      "buildingDoor": "",
+      "hallCode": ""
+    },
+    "address": "6 Rue Lamartine\n75009 Paris, France",
     "guestWifi": {
       "network": "Photoroom_Guests",
       "password": "welcometophotoroom"
-    },
-    "entryCodes": {
-      "buildingDoor": "A 3187",
-      "hallCode": "A4326"
     },
     "colors": {
       "primary": "#312B37",
       "secondary": "#FFFBF2"
     },
     "backgroundUrl": "/buildings/lamartine/hero.jpg",
-    "logoUrl": "/buildings/lamartine/logo-photoroom-white.png"
-  },
-  "demo-marais": {
-    "id": "demo-marais",
-    "name": "Le Marais Loft",
-    "wifi": {
-      "network": "Marais_Guest_2G",
-      "password": "vieille-du-temple-42"
+    "logoUrl": "/buildings/lamartine/logo.png",
+    "services": {
+      "included": [
+        {
+          "name": {
+            "fr": "Cuisine équipée",
+            "en": "Fitted kitchen"
+          },
+          "icon": "cuisine"
+        },
+        {
+          "name": {
+            "fr": "Livraison café",
+            "en": "Coffee delivery"
+          },
+          "icon": "café"
+        },
+        {
+          "name": {
+            "fr": "Contrôle d'accès",
+            "en": "Access control"
+          },
+          "icon": "clé"
+        },
+        {
+          "name": {
+            "fr": "Maintenance technique",
+            "en": "Technical maintenance"
+          },
+          "icon": "outil"
+        },
+        {
+          "name": {
+            "fr": "Internet fibre pro",
+            "en": "Business Fibre Broadband"
+          },
+          "icon": "wifi"
+        },
+        {
+          "name": {
+            "fr": "Ménage",
+            "en": "Household"
+          },
+          "icon": "ménage"
+        },
+        {
+          "name": {
+            "fr": "Accès 24/7 sécurisé",
+            "en": "Secure 24/7 access"
+          },
+          "icon": "bouclier"
+        }
+      ],
+      "quote": [
+        {
+          "name": {
+            "fr": "Alarme",
+            "en": "Alarm"
+          },
+          "icon": "alarme",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Mobilier supplémentaire",
+            "en": "Additional furniture"
+          },
+          "icon": "mobilier",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Végétalisation espaces",
+            "en": "Landscaping"
+          },
+          "icon": "plante",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Branding & décoration",
+            "en": "Branding & interior design"
+          },
+          "icon": "déco",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Panier de fruits & food",
+            "en": "Fruit & food hamper"
+          },
+          "icon": "nourriture",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Fontaine à eau",
+            "en": "Water cooler"
+          },
+          "icon": "eau",
+          "email": "audrey.robin@joro-space.fr"
+        },
+        {
+          "name": {
+            "fr": "Imprimante",
+            "en": "Printer"
+          },
+          "icon": "imprimante",
+          "email": "audrey.robin@joro-space.fr"
+        }
+      ]
     },
-    "entryCodes": {
-      "buildingDoor": "B 1290",
-      "hallCode": "7781"
-    }
-  },
-  "demo-montmartre": {
-    "id": "demo-montmartre",
-    "name": "Studio Montmartre",
-    "wifi": {
-      "network": "SacreCoeur_WiFi",
-      "password": "abbesses-2024!"
+    "addresses": {
+      "culture": [
+        {
+          "name": "Musée de la Vie romantique",
+          "address": "16 Rue Chaptal, 75009 Paris",
+          "distance": "15 min",
+          "description": {
+            "fr": "Musée",
+            "en": "Museum"
+          }
+        },
+        {
+          "name": "Max Linder Panorama",
+          "address": "24 Bd Poissonnière, 75009 Paris",
+          "distance": "10 min",
+          "description": {
+            "fr": "Cinéma",
+            "en": "Cinema"
+          }
+        },
+        {
+          "name": "Théâtre La Bruyère",
+          "address": "5 Rue la Bruyère, 75009 Paris",
+          "distance": "10 min",
+          "description": {
+            "fr": "Théâtre",
+            "en": "Theatre"
+          }
+        },
+        {
+          "name": "Paradox Museum Paris",
+          "address": "38 Bd des Italiens, 75009 Paris",
+          "distance": "15 min",
+          "description": {
+            "fr": "Musée",
+            "en": "Museum"
+          }
+        },
+        {
+          "name": "Théâtre Le Bout",
+          "address": "6 Rue Frochot, 75009 Paris",
+          "distance": "15 min",
+          "description": {
+            "fr": "Salle de spectacles",
+            "en": "Performance hall"
+          }
+        },
+        {
+          "name": "The Dissident Club",
+          "address": "58 Rue Richer, 75009 Paris",
+          "distance": "5 min",
+          "description": {
+            "fr": "Concert de Jazz, Expos & bar",
+            "en": "Jazz concerts, exhibitions and a bar"
+          }
+        },
+        {
+          "name": "L'Olympia",
+          "address": "28 Bd des Capucines, 75009 Paris",
+          "distance": "22 min",
+          "description": {
+            "fr": "Salle de concert",
+            "en": "Concert hall"
+          }
+        }
+      ],
+      "wellness": [
+        {
+          "name": "Le Centre Tout Naturellement",
+          "address": "83 bis Rue La Fayette, 75009 Paris",
+          "distance": "5 min",
+          "description": {
+            "fr": "Sauna, naturopathie et soins",
+            "en": "Sauna, naturopathy and treatments"
+          }
+        },
+        {
+          "name": "Qee Pilates Yoga",
+          "address": "ou, fond de la cour, 39 rue de Châteaudun, 46 Rue de la Victoire, 75009 Paris",
+          "distance": "9 min",
+          "description": {
+            "fr": "Studio de pilates",
+            "en": "Pilates studio"
+          }
+        },
+        {
+          "name": "POSES Studio - Saint-Lazare",
+          "address": "28 Rue de Châteaudun, 75009 Paris",
+          "distance": "7 min",
+          "description": {
+            "fr": "Centre de yoga",
+            "en": "Yoga centre"
+          }
+        },
+        {
+          "name": "Punch Studios Lafayette",
+          "address": "24 Rue Chauchat, 75009 Paris",
+          "distance": "6 min",
+          "description": {
+            "fr": "Salle de sport",
+            "en": "Gym"
+          }
+        },
+        {
+          "name": "Cercles de la Forme Cadet",
+          "address": "13 Rue Ambroise Thomas, 75009 Paris",
+          "distance": "7 min",
+          "description": {
+            "fr": "Salle de sport",
+            "en": "Gym"
+          }
+        },
+        {
+          "name": "Platinum Coaching",
+          "address": "48 Rue Lamartine, 75009 Paris",
+          "distance": "3 min",
+          "description": {
+            "fr": "Salle de sport",
+            "en": "Gym"
+          }
+        }
+      ],
+      "pratique": [
+        {
+          "name": "Sequoia Pressing",
+          "address": "84 Rue La Fayette, 75009 Paris",
+          "distance": "4 min",
+          "description": {
+            "fr": "Pressing",
+            "en": "Dry cleaning"
+          }
+        },
+        {
+          "name": "Pharmacie Cadet Lafayette",
+          "address": "66 Rue La Fayette, 75009 Paris",
+          "distance": "2 min",
+          "description": {
+            "fr": "Pharmacie",
+            "en": "Pharmacy"
+          }
+        },
+        {
+          "name": "La Poste",
+          "address": "14 Rue Bleue, 75009 Paris",
+          "distance": "5 min",
+          "description": {
+            "fr": "Courrier / colis",
+            "en": "Post / parcels"
+          }
+        },
+        {
+          "name": "Crédit Agricole",
+          "address": "14 R. des Martyrs, 75009 Paris",
+          "distance": "6 min",
+          "description": {
+            "fr": "Banque",
+            "en": "Bank"
+          }
+        },
+        {
+          "name": "Carrefour Express",
+          "address": "2 Rue Lamartine, 75009 Paris",
+          "distance": "65 m",
+          "description": {
+            "fr": "Supermarché",
+            "en": "Supermarket"
+          }
+        }
+      ],
+      "transport": [
+        {
+          "name": "RER E",
+          "address": "Haussmann Saint-Lazare",
+          "distance": "15 min",
+          "description": {
+            "fr": "Station Haussmann",
+            "en": "Haussmann Station"
+          }
+        },
+        {
+          "name": "Métro 12",
+          "address": "Rue Bourdaloue, 75009 Paris",
+          "distance": "6 min",
+          "description": {
+            "fr": "Station Notre-Dame-de-Lorette",
+            "en": "Notre-Dame-de-Lorette Station"
+          }
+        },
+        {
+          "name": "Métro 8 & 9",
+          "address": "10 Pl. de l'Opéra, 75009 Paris",
+          "distance": "15 min",
+          "description": {
+            "fr": "Station Opéra",
+            "en": "Opéra Station"
+          }
+        },
+        {
+          "name": "Bus 26/43/45/85",
+          "address": "75009 Paris",
+          "distance": "3 min",
+          "description": {
+            "fr": "Châteaudun – Lamartine",
+            "en": "Châteaudun – Lamartine"
+          }
+        },
+        {
+          "name": "Métro 7",
+          "address": "75009 Paris",
+          "distance": "2 min",
+          "description": {
+            "fr": "Station Cadet",
+            "en": "Cadet Station"
+          }
+        }
+      ],
+      "restaurants": [
+        {
+          "name": "Mount Everest",
+          "address": "26 Rue Lamartine, 75009 Paris",
+          "distance": "100 m",
+          "price": "€",
+          "description": {
+            "fr": "Indien",
+            "en": "Indian"
+          }
+        },
+        {
+          "name": "Brion Restaurant",
+          "address": "17 Rue Lamartine, 75009 Paris",
+          "distance": "2 min",
+          "price": "€€€",
+          "description": {
+            "fr": "Bistronomique",
+            "en": "Bistronomic"
+          }
+        },
+        {
+          "name": "Le Mignon",
+          "address": "8 Rue Lamartine, 75009 Paris",
+          "distance": "20 m",
+          "price": "€€",
+          "description": {
+            "fr": "Bistrot",
+            "en": "Bistro"
+          }
+        },
+        {
+          "name": "Via Mela",
+          "address": "8 Rue Lamartine, 75009 Paris",
+          "distance": "20 m",
+          "price": "€€",
+          "description": {
+            "fr": "Italien",
+            "en": "Italian"
+          }
+        },
+        {
+          "name": "Les Saisons",
+          "address": "52 Rue Lamartine, 75009 Paris",
+          "distance": "4 min",
+          "price": "€€",
+          "description": {
+            "fr": "Française",
+            "en": "French"
+          }
+        }
+      ],
+      "parking": [
+        {
+          "name": "Onepark Mayran",
+          "address": "5 Rue Mayran, 75009 Paris",
+          "distance": "3 min",
+          "description": {
+            "fr": "Parking voiture",
+            "en": "Car park"
+          }
+        },
+        {
+          "name": "Parking Vélib'",
+          "address": "Milton - Manuel, 75009 Paris",
+          "distance": "6 min",
+          "description": {
+            "fr": "Parking vélo libre service",
+            "en": "Self-service cycle parking"
+          }
+        },
+        {
+          "name": "Saemes Parking Montholon",
+          "address": "1 Rue Mayran, 75009 Paris",
+          "distance": "3 min",
+          "description": {
+            "fr": "Parking voiture",
+            "en": "Car park"
+          }
+        },
+        {
+          "name": "Zenpark",
+          "address": "45 Rue Laffitte, 75009 Paris",
+          "distance": "6 min",
+          "description": {
+            "fr": "Parking voiture",
+            "en": "Car park"
+          }
+        }
+      ]
     },
-    "entryCodes": {
-      "buildingDoor": "C 4407",
-      "hallCode": "0315"
-    }
-  },
-  "demo-bastille": {
-    "id": "demo-bastille",
-    "name": "Bastille Résidence",
-    "wifi": {
-      "network": "Bastille_Fibre_5G",
-      "password": "roquette-lenoir-88"
-    },
-    "entryCodes": {
-      "buildingDoor": "A 2056",
-      "hallCode": "9642"
+    "facilities": {
+      "sections": [
+        {
+          "id": "équipements",
+          "title": {
+            "fr": "Équipements",
+            "en": "Equipment"
+          },
+          "kind": "video",
+          "items": [
+            {
+              "name": {
+                "fr": "Fontaine d’eau",
+                "en": "Water fountain"
+              },
+              "detail": {
+                "fr": "Eau fraîche & pétillante",
+                "en": "Still & sparkling water"
+              },
+              "imageUrl": "/buildings/lamartine/equip-fontaine-d-eau.png"
+            },
+            {
+              "name": {
+                "fr": "Visio conférence",
+                "en": "Video conference"
+              },
+              "detail": {
+                "fr": "Réservation de salle",
+                "en": "Room booking"
+              },
+              "imageUrl": "/buildings/lamartine/equip-visio-conference.png"
+            },
+            {
+              "name": {
+                "fr": "Écran",
+                "en": "Screen"
+              },
+              "detail": {
+                "fr": "45/55/65 pouces",
+                "en": "45/55/65 inches"
+              },
+              "imageUrl": "/buildings/lamartine/equip-ecran.png"
+            },
+            {
+              "name": {
+                "fr": "Projeter l’écran",
+                "en": "Project the screen"
+              },
+              "detail": {
+                "fr": "Notice :",
+                "en": "Instructions:"
+              },
+              "imageUrl": "/buildings/lamartine/equip-projeter-l-ecran.png",
+              "videoUrl": "/buildings/lamartine/equip-notice-projeter-l-ecran.pdf"
+            }
+          ]
+        },
+        {
+          "id": "cuisine",
+          "title": {
+            "fr": "Cuisine",
+            "en": "Kitchen"
+          },
+          "kind": "video",
+          "items": [
+            {
+              "name": {
+                "fr": "Lave vaisselle",
+                "en": "Dishwasher"
+              },
+              "detail": {
+                "fr": "Notice à venir",
+                "en": "Instructions to follow"
+              },
+              "imageUrl": "/buildings/lamartine/equip-lave-vaisselle.png"
+            },
+            {
+              "name": {
+                "fr": "Micro ondes",
+                "en": "Microwave"
+              },
+              "detail": {
+                "fr": "Notice :",
+                "en": "Instructions:"
+              },
+              "imageUrl": "/buildings/lamartine/equip-micro-ondes.png",
+              "videoUrl": "https://www.youtube.com/watch?v=yqazuy6ngjs"
+            },
+            {
+              "name": {
+                "fr": "Machine à café",
+                "en": "Coffee machine"
+              },
+              "detail": {
+                "fr": "Notice à venir",
+                "en": "Instructions to follow"
+              },
+              "imageUrl": "/buildings/lamartine/equip-machine-a-cafe.png"
+            }
+          ]
+        },
+        {
+          "id": "r-1",
+          "title": {
+            "fr": "R-1",
+            "en": "R-1"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salle de fitness",
+                "en": "Fitness centre"
+              },
+              "detail": {
+                "fr": "4 places",
+                "en": "Seats for 4"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace gaming",
+                "en": "Gaming area"
+              },
+              "detail": {
+                "fr": "5 places\n1 écran",
+                "en": "5 seats\n1 screen"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace lounge",
+                "en": "Lounge area"
+              },
+              "detail": {
+                "fr": "18 places\n1 fontaine à eau\n1 machine à café",
+                "en": "18 seats\n1 water dispenser\n1 coffee machine"
+              }
+            },
+            {
+              "name": {
+                "fr": "Salle hybride",
+                "en": "Hybrid venue"
+              },
+              "detail": {
+                "fr": "12 places\n1 écran 65 pouces\n1 écran",
+                "en": "12 seats\n1 65-inch screen\n1 screen"
+              }
+            },
+            {
+              "name": {
+                "fr": "Salle de réunion",
+                "en": "Meeting room"
+              },
+              "detail": {
+                "fr": "2 salles de 3 places\n2 écrans 45 pouces\n4 phone box",
+                "en": "2 rooms, each with 3 seats\n2 45-inch screens\n4 phone boxes"
+              }
+            }
+          ],
+          "icon": "bâtiment",
+          "imageUrl": "/buildings/lamartine/floor-r-1.webp"
+        },
+        {
+          "id": "r+3 / rooftop",
+          "title": {
+            "fr": "R+3 / Rooftop",
+            "en": "R+3 / Rooftop"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Terrasse privative",
+                "en": "Private terrace"
+              },
+              "detail": {
+                "fr": "123 m² extérieur",
+                "en": "123 m² outdoor area"
+              }
+            }
+          ],
+          "icon": "soleil",
+          "imageUrl": "/buildings/lamartine/floor-rplus3-rooftop.webp"
+        },
+        {
+          "id": "r+2",
+          "title": {
+            "fr": "R+2",
+            "en": "R+2"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salle de réunion",
+                "en": "Meeting room"
+              },
+              "detail": {
+                "fr": "5 places\n1 écran de 55 pouces",
+                "en": "5 seats\n1 55-inch screen"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace ouvert",
+                "en": "Open space"
+              },
+              "detail": {
+                "fr": "10 places",
+                "en": "10 seats"
+              }
+            },
+            {
+              "name": {
+                "fr": "Studio",
+                "en": "Studio flat"
+              },
+              "detail": {
+                "fr": "5 places",
+                "en": "5 seats"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace de travail",
+                "en": "Workspace"
+              },
+              "detail": {
+                "fr": "28 places (3 desks)\n1 écran de 55 pouces\n32 casiers",
+                "en": "28 seats (3 desks)\n1 55-inch screen\n32 lockers"
+              }
+            }
+          ],
+          "icon": "bâtiment",
+          "imageUrl": "/buildings/lamartine/floor-rplus2.webp"
+        },
+        {
+          "id": "r+1",
+          "title": {
+            "fr": "R+1",
+            "en": "R+1"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salles de réunion",
+                "en": "Meeting rooms"
+              },
+              "detail": {
+                "fr": "1 phone box duo\n4 phone box",
+                "en": "1 Phone Box Duo\n4 Phone Boxes"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace de travail",
+                "en": "Workspace"
+              },
+              "detail": {
+                "fr": "7 places (2 desks)\n4 armoires",
+                "en": "7 seats (2 desks)\n4 cupboards"
+              }
+            },
+            {
+              "name": {
+                "fr": "La bibliothèque",
+                "en": "The library"
+              },
+              "detail": {
+                "fr": "24 places (3 desks)\n32 casiers",
+                "en": "24 seats (3 desks)\n32 lockers"
+              }
+            }
+          ],
+          "icon": "bâtiment",
+          "imageUrl": "/buildings/lamartine/floor-rplus1.webp"
+        },
+        {
+          "id": "rdc",
+          "title": {
+            "fr": "RDC",
+            "en": "Ground floor"
+          },
+          "kind": "info",
+          "items": [
+            {
+              "name": {
+                "fr": "Salle de réunion",
+                "en": "Meeting room"
+              },
+              "detail": {
+                "fr": "2 phone box 6 places\n3 phone box",
+                "en": "2 telephone boxes with 6 spaces\n3 telephone boxes"
+              }
+            },
+            {
+              "name": {
+                "fr": "Cuisine",
+                "en": "Kitchen"
+              },
+              "detail": {
+                "fr": "1 four, 2 micro-ondes\n2 lave-vaisselles, 1 frigo\n1 écran de 55 pouce",
+                "en": "1 oven, 2 microwaves\n2 dishwashers, 1 fridge\n1 55-inch screen"
+              }
+            },
+            {
+              "name": {
+                "fr": "Point café",
+                "en": "Coffee break"
+              },
+              "detail": {
+                "fr": "1 fontaine à eau\n2 machines à café",
+                "en": "1 water cooler\n2 coffee machines"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace de travail",
+                "en": "Workspace"
+              },
+              "detail": {
+                "fr": "1 espace co working\nAtelier corner\nMother room",
+                "en": "1 co-working space\nWorkshop corner\nNursing room"
+              }
+            },
+            {
+              "name": {
+                "fr": "Espace ouvert",
+                "en": "Open space"
+              },
+              "detail": {
+                "fr": "Photoroom house\n1 espace Salon",
+                "en": "Photoroom house\n1 living room"
+              }
+            },
+            {
+              "name": {
+                "fr": "Accueil",
+                "en": "Home"
+              },
+              "detail": {
+                "fr": "1 écran de 55 pouces",
+                "en": "1 x 55-inch screen"
+              }
+            }
+          ],
+          "icon": "porte",
+          "imageUrl": "/buildings/lamartine/floor-rdc.webp"
+        }
+      ]
     }
   }
 }
