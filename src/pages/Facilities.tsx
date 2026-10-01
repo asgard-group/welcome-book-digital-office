@@ -166,7 +166,7 @@ export default function Facilities() {
             <img
               src={property?.logoUrl ?? DEFAULT_LOGO_URL}
               alt="Logo"
-              className="h-[25px] max-h-[36px] max-w-[125px] w-auto object-contain brightness-0 invert"
+              className="h-auto max-h-[36px] max-w-[125px] w-auto object-contain brightness-0 invert"
             />
           </div>
         </div>
