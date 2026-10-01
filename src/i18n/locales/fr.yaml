@@ -14,14 +14,11 @@ nav:
   welcome: "Accueil"
   checkin: "S'y rendre"
   checkinShort: "Arrivée"
-  rules: "Règlement"
-  rulesShort: "Règles"
   facilities: "Équipements"
   explore: "Explorer Paris"
   exploreShort: "Explorer"
   info: "Infos utiles"
   infoShort: "Infos"
-  qr: "QR Code"
 
 settings:
   ariaLabel: "Paramètres"
@@ -44,7 +41,6 @@ contact:
 
 welcome:
   title: "Bienvenue"
-  subtitlePrefix: "chez"
   heroAltPrefix: "Bienvenue à "
   heroAltFallback: "Bienvenue"
   menu:
@@ -215,23 +211,6 @@ services:
     - name: "Jöro Living"
       role: "Apparthôtels"
       link: "https://joro-space.fr/reservation-joro/"
-
-rules:
-  navTitle: "Règlement"
-  title: "Règlement intérieur"
-  subtitle: "Merci de respecter ces consignes pendant votre séjour"
-  noSmoking: "Interdiction de fumer"
-  noSmokingDesc: "Il est strictement interdit de fumer dans l'appartement. Merci d'utiliser les espaces extérieurs."
-  noParties: "Pas de fêtes"
-  noPartiesDesc: "Les fêtes et grands rassemblements ne sont pas autorisés."
-  noPets: "Pas d'animaux"
-  noPetsDesc: "Les animaux ne sont pas admis dans l'appartement."
-  noNoise: "Pas de bruit après 22h"
-  noNoiseDesc: "Merci de respecter le voisinage et de limiter le bruit, surtout après 22h."
-  noGuests: "Pas d'invités imprévus"
-  noGuestsDesc: "Seuls les invités enregistrés peuvent séjourner dans l'appartement."
-  emergency: "🆘 Contact d'urgence"
-  emergencyDesc: "Pour tout incident ou urgence :"
 
 facilities:
   title: "Guide de l'espace"
@@ -496,9 +475,3 @@ info:
   fireDesc: "Incendie, secours"
   urgentJoro: "Urgent — Contacter Jöro"
   nearby: "Services à proximité"
-
-qr:
-  title: "QR Code"
-  subtitle: "Partagez ce livret d'accueil avec vos invités"
-  desc: "Imprimez ce QR code et placez-le dans l'appartement. Les invités peuvent le scanner pour accéder au livret."
-  download: "Télécharger le QR Code"

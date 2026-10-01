@@ -1,26 +1,27 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import logo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 
 export default function Onboarding() {
   const navigate = useNavigate();
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
   const { t } = useLanguage();
+  const { data: property } = useProperty();
 
   const handleStart = () => {
     try {
-      localStorage.setItem("joro_onboarded", "1");
+      localStorage.setItem(`joro_onboarded_${buildingSlug}`, "1");
     } catch {}
-    navigate("/home");
+    navigate(`/${buildingSlug}/home`);
   };
 
   return (
-    <div className="h-app-shell w-full bg-muted/30">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         <img
-          src={heroImg}
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
           alt={t.onboarding.heroAlt}
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -29,7 +30,7 @@ export default function Onboarding() {
         <div className="relative z-10 flex h-full w-full flex-col">
           {/* Logos */}
           <div className="flex flex-col items-center px-5 pt-[35%]">
-            <img src={photoroomLogo} alt="Photoroom" className="h-[3.25rem] w-auto object-contain" />
+            <img src={property?.logoUrl ?? DEFAULT_LOGO_URL} alt="Logo" className="h-[3.25rem] w-auto object-contain" />
             <span className="text-white/90 font-light text-[3rem] leading-none">×</span>
             <img src={logo} alt="Joro Office" className="w-[16.17rem] h-auto object-contain" />
           </div>

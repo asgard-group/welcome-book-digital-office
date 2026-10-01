@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   ChevronLeft,
@@ -14,9 +14,8 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { ExternalLink } from "@/components/ExternalLink";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 import joroLogo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   restaurants: UtensilsCrossed,
@@ -28,23 +27,25 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 };
 
 export default function Explore() {
-  const { t } = useLanguage();
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
+  const { t, lang } = useLanguage();
+  const { data: property } = useProperty();
   const [active, setActive] = useState<string>("restaurants");
 
   const categories = t.explore.categories.map((cat) => ({
     ...cat,
     icon: CATEGORY_ICONS[cat.id],
   }));
-  const displayList = t.explore.places[active as keyof typeof t.explore.places];
+  const displayList = property?.addresses?.[active] ?? [];
 
 
   return (
-    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink overflow-hidden">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
-          src={heroImg}
-          alt="Jöro Office 6 Lamartine"
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
+          alt={property?.name ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
@@ -53,7 +54,7 @@ export default function Explore() {
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
+            <Link to={`/${buildingSlug}/home`} aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -98,11 +99,7 @@ export default function Explore() {
                 <ExternalLink
                   key={`${place.name}-${i}`}
                   href={`https://www.google.com/maps/search/${encodeURIComponent(
-                    place.mapQuery
-                      ? place.mapQuery
-                      : place.address
-                      ? `${place.name}, ${place.address}, Paris`
-                      : `${place.name} Paris 9`
+                    place.address ? `${place.name}, ${place.address}` : place.name
                   )}`}
                   newTab
                   className="flex items-center justify-between rounded-xl px-4 py-3 backdrop-blur-md bg-brand-surface/80 dark:bg-brand-ink/80 hover:bg-brand-surface/90 dark:hover:bg-brand-ink/85 transition-colors"
@@ -111,9 +108,9 @@ export default function Explore() {
                     <p className="text-[17px] font-semibold text-brand-ink dark:text-white truncate">
                       {place.name}
                     </p>
-                    {[place.desc, place.right, place.price].filter(Boolean).length > 0 && (
+                    {[place.description?.[lang], place.distance, place.price].filter(Boolean).length > 0 && (
                       <p className="text-[14px] text-brand-ink/70 dark:text-white/80 mt-0.5 truncate">
-                        {[place.desc, place.right, place.price].filter(Boolean).join(" · ")}
+                        {[place.description?.[lang], place.distance, place.price].filter(Boolean).join(" · ")}
                       </p>
                     )}
                   </div>
@@ -136,8 +133,8 @@ export default function Explore() {
               className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={photoroomLogo}
-              alt="Photoroom"
+              src={property?.logoUrl ?? DEFAULT_LOGO_URL}
+              alt="Logo"
               className="h-[25px] w-auto object-contain"
             />
           </div>

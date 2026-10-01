@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   ChevronLeft,
@@ -22,9 +22,8 @@ import {
   Armchair,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 import joroLogo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import meetingImg from "@/assets/meeting.jpg";
 import kaffeImg from "@/assets/kaffe.jpg";
 import livingImg from "@/assets/living.jpg";
@@ -33,17 +32,23 @@ import { ExternalLink } from "@/components/ExternalLink";
 
 const JORO_SPACE_IMAGES = [meetingImg, kaffeImg, livingImg];
 
-const INCLUDED_ICONS: LucideIcon[] = [Wrench, ShieldCheck, KeyRound, Wifi, CookingPot, Coffee, Sparkles];
-const QUOTE_ICONS: LucideIcon[] = [Droplet, Printer, Apple, Palette, Leaf, Armchair, BellRing];
-const QUOTE_EMAILS: string[] = [
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "berenice.carrey@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-  "audrey.robin@joro-space.fr",
-];
+// Maps the "icone" Select option chosen in Notion's Services table to a lucide icon.
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  "clé": KeyRound,
+  bouclier: ShieldCheck,
+  wifi: Wifi,
+  cuisine: CookingPot,
+  "café": Coffee,
+  "ménage": Sparkles,
+  outil: Wrench,
+  eau: Droplet,
+  imprimante: Printer,
+  nourriture: Apple,
+  "déco": Palette,
+  plante: Leaf,
+  mobilier: Armchair,
+  alarme: BellRing,
+};
 
 function ServiceCard({
   icon: Icon,
@@ -80,21 +85,26 @@ function ServiceCard({
 }
 
 export default function Services() {
-  const { t } = useLanguage();
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
+  const { t, lang } = useLanguage();
+  const { data: property } = useProperty();
   const [active, setActive] = useState<string>("inclus");
 
+  const includedItems = property?.services?.included ?? [];
+  const quoteItems = property?.services?.quote ?? [];
+
   const tabs = [
-    { id: "inclus", label: t.services.tabIncluded, count: t.services.includedItems.length },
-    { id: "devis", label: t.services.tabQuote, count: t.services.quoteItems.length },
+    { id: "inclus", label: t.services.tabIncluded, count: includedItems.length },
+    { id: "devis", label: t.services.tabQuote, count: quoteItems.length },
   ];
 
   return (
-    <div className="h-app-shell w-full bg-muted/30 overflow-hidden">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink overflow-hidden">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image (non-scrolling shell keeps it static; only the content below scrolls) */}
         <img
-          src={heroImg}
-          alt="Jöro Office 6 Lamartine"
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
+          alt={property?.name ?? ""}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-brand-ink/30 dark:bg-brand-ink/30" />
@@ -103,7 +113,7 @@ export default function Services() {
         <div className="relative z-10 flex flex-col h-full overflow-y-auto pb-6">
           {/* Back arrow */}
           <div className="sticky top-0 z-20 px-4 pt-4 flex items-center shrink-0">
-            <Link to="/home" aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
+            <Link to={`/${buildingSlug}/home`} aria-label={t.common.back} className="h-[41px] w-[41px] flex items-center justify-center backdrop-blur-md bg-white/30 dark:bg-brand-ink/50 rounded-[6px]">
               <ChevronLeft className="h-6 w-6 text-white" />
             </Link>
           </div>
@@ -147,11 +157,11 @@ export default function Services() {
 
             {active === "inclus" && (
               <div className="grid grid-cols-2 gap-3">
-                {t.services.includedItems.map((item, i) => (
+                {includedItems.map((item) => (
                   <ServiceCard
-                    key={item.title}
-                    icon={INCLUDED_ICONS[i]}
-                    title={item.title}
+                    key={item.name.fr}
+                    icon={SERVICE_ICONS[item.icon] ?? Wrench}
+                    title={item.name[lang]}
                     indicator={<Check className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
@@ -160,12 +170,12 @@ export default function Services() {
 
             {active === "devis" && (
               <div className="grid grid-cols-2 gap-3">
-                {t.services.quoteItems.map((item, i) => (
+                {quoteItems.map((item) => (
                   <ServiceCard
-                    key={item.title}
-                    icon={QUOTE_ICONS[i]}
-                    title={item.title}
-                    href={`mailto:${QUOTE_EMAILS[i]}`}
+                    key={item.name.fr}
+                    icon={SERVICE_ICONS[item.icon] ?? Wrench}
+                    title={item.name[lang]}
+                    href={`mailto:${item.email}`}
                     indicator={<Pencil className="h-4 w-4 text-brand-ink dark:text-white" strokeWidth={2.5} />}
                   />
                 ))}
@@ -214,8 +224,8 @@ export default function Services() {
               className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={photoroomLogo}
-              alt="Photoroom"
+              src={property?.logoUrl ?? DEFAULT_LOGO_URL}
+              alt="Logo"
               className="h-[25px] w-auto object-contain"
             />
           </div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   KeyRound,
   Home as HomeIcon,
@@ -8,11 +8,9 @@ import {
   ConciergeBell,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import heroImg from "@/assets/_MG_5435_WEB.jpg";
 import joroLogo from "@/assets/logo-joro-office.png";
-import photoroomLogo from "@/assets/logo-photoroom-white.png";
 import { SettingsPopover } from "@/components/SettingsPopover";
-import { useProperty } from "@/property/useProperty";
+import { useProperty, DEFAULT_BACKGROUND_URL, DEFAULT_LOGO_URL } from "@/property/useProperty";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 type MenuItem = {
@@ -25,22 +23,23 @@ type MenuItem = {
 export default function Welcome() {
   const { data: property } = useProperty();
   const { t } = useLanguage();
+  const { buildingSlug } = useParams<{ buildingSlug: string }>();
 
   const menu: MenuItem[] = [
-    { label: t.welcome.menu.checkin, icon: KeyRound, to: "/checkin" },
-    { label: t.welcome.menu.facilities, icon: HomeIcon, to: "/facilities" },
-    { label: t.welcome.menu.services, icon: ConciergeBell, to: "/services" },
-    { label: t.welcome.menu.info, icon: InfoIcon, to: "/info" },
-    { label: t.welcome.menu.explore, icon: Compass, to: "/explore" },
-    { label: t.welcome.menu.checkout, icon: Recycle, to: "/checkout" },
+    { label: t.welcome.menu.checkin, icon: KeyRound, to: `/${buildingSlug}/checkin` },
+    { label: t.welcome.menu.facilities, icon: HomeIcon, to: `/${buildingSlug}/facilities` },
+    { label: t.welcome.menu.services, icon: ConciergeBell, to: `/${buildingSlug}/services` },
+    { label: t.welcome.menu.info, icon: InfoIcon, to: `/${buildingSlug}/info` },
+    { label: t.welcome.menu.explore, icon: Compass, to: `/${buildingSlug}/explore` },
+    { label: t.welcome.menu.checkout, icon: Recycle, to: `/${buildingSlug}/checkout` },
   ];
 
   return (
-    <div className="h-app-shell w-full bg-muted/30">
+    <div className="h-app-shell w-full bg-brand-surface dark:bg-brand-ink">
       <div className="mx-auto w-full max-w-[760px] h-app-shell relative overflow-hidden shadow-sm">
         {/* Background image */}
         <img
-          src={heroImg}
+          src={property?.backgroundUrl ?? DEFAULT_BACKGROUND_URL}
           alt={property ? `${t.welcome.heroAltPrefix}${property.name}` : t.welcome.heroAltFallback}
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -60,7 +59,7 @@ export default function Welcome() {
               {t.welcome.title}
             </h1>
             <p className="text-base text-white/80">
-              {t.welcome.subtitlePrefix} {property?.name ?? " "}
+              {property?.name ?? " "}
             </p>
           </div>
 
@@ -105,8 +104,8 @@ export default function Welcome() {
               className="h-[25px] w-auto object-contain brightness-0 invert"
             />
             <img
-              src={photoroomLogo}
-              alt="Photoroom"
+              src={property?.logoUrl ?? DEFAULT_LOGO_URL}
+              alt="Logo"
               className="h-[25px] w-auto object-contain"
             />
           </div>

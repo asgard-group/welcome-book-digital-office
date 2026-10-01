@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync:notion": "node scripts/sync-notion.mjs",
+    "predev": "npm run sync:notion",
+    "prebuild": "npm run sync:notion",
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
