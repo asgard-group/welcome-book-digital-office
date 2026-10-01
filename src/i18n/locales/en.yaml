@@ -4,6 +4,12 @@ common:
   leaveAppDesc: "This link will open another page outside the welcome book. Do you want to continue?"
   leaveAppCancel: "Cancel"
   leaveAppContinue: "Continue"
+  emailChooseTitle: "Contact by email"
+  emailChooseDesc: "Pick your app, or just copy the address."
+  emailOpenOutlook: "Open in Outlook"
+  emailOpenGmail: "Open in Gmail"
+  emailCopy: "Copy address"
+  emailCopiedToast: "Email address copied"
 
 brand:
   name: "Jöro Haussmann"
@@ -35,9 +41,8 @@ contact:
   roleOfficeManager: "Operations Manager"
   emailLabel: "Email"
   whatsappLabel: "WhatsApp"
-  descAlexandra: "Site life, services and events"
-  descManuel: "Site management, day-to-day support"
-  descAudrey: "Technical and operational contact"
+  descAudrey: "Site contact"
+  otherContacts: "Other contact in case of emergency"
 
 welcome:
   title: "Welcome"
