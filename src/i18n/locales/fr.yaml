@@ -4,6 +4,12 @@ common:
   leaveAppDesc: "Ce lien va ouvrir une autre page en dehors du livret d'accueil. Voulez-vous continuer ?"
   leaveAppCancel: "Annuler"
   leaveAppContinue: "Continuer"
+  emailChooseTitle: "Contacter par email"
+  emailChooseDesc: "Choisis ton application, ou copie simplement l'adresse."
+  emailOpenOutlook: "Ouvrir dans Outlook"
+  emailOpenGmail: "Ouvrir dans Gmail"
+  emailCopy: "Copier l'adresse"
+  emailCopiedToast: "Adresse email copiée"
 
 brand:
   name: "Jöro Haussmann"
@@ -35,9 +41,8 @@ contact:
   roleOfficeManager: "Responsable des opérations"
   emailLabel: "Email"
   whatsappLabel: "WhatsApp"
-  descAlexandra: "Vie du site, services et événements"
-  descManuel: "Gestion du site, assistance au quotidien"
-  descAudrey: "Référent technique et opérationnel"
+  descAudrey: "Référente du site"
+  otherContacts: "Autre contact en cas d'urgence"
 
 welcome:
   title: "Bienvenue"
