@@ -30,7 +30,7 @@ export default function Onboarding() {
         <div className="relative z-10 flex h-full w-full flex-col">
           {/* Logos */}
           <div className="flex flex-col items-center px-5 pt-[35%]">
-            <img src={property?.logoUrl ?? DEFAULT_LOGO_URL} alt="Logo" className="h-[3.25rem] max-h-[74px] max-w-[260px] w-auto object-contain brightness-0 invert" />
+            <img src={property?.logoUrl ?? DEFAULT_LOGO_URL} alt="Logo" className="h-auto max-h-[74px] max-w-[260px] w-auto object-contain brightness-0 invert" />
             <span className="text-white/90 font-light text-[3rem] leading-none">×</span>
             <img src={logo} alt="Joro Office" className="w-[16.17rem] h-auto object-contain" />
           </div>
