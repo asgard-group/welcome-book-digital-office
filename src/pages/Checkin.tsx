@@ -200,7 +200,7 @@ export default function Checkin() {
             <img
               src={property?.logoUrl ?? DEFAULT_LOGO_URL}
               alt="Logo"
-              className="h-[25px] w-auto object-contain"
+              className="h-[25px] max-h-[36px] max-w-[125px] w-auto object-contain brightness-0 invert"
             />
           </div>
         </div>
